@@ -1,0 +1,32 @@
+{
+    "data": [
+		{
+			"type":		"scroll",
+			"title":	"",
+			"id":		"header",
+			"icon":		"logo.png",
+			"show":		true
+		},
+		{
+			"type":		"content",
+			"title":	"",
+			"id":		"/video-album",
+			"icon":		"play.svg",
+			"show":		true
+		},
+		{
+			"type":		"content",
+			"title":	"",
+			"id":		"/photo-album",
+			"icon":		"album.svg",
+			"show":		true
+		},
+		{
+			"type":		"scroll",
+			"title":	"",
+			"id":		"footer",
+			"icon":		"name-black.svg",
+			"show":		true
+		}
+	]
+}

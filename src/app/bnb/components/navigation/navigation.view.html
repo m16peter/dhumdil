@@ -1,0 +1,79 @@
+<div class="navigation {{ (app['player'].state > 0) ? 'align_left' : '' }} {{ app['header'].isFixed ? 'fixed': '' }}">
+
+	<div class="navigation_container {{ app['header'].isFull ? 'full' : '' }}">
+
+		<!-- click catcher -->
+		<div class="click-catcher {{ navigation.isVisible ? 'fade-in-catcher' :  animate['catcher'] }}" (click)="closeMenu()"></div>
+
+		<bnb-link class="menu"
+				  [link]="navigation.menu"
+				  [path]="app['path']"
+				  (click)="toggleMenu()">
+		</bnb-link>
+
+		<div class="navigation-bar {{ navigation.isVisible ? 'slide-in-nav' : animate['side-nav'] }}">
+
+			<bnb-link class="menu"
+					  [link]="navigation.menu"
+					  [path]="app['path']"
+					  (click)="toggleMenu()">
+			</bnb-link>
+
+			<div class="links">
+				<div *ngFor="let link of navigation.links; let i = index">
+
+					<bnb-link *ngIf="link.type !== 'dropdown'"
+							  [link]="link"
+							  [path]="app['path']"
+							  (click)="navigateToLink(link, i)">
+					</bnb-link>
+
+					<!-- TODO: TEST -->
+					<bnb-dropdown *ngIf="link.type === 'dropdown'"
+								  [path]="app['path']"
+								  [dropdown]="link.dropdown"
+								  (selected)="navigateToDropdown(link, i)">
+					</bnb-dropdown>
+
+				</div>
+			</div>
+
+		</div>
+
+		<div class="control" *ngIf="app['player'].state > 0 || app['player'].state === -1">
+
+			<img *ngIf   = "app['player'].state !== -1"
+				 src 	 = "{{ src('yt.svg') }}"
+				 class 	 = "player"
+				 title	 = "PLAYER"
+				 (click) = "toggleYTEvent()"
+			/>
+
+			<img *ngIf 	 = "app['player'].state !== 1 && app['player'].state !== -1"
+				 src 	 = "{{ src('play_outline.svg') }}"
+				 class 	 = "play-pause"
+				 title	 = "PLAY"
+				 (click) = "playYTEvent()"
+			/>
+
+			<img *ngIf 	 = "app['player'].state === 1"
+				 src 	 = "{{ src('pause_outline.svg') }}"
+				 class 	 = "play-pause"
+				 title	 = "PAUSE"
+				 (click) = "pauseYTEvent()"
+			/>
+
+			<img src 	 = "{{ src('close_black.svg') }}"
+				 class 	 = "close"
+				 title	 = "STOP"
+				 (click) = "closeYTEvent()"
+			/>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- space-holder for fixed position -->
+<div class="space" *ngIf="app['header'].isFixed"></div>

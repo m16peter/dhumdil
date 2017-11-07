@@ -1,0 +1,27 @@
+<div class="popup {{ animation }}">
+	<div class="backdrop" (click)="onClose()"></div>
+	<div class="popup_container">
+
+		<!-- Header -->
+		<div class="btn_wrapper">
+			<div class="btn" (click)="onClose()">
+				<img src="{{ 'assets/app/img/' + 'close.svg' }}" />
+			</div>
+		</div>
+
+		<!-- Content -->
+		<div class="content_wrapper">
+			<div class="content" [perfectScrollbar]="{}">
+				<div>
+					<div>
+						<h1 class="center">{{ popup.title }}</h1>
+						<div *ngFor="let line of popup.lines">
+							<p>{{ line }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

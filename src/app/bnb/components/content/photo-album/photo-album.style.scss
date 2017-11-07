@@ -1,0 +1,10 @@
+.photo-album {
+	display: flex;
+	position: relative;
+	background: #eee;
+	z-index: 1;
+
+	.title {
+		margin: auto;
+	}
+}

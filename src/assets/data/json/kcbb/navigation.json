@@ -1,0 +1,32 @@
+{
+    "data": [
+        {
+            "type": "dashboard",
+            "title": "Activități",
+            "id": "dashboard",
+            "icon": "assets/admin/img/logo.png",
+            "show": true
+        },
+        {
+            "type": "dropdown",
+            "title": "Despre Noi",
+            "id": [
+                {
+                    "type": "article",
+                    "title": "Crezul",
+                    "id": "article/crezul",
+                    "show": true
+                }
+            ],
+            "icon": "",
+            "show": true
+        },
+        {
+            "type": "scroll",
+            "title": "Contact",
+            "id": "footer",
+            "icon": "",
+            "show": true
+        }
+    ]
+}
