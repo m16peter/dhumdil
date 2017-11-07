@@ -3,7 +3,8 @@
 	"version": "0.0.1",
 	"license": "MIT",
 	"scripts": {
-		"start": "ng serve --aot"
+		"start": "ng serve --aot",
+        "build": "ng build -prod"
 	},
 	"private": true,
 	"dependencies": {
