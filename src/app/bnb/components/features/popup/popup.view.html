@@ -1,0 +1,25 @@
+<div class="popup {{ animation }}">
+	<div class="backdrop" (click)="onClose()"></div>
+	<div class="popup_container">
+
+		<div class="btn_wrapper">
+			<div class="btn" (click)="onClose()">
+				<img src="{{ imgSrc('close.svg') }}" />
+			</div>
+		</div>
+
+		<div class="content_wrapper">
+			<div class="content">
+				<div>
+					<div>
+						<h1 class="center font-semi-bold">{{ popup.title }}</h1>
+						<div class="font-regular" *ngFor="let line of popup.lines">
+							<p>{{ line }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

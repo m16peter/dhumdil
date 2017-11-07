@@ -1,119 +1,30 @@
-<div class="main {{ sideNavStatus() }}" (swipeleft)="swipe(0)" (swiperight)="swipe(1)">
+<div class="bnb" (swipeleft)="onSwipeLeft()" (swiperight)="onSwipeRight()">
 
-	<div class="click-catcher" *ngIf="main.sideNav.isVisible === 1" (click)="toggleSideNav()"></div>
+	<bnb-slider *ngIf 				= "slider.isLoaded"
+				[app] 				= "app"
+				[slider] 			= "slider"
+				(openPopupEv) 		= "openPopup($event)"
+				[style.width.px] 	= "browser.width"
+				[style.height.px] 	= "browser.height"
+	></bnb-slider>
 
-	<div class="sidenav font-bold-italic">
-		<div class="sidenav__list">
-			<a routerLink="/" routerLinkActive="active" class="sidenav__list__item">Ex ipsum</a>
-			<a routerLink="/404" routerLinkActive="active" class="sidenav__list__item">Invidunt explicari</a>
-			<a routerLink="/404" routerLinkActive="active" class="sidenav__list__item">Ad utamur</a>
-			<a routerLink="/404" routerLinkActive="active" class="sidenav__list__item">Case tota</a>
-			<a routerLink="/404" routerLinkActive="active" class="sidenav__list__item">Essent disputationi</a>
-		</div>
-	</div>
-
-	<div class="navigation">
-		<a class="link logo" routerLink="/" routerLinkActive="active">
-			<div class="btn">
-				<img src="assets/img/angular.svg" alt="Apostolska cirkev" />
-				<div class="pulse"></div>
-			</div>
-			<div class="title font-semi-bold">Apostolska cirkev</div>
-		</a>
-
-		<div class="flex"></div>
-
-		<div class="link">
-			<div class="btn" (click)="toggleSideNav()">
-				<img src="assets/img/menu.svg" />
-				<div class="pulse"></div>
-			</div>
-		</div>
-	</div>
-
-	<div class="scroll-tracker" #scrollTracker>
-		<div class="scroll-tracker__sections font-italic">
-			<div class="section {{ isActiveSection(0) }}" (click)="scrollToSection(0)">Welcome to Angular!</div>
-			<div class="section {{ isActiveSection(1) }}" (click)="scrollToSection(1)">Morbi non blandit est</div>
-			<div class="section {{ isActiveSection(2) }}" (click)="scrollToSection(2)">Vestibulum pellentesque at velit sed porta</div>
-			<div class="section {{ isActiveSection(3) }}" (click)="scrollToSection(3)">Sed ut ex pharetra purus laoreet ullamcorper ut at massa</div>
-		</div>
-	</div>
-
-	<router-outlet></router-outlet>
-
-	<div class="content">
-		<div class="txt">
-			<h1 class="title" #breakPoints>Welcome to Angular!</h1>
-			<p class="font-italic">Curabitur in convallis sem. Sed suscipit a nisi in consequat. Etiam varius vestibulum sapien, nec lobortis metus dapibus et. In lorem erat, elementum ac lobortis a, faucibus nec magna. Sed varius nisi ligula. Vivamus vulputate nunc id lectus aliquet condimentum. Curabitur convallis neque ac odio volutpat, vitae commodo leo posuere. Vestibulum mollis commodo consequat. Morbi vitae ipsum eget odio semper semper vitae in nunc. Praesent vel sem pharetra, finibus nunc at, viverra risus.</p>
-			<h2 #breakPoints>Morbi non blandit est</h2>
-			<p>Nulla porttitor lobortis dui. Aenean elementum quam ac eros aliquet iaculis. Curabitur pretium in dolor in congue. Sed vitae diam luctus, tincidunt mi id, eleifend quam. Aliquam porta viverra dui et ullamcorper. Aliquam convallis metus vel bibendum egestas. Maecenas a urna eget erat consequat aliquet ac vel nunc. Sed aliquet, arcu ut lobortis pulvinar, libero diam hendrerit velit, ac aliquam erat magna eget arcu. Pellentesque maximus nisl nulla, placerat porttitor enim fermentum a. Vestibulum nulla sapien, tincidunt in felis id, sagittis semper velit. Nam blandit nisi ut mi porttitor fermentum. Mauris finibus velit sed turpis pulvinar gravida. Integer iaculis, nibh ut scelerisque vestibulum, orci velit interdum elit, in tristique tellus lectus et mi.</p>
-			<p>"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</p>
-			<p>Morbi accumsan malesuada imperdiet. Nam non dolor id arcu tincidunt bibendum. Quisque ex mi, pulvinar ac nisl quis, pellentesque lacinia nunc. In hac habitasse platea dictumst. Nulla venenatis dui id augue iaculis dignissim. Maecenas et metus facilisis, lacinia lorem a, gravida lorem. Curabitur eget porta diam. Sed pellentesque, urna sed commodo iaculis, elit nunc interdum nibh, a suscipit ex nibh vel metus. Nunc lobortis volutpat erat, non tincidunt augue ullamcorper et. Pellentesque id euismod felis. Nam et erat condimentum, laoreet lectus quis, feugiat metus.</p>
-			<h2 #breakPoints>Vestibulum pellentesque at velit sed porta</h2>
-			<p>Curabitur at interdum velit, ut mattis odio. Phasellus tempus enim in diam sodales lobortis. Nam sagittis ex quis massa ullamcorper, sit amet dictum quam placerat. Donec eu arcu ut mi ullamcorper efficitur. Aenean tempor pretium massa vitae ultrices. Etiam ultrices nunc id eleifend faucibus. Vestibulum sit amet commodo massa, a ultrices lorem. Proin nec dignissim lorem. Nulla in tincidunt ex, vitae ornare ligula. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce eu nisi non sem rhoncus consequat nec a dolor. Etiam scelerisque leo quis nunc aliquet varius. Vestibulum rutrum tellus ut nunc faucibus placerat. Ut ultricies justo sit amet justo maximus, ac dictum neque accumsan. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis eros ipsum, finibus quis tempus in, posuere eu neque.</p>
-			<h2 #breakPoints>Sed ut ex pharetra purus laoreet ullamcorper ut at massa</h2>
-			<p>Proin a elementum metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris nec ligula id diam tristique porttitor. Ut placerat porta justo, quis tincidunt urna. Mauris accumsan placerat ante, ut vulputate turpis finibus ac. Nullam ac gravida tellus. Integer malesuada sem at tristique rutrum. Fusce vehicula arcu vel nisl auctor, vel pretium ante finibus. Cras eget elit ac leo ultrices vehicula sit amet vel risus. Donec sed eleifend dui. Mauris varius nulla in viverra porttitor. Cras sit amet velit eu odio maximus feugiat in quis risus. Vivamus sit amet lorem cursus, placerat dui eu, consequat lorem.</p>
-			<p>Nunc eleifend enim lectus, eu sagittis leo semper id. Quisque ut nulla sit amet ex eleifend lobortis eget ornare lectus. Cras fringilla risus id purus consectetur consequat. Nunc eu lacus nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut volutpat nibh at sem lacinia dignissim. Fusce molestie fringilla massa vel elementum. Sed quis massa velit. Praesent sed libero tempor, pellentesque purus ut, viverra metus. Cras urna eros, interdum sed mi non, maximus mattis lorem. Fusce ac nisi metus.</p>
-			<p>Phasellus sapien nulla, malesuada eu eros quis, congue egestas velit. Phasellus condimentum interdum vestibulum. Vestibulum quis viverra urna. Vivamus semper convallis velit sed maximus. Donec vitae massa lorem. Donec sed malesuada massa. Aenean tempor molestie euismod.</p>
-			<p>Proin in dictum leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla commodo feugiat ligula, ut volutpat orci dictum eu. Ut pellentesque aliquam viverra. Nulla non sem mi. Donec interdum hendrerit orci, ut laoreet elit gravida eget. In risus dui, ornare a eros eget, dictum lobortis dui. Etiam commodo, turpis eget tristique congue, enim leo pretium leo, eget luctus sapien sapien non eros. In molestie blandit leo, sit amet varius augue imperdiet eu. Pellentesque quis orci eros. In quis pharetra nulla. Praesent sit amet mi tincidunt, vulputate velit eu, fermentum libero. Donec eu urna at lorem bibendum dictum. Quisque nec egestas sem. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-		</div>
-	</div>
-
-</div>
-
-<!-- Slider -->
-<bnb-slider *ngIf 	 = "!slider.loading"
-			[slider] = "slider"
-			(popup)  = "openPopup($event)"
-></bnb-slider>
-
-<!-- Header -->
-<bnb-header *ngIf 	     = "!navigation.loading"
-			[app] 	     = "app"
-			[navigation] = "navigation"
-			(playYT)     = "playYT()"
-			(closeYT)    = "closeYT()"
-			(pauseYT)    = "pauseYT()"
-			(toggleYT)   = "toggleYT()"
-			(navigate)   = "navigateTo($event)"
-></bnb-header>
-
-<!-- Content -->
-<div *ngIf = "!loading" class = "content" [style.width.px] = "app['browser'].w" [style.height.px] = "app['browser'].h">
-
-	<!-- Router -->
-	<router-outlet></router-outlet>
-
-	<!-- Improvise Adapt Overcome -->
-	<div>
-
-		<bnb-video-album class 		  = "{{ isActiveRoute('video-album') ? 'slide-in-left' : 'slide-out-left' }}"
-						 [app] 		  = "app"
-						 [videoAlbum] = "videoAlbum"
-						 (play)		  = "playYT()"
-						 (pause) 	  = "pauseYT()"
-						 (scroll) 	  = "scrollTo('content')"
-						 (selectID)   = "onSelectID($event)"
-		></bnb-video-album>
-
-		<bnb-photo-album class = "{{ isActiveRoute('photo-album') ? 'slide-in-right' : 'slide-out-right' }}"></bnb-photo-album>
-
-	</div>
-
-	<!-- YT Player -->
-	<bnb-youtube-player [app] = "app"></bnb-youtube-player>
-
-	<!-- Popup -->
-	<bnb-popup 	*ngIf	= "popup.isVisible"
-				  [popup]	= "popup"
+	<bnb-popup *ngIf 	= "popup.isVisible"
+			   [app] 	= "app"
+			   [popup] 	= "popup"
 	></bnb-popup>
 
 </div>
 
-<!-- Footer -->
+<!--
+<router-outlet></router-outlet>
+
+YT Player
+<bnb-youtube-player [app] = "app"></bnb-youtube-player>
+
+
+Footer
 <bnb-footer	*ngIf	 	 = "!footer.loading"
 			   [app]	 	 = "app"
 			   [footer] 	 = "footer"
 			   (popup)	 	 = "openPopup($event)"
-></bnb-footer>
+></bnb-footer> -->

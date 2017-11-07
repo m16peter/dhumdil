@@ -1,62 +1,68 @@
+:host {
+	display: block;
+	position: relative;
+}
+
 .slider {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
-	min-height: 100%;
-	background: #eeeeee;
+	height: 100%;
+	background: #eee;
 	overflow: hidden;
+	animation: test 1s ease-out;
 
 	&:hover {
 		.btns {
 			opacity: 1;
 		}
 	}
-	.animate img {
+	.animate .slide__img {
 		z-index: 150;
 		visibility: visible;
 		animation: slide-down 300ms ease-in;
 		animation-fill-mode: both;
 	}
-	.hide img {
+	.hide .slide__img {
 		z-index: 50;
 		animation: wait-for-slide-down 300ms linear;
 	}
-	.animate .content {
+	.animate .slide__content {
 		z-index: 250;
 		visibility: visible;
 		animation: slide-right 300ms ease-in;
 		animation-delay: 300ms;
 		animation-fill-mode: both;
 	}
-	.hide .content {
+	.hide .slide__content {
 		z-index: 50;
 	}
-	.animated img {
+	.animated .slide__img {
 		z-index: 150;
 		visibility: visible;
 	}
-	.hided img {
+	.hidden .slide__img {
 		z-index: 50;
 		visibility: hidden;
 	}
-	.animated .content {
+	.animated .slide__content {
 		z-index: 250;
 		visibility: visible;
 	}
-	.hided .content {
+	.hidden .slide__content {
 		z-index: 50;
 	}
 }
 
-.slides {
+.slide {
 	position: absolute;
 	left: 0;
 	top: 0;
 	width: 100%;
 	min-height: 100%;
 
-	img {
+	&__img {
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -65,26 +71,27 @@
 		transform: translate3d(-50%, -50%, 0);
 		visibility: hidden;
 	}
-	.content {
+	&__content {
 		display: flex;
 		position: absolute;
 		top: 50px;
 		left: 0;
 		width: 100%;
-		height: ~"calc(100% - 50px)";
+		height: calc(100% - 50px);
+		cursor: pointer;
 
-		h1 {
+		&_title {
 			width: 100%;
 			margin: auto 0;
 			color: #eee;
 			text-align: center;
 			background: rgba(0,0,0, 0.5);
-			cursor: pointer;
+			padding: 50px 0;
 		}
 	}
 }
 
-.btns {
+.navigation {
 	position: absolute;
 	display: flex;
 	top: 0;
@@ -98,39 +105,32 @@
 	&:hover {
 		opacity: 1;
 
-		> div {
-			> div {
-				> div {
-					border: 2px solid #000;
-				}
-			}
+		.navigation__list_btn::after {
+			border: 2px solid #000;
 		}
 	}
-	> div {
+	&__list {
 		display: flex;
 		margin: auto;
 
 		&:hover {
-			> div {
-				> div {
-					-webkit-box-shadow: 0 0 20px 1px rgba(255,255,255, 0.75);
-					-moz-box-shadow: 0 0 20px 1px rgba(255,255,255, 0.75);
-					box-shadow: 0 0 20px 1px rgba(255,255,255, 0.75);
-				}
+			.navigation__list_btn::after {
+				box-shadow: 0 0 20px 1px rgba(255,255,255, 0.75);
 			}
 		}
-		> div {
+		&_btn {
+			position: relative;
 			padding: 5px;
 			margin: 0 5px;
-			cursor: pointer;
 			border-radius: 25px;
+			cursor: pointer;
 
-			&:hover {
-				> div {
-					background: #000;
-				}
+			&:hover::after {
+				background: #000;
 			}
-			> div {
+			&::after {
+				content: '';
+				display: flex;
 				position: relative;
 				width: 10px;
 				height: 10px;
@@ -138,9 +138,9 @@
 				border-radius: 50%;
 				border: 2px solid #000;
 			}
-			.active {
-				background: #000;
-			}
+		}
+		.active::after {
+			background: #000;
 		}
 	}
 }
@@ -173,14 +173,14 @@
 	}
 }
 
-@media all and (max-width: 1024px) {
-	h1 {
-		font-size: 28px;
+@keyframes test {
+	from {
+		transform: translateY(-100%);
 	}
-}
-
-@media all and (max-width: 768px) {
-	h1 {
-		font-size: 20px;
+	75% {
+		transform: translateY(-100%);
+	}
+	to {
+		transform: none;
 	}
 }

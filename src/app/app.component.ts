@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 
 @Component({
-	selector: 'app-root',
+	selector: 'app-bnb',
 	template: `<bnb-app></bnb-app>`,
 	styleUrls: []
 })

@@ -1,19 +1,25 @@
-<div class="slider">
+<div class="slider font-italic">
 
 	<!-- Slides -->
-	<div class="slides {{ animateIfActive(i) }}" *ngFor="let slide of slider.slides; let i = index;">
-		<img src="{{ slide['img'].src }}" />
-		<div class="content">
-			<h1 (click)="openPopup(slide['txt'].title, slide['txt'].lines)">{{ slide['txt'].title }}</h1>
+	<div class="slide {{ animateIfActive(i) }}" *ngFor="let slide of slider.slides; let i = index;">
+
+		<img class="slide__img" src="{{ slide.img.src }}" alt="{{ slide.img.title }}" />
+
+		<div class="slide__content" (click)="openPopup(i)">
+			<h1 class="slide__content_title">{{ slide.txt[app.selectedLang].title }}</h1>
 		</div>
+
 	</div>
 
 	<!-- Navigation -->
-	<div class="btns" *ngIf="slider.slides.length > 1">
-		<div>
-			<div *ngFor="let slide of slider.slides; let i = index;" (click)="selectSlide(i)">
-				<div [ngClass]="{'active': i === slider.activeSlide}"></div>
-			</div>
+	<div class="navigation" *ngIf="(slider.slides.length > 1)">
+		<div class="navigation__list">
+
+			<div class = "navigation__list_btn {{ (i === slider.activeSlide) ? 'active' : '' }}"
+				 *ngFor = "let slide of slider.slides; let i = index;"
+				 (click) = "selectSlide(i)"
+			></div>
+
 		</div>
 	</div>
 

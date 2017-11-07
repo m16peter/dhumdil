@@ -13,194 +13,58 @@
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
 
 	<style>
-
-		/* reset (just the elements in use)*/
-		* a:hover, * a:active, * a:focus {
-			text-decoration: none;
-		}
-		* :active, * :focus {
-			outline: none !important;
+		* {
+			font-family: 'Source Sans Pro';
 		}
 		html, body {
+			position: relative;
 			height: 100%;
 			margin: 0;
-			font-family: 'Source Sans Pro';
 			background: #fff;
 		}
-
-		/* basic (style & media) */
-		h1 {
-			line-height: 125%;
-			font-size: 64px;
-			font-weight: 200;
-			margin: 80px 0;
-		}
-		h2 {
-			font-size: 48px;
-			line-height: 125%;
-			font-weight: 400;
-			margin: 40px 0;
-		}
-		p {
-			line-height: 125%;
-			text-align: justify;
-			text-indent: 50px;
-			font-size: 18px;
-			font-weight: 400;
-			margin: 5px 0;
-		}
-		.font-extra-light {
-			font-weight: 200;
-		}
-		.font-regular {
-			font-weight: 400;
-		}
-		.font-semi-bold {
-			font-weight: 600;
-		}
-		.font-bold {
-			font-weight: 700;
-		}
-		.font-italic {
-			font-weight: 400;
-			font-style: italic;
-		}
-		.font-bold-italic {
-			font-style: italic;
-			font-weight: 700;
-		}
-		@media (max-width: 1024px) {
-			h1 {
-				font-size: 48px;
-			}
-			h2 {
-				font-size: 32px;
-			}
-		}
-		@media (max-width: 600px) {
-			h1 {
-				font-size: 38px;
-			}
-			h2 {
-				font-size: 24px;
-			}
-		}
-
-		/* fonts (ExtraLight, Regular, SemiBold, Bold, Italic, BoldItalic) */
-		@font-face {
-			font-family: 'Source Sans Pro';
-			font-style: normal;
-			font-weight: 200;
-			src: local('Source Sans Pro ExtraLight'), local('SourceSansPro-ExtraLight'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGJCDkYQxybH_Rl7Qv7ee2N4.woff2) format('woff2');
-			unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-		}
-		@font-face {
-			font-family: 'Source Sans Pro';
-			font-style: normal;
-			font-weight: 200;
-			src: local('Source Sans Pro ExtraLight'), local('SourceSansPro-ExtraLight'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGCVh0V6fR69OLaFLklYbiSk.woff2) format('woff2');
-			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-		}
-		@font-face {
-			font-family: 'Source Sans Pro';
-			font-style: normal;
-			font-weight: 400;
-			src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/ODelI1aHBYDBqgeIAH2zlC2Q8seG17bfDXYR_jUsrzg.woff2) format('woff2');
-			unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-		}
-		@font-face {
-			font-family: 'Source Sans Pro';
-			font-style: normal;
-			font-weight: 400;
-			src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/ODelI1aHBYDBqgeIAH2zlNV_2ngZ8dMf8fLgjYEouxg.woff2) format('woff2');
-			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-		}
-		@font-face {
-			font-family: 'Source Sans Pro';
-			font-style: normal;
-			font-weight: 600;
-			src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGFKFh1TDTPrUZWzVp6FtpG8.woff2) format('woff2');
-			unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-		}
-		@font-face {
-			font-family: 'Source Sans Pro';
-			font-style: normal;
-			font-weight: 600;
-			src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGCOFnW3Jk0f09zW_Yln67Ac.woff2) format('woff2');
-			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-		}
-		@font-face {
-			font-family: 'Source Sans Pro';
-			font-style: normal;
-			font-weight: 700;
-			src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGFxe-GPfKKFmiXaJ_Q0GFr8.woff2) format('woff2');
-			unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-		}
-		@font-face {
-			font-family: 'Source Sans Pro';
-			font-style: normal;
-			font-weight: 700;
-			src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGEo0As1BFRXtCDhS66znb_k.woff2) format('woff2');
-			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-		}
-		@font-face {
-			font-family: 'Source Sans Pro';
-			font-style: italic;
-			font-weight: 400;
-			src: local('Source Sans Pro Italic'), local('SourceSansPro-Italic'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/M2Jd71oPJhLKp0zdtTvoM40tgx99jmYGv_xzYuwd1rU.woff2) format('woff2');
-			unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-		}
-		@font-face {
-			font-family: 'Source Sans Pro';
-			font-style: italic;
-			font-weight: 400;
-			src: local('Source Sans Pro Italic'), local('SourceSansPro-Italic'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/M2Jd71oPJhLKp0zdtTvoMxgy2Fsj5sj3EzlXpqVXRKo.woff2) format('woff2');
-			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-		}
-		@font-face {
-			font-family: 'Source Sans Pro';
-			font-style: italic;
-			font-weight: 700;
-			src: local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldItalic'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/fpTVHK8qsXbIeTHTrnQH6Kr3NmSntz3GE6rIpxOPZGY.woff2) format('woff2');
-			unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-		}
-		@font-face {
-			font-family: 'Source Sans Pro';
-			font-style: italic;
-			font-weight: 700;
-			src: local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldItalic'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/fpTVHK8qsXbIeTHTrnQH6Nnl6YROR5rHLkdLoHwoOWA.woff2) format('woff2');
-			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-		}
-
-		/* loading screen */
-		.app-loading {
-			position: relative;
+		.loading {
+			position: absolute;
 			display: flex;
 			height: 100%;
+			width: 100%;
+			top: 0;
+			left: 0;
 		}
-		.app-loading .spinner {
+		.layout-row {
+			position: relative;
+			display: flex;
+			margin: auto;
+			width: 200px;
+			height: 200px;
+		}
+		.loading .spinner {
+			position: absolute;
 			height: 200px;
 			width: 200px;
 			animation: rotate 1s linear infinite;
-			transform-origin: center center;
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			margin: auto;
 		}
-		.app-loading .spinner .path {
+		.loading .spinner .path {
 			stroke-dasharray: 1, 200;
 			stroke-dashoffset: 0;
 			animation: dash 0.75s ease-in-out infinite;
 			stroke-linecap: round;
 			stroke: #369;
 		}
-		.app-loading .logo {
+		.loading .logo {
+			position: absolute;
+			top: 50px;
+			left: 50px;
 			width: 100px;
 			height: 100px;
-			margin: auto;
+		}
+		.loading .logo .st0 {
+			fill: #dd0031;
+		}
+		.loading .logo .st1 {
+			fill: #c3002f;
+		}
+		.loading .logo .st2 {
+			fill: #fff;
 		}
 		@keyframes rotate {
 			100% {
@@ -226,14 +90,22 @@
 </head>
 <body>
 
-	<bnb-app>
-		<div class="app-loading">
-			<img class="logo" src="assets/img/angular.svg" />
+	<div class="loading">
+		<div class="layout-row">
+			<svg class="logo" x="0px" y="0px" viewBox="0 0 250 250" xml:space="preserve">
+				<g>
+					<polygon class="st0" points="125,30 125,30 125,30 31.9,63.2 46.1,186.3 125,230 125,230 125,230 203.9,186.3 218.1,63.2" />
+					<polygon class="st1" points="125,30 125,52.2 125,52.1 125,153.4 125,153.4 125,230 125,230 203.9,186.3 218.1,63.2 125,30" />
+					<path class="st2" d="M125,52.1L66.8,182.6h0h21.7h0l11.7-29.2h49.4l11.7,29.2h0h21.7h0L125,52.1L125,52.1L125,52.1L125,52.1L125,52.1z M142,135.4H108l17-40.9L142,135.4z" />
+				</g>
+			</svg>
 			<svg class="spinner" viewBox="25 25 50 50">
 				<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
 			</svg>
 		</div>
-	</bnb-app>
+	</div>
+
+	<app-bnb></app-bnb>
 
 	<!-- support touch gestures, polyfills, analytics -->
 	<script src="assets/js/hammer.min.js"></script>

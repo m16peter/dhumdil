@@ -1,28 +1,30 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Slider } 								  from './slider.model';
+import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 
 @Component({
 	selector: 'bnb-slider',
-	templateUrl: './slider.html',
-	styleUrls: ['./slider.less']
+	templateUrl: './slider.view.html',
+	styleUrls: ['./slider.style.scss']
 })
 
-export class SliderComponent {
-
-	public loading: boolean;
-	public selectedIndexes: any;
+export class SliderComponent implements AfterViewInit
+{
+	public selectedIndexes = [];
 
 	@Input() slider;
-	@Output() popup = new EventEmitter();
+	@Input() app;
 
-	constructor()
+	@Output() openPopupEv = new EventEmitter();
+
+	ngAfterViewInit(): void
 	{
-		this.selectedIndexes = [];
-		this.slider = new Slider();
+		console.log('ngAfterViewInit()');
+		this.setAutoSlideOn();
 	}
 
-	public setAutoSlideOn(): void
+	private setAutoSlideOn(): void
 	{
+		console.log('setAutoSlideOn()');
+
 		if (this.slider.slides.length > 1)
 		{
 			this.slider.isAutoSlideOn = true;
@@ -38,16 +40,24 @@ export class SliderComponent {
 
 	private setAutoSlideOff(): void
 	{
+		console.log('setAutoSlideOff()');
 		this.slider.isAutoSlideOn = false;
 		clearInterval(this.slider['auto-slide']);
 	}
 
 	public selectSlide(index: number, autoSlide = false): void
 	{
+		console.log('selectSlide()');
+
 		if (this.slider.isFirstTime)
 		{
 			this.slider.isFirstTime = false;
 		}
+
+		// If the animation isn't over when user changes the slide,
+		// push this 'event' into 'selectedIndexes'
+		// and execute once the animation is over...
+		// If the user selects the same slides, ignore them...
 		if (this.selectedIndexes.length > 0)
 		{
 			if (this.selectedIndexes[this.selectedIndexes.length - 1] !== index)
@@ -60,10 +70,20 @@ export class SliderComponent {
 			this.selectedIndexes.push(index);
 		}
 
+		// On user's interaction with slider,
+		// the auto-slide option turns off
 		if (this.slider.isAutoSlideOn && !autoSlide)
 		{
 			this.setAutoSlideOff();
 		}
+
+		// The length of 'selectedIndexes' is always 1,
+		// in case the user waited for animatin end.
+		// If he didn't waited, those indexes will be
+		// pushed in 'selectedIndexes' list,
+		// and once the animation ends,
+		// this 'interval' will shift the indexes and animate slides,
+		// until there is nothing left to do...
 		if (this.selectedIndexes.length === 1)
 		{
 			index = this.selectedIndexes[0];
@@ -72,12 +92,13 @@ export class SliderComponent {
 			{
 				this.slider.activeSlide = index;
 			}
+
 			const interval = setInterval(() =>
 			{
 				this.selectedIndexes.shift();
+
 				if (this.selectedIndexes.length > 0)
 				{
-					console.log(this.selectedIndexes);
 					index = this.selectedIndexes[0];
 
 					if (this.slider.activeSlide !== index)
@@ -95,16 +116,23 @@ export class SliderComponent {
 
 	public animateIfActive(index: number): string
 	{
+		console.log('animateIfActive()');
+
 		if (this.slider.isFirstTime)
 		{
-			return ((index === this.slider.activeSlide) ? 'animated' : 'hided');
+			return ((index === this.slider.activeSlide) ? 'animated' : 'hidden');
 		}
 		return ((index === this.slider.activeSlide) ? 'animate' : 'hide');
 	}
 
-	public openPopup(title: string, lines: any): void
+	public openPopup(i: number): void
 	{
-		this.popup.emit({'title': title, 'lines': lines});
+		console.log('openPopup()');
+
+		this.openPopupEv.emit({
+			'title': this.slider.slides[i].txt[this.app.selectedLang].title,
+			'lines': this.slider.slides[i].txt[this.app.selectedLang].lines
+		});
 
 		if (this.slider.isAutoSlideOn)
 		{

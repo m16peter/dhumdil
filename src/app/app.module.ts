@@ -3,13 +3,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { BNBRoutingModule, BNBComponents, BNBServices }	from './bnb/bnb.module';
+import { BNBRoutingModule, BNBComponents, BNBServices, BNBPipes, BNBDirectives } from './bnb/bnb.module';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		BNBComponents
+		BNBComponents,
+		BNBDirectives,
+		BNBPipes
 	],
 	imports: [
 		BrowserModule,
