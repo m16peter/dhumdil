@@ -6,4 +6,4 @@
 `npm run start`
 
 ### Build
-`ng build -prod`
+`npm run build`
