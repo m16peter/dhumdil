@@ -1,23 +1,23 @@
-<!-- <div class="footer">
-
+<div class="footer">
 	<div class="contact">
 
-		<div>
-			<h1 class="title layout-center">{{ footer.contact.data.title }}</h1>
+		<!-- Title -->
+		<div class="font-bold-italic">
+			<h1 class="title layout-center">{{ footer.title[app.selectedLang] }}</h1>
 		</div>
 
 		<div class="txt flex">
 			<div>
 
-				Name & Address
+				<!-- Name & Address -->
 				<div class="contact-info">
 					<div class="flex">
 						<div class="layout-row">
 							<div class="items">
 
-								<div class="layout-row" *ngFor="let item of footer.contact.data.names">
+								<div class="layout-row" *ngFor="let item of footer.names">
 									<div class="icon">
-										<img src="{{ src('name.svg') }}" />
+										<img src="{{ imgSrc('name.svg') }}" />
 									</div>
 									<div class="item">
 										<h3>{{ item.name }}</h3>
@@ -27,9 +27,9 @@
 									<div class="flex"></div>
 								</div>
 
-								<div class="layout-row" *ngFor="let item of footer.contact.data.locations">
+								<div class="layout-row" *ngFor="let item of footer.locations">
 									<div class="icon">
-										<img src="{{ src('location.svg') }}" />
+										<img src="{{ imgSrc('location.svg') }}" />
 									</div>
 									<div class="item">
 										<h3>{{ item.address }}</h3>
@@ -44,12 +44,13 @@
 					</div>
 				</div>
 
+				<!-- Description -->
 				<div class="desc">
 					<div class="layout-row flex">
-						<h2>{{ footer.contact.data.description.title }}</h2>
+						<h2>{{ footer.description[app.selectedLang].title }}</h2>
 					</div>
 					<div class="layout-row">
-						<h3 (click)="openPopup(footer.contact.data.description.title, footer.contact.data.description.lines)">{{ footer.contact.data.description['read-more'] }}</h3>
+						<h3 (click)="openPopup()">{{ footer.description[app.selectedLang]['read-more'] }}</h3>
 					</div>
 				</div>
 
@@ -57,5 +58,4 @@
 		</div>
 
 	</div>
-
-</div> -->
+</div>

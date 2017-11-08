@@ -6,8 +6,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 // components
 import { BNBComponent } 		from "./bnb.component";
-import { SliderComponent } 		from "./components/slider/slider.component";
 import { PopupComponent } 		from "./components/features/popup/popup.component";
+import { SliderComponent } 		from "./components/slider/slider.component";
+import { FooterComponent } 		from './components/footer/footer.component';
 import { EmptyComponent } 		from './components/content/empty/empty.component';
 import { ErrorComponent } 		from './components/content/error/error.component';
 
@@ -45,6 +46,7 @@ export const BNBComponents = [
 	BNBComponent,
 	PopupComponent,
 	SliderComponent,
+	FooterComponent,
 	EmptyComponent,
 	ErrorComponent
 ];

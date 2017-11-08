@@ -11,10 +11,10 @@ export class EmptyComponent
 {
 	constructor(title: Title, meta: Meta)
 	{
-		title.setTitle('Error');
+		title.setTitle('EmptyComponent');
 		meta.addTags([{
 			name: 'description',
-			content: 'The requested resource could not be found.'
+			content: 'EmptyComponent\'s description...'
 		}]);
 	}
 }

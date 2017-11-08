@@ -2,6 +2,7 @@ import { Component, ViewChildren, HostListener, AfterViewInit, ChangeDetectorRef
 import { App } from './models/bnb.model';
 import { Popup } from './models/popup.model';
 import { Slider } from './models/slider.model';
+import { Footer } from './models/footer.model';
 
 @Component({
 	selector: 'bnb-app',
@@ -15,6 +16,7 @@ export class BNBComponent implements AfterViewInit
 	public app: App;
 	public popup: Popup;
 	public slider: Slider;
+	public footer: Footer;
 
 	@HostListener('window:resize') onResize()
 	{
@@ -23,42 +25,33 @@ export class BNBComponent implements AfterViewInit
 
 	constructor(private cdr: ChangeDetectorRef)
 	{
-		console.log('constructor()');
 		this.browser = {};
 		this.app = new App();
 		this.popup = new Popup();
 		this.slider = new Slider();
+		this.footer = new Footer();
 	}
 
 	ngAfterViewInit(): void
 	{
-		console.log('ngAfterViewInit()');
 		this.handleResize();
 		this.cdr.detectChanges();
 	}
 
 	private handleResize(): void
 	{
-		console.log('handleResize()');
 		this.browser.width = window.innerWidth;
 		this.browser.height = window.innerHeight;
 	}
 
-	// TODO:
 	public onSwipeLeft(): void
-	{
-		console.log('onSwipeLeft()');
-	}
+	{}
 
-	// TODO:
 	public onSwipeRight(): void
-	{
-		console.log('onSwipeRight()');
-	}
+	{}
 
 	public openPopup(ev: any): void
 	{
-		console.log('openPopup()');
 		this.popup.title = ev.title;
 		this.popup.lines = ev.lines;
 		this.popup.isVisible = true;
