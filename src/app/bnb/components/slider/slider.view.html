@@ -3,7 +3,11 @@
 	<!-- Slides -->
 	<div class="slide {{ animateIfActive(i) }}" *ngFor="let slide of slider.slides; let i = index;">
 
-		<img class="slide_img" src="{{ slide.img.src }}" alt="Slider cover image..." />
+		<picture>
+			<source media="(min-width: 1024px)" srcset="{{ slide.img.src }}">
+			<source media="(min-width: 1024px)" srcset="{{ slide.img.src_md }}">
+			<img class="slide_img" src="{{ slide.img.src_sm }}" alt="Slider cover image...">
+		</picture>
 
 		<div class="slide_content">
 			<h1 (click)="openPopup(i)">{{ slide.txt[app.selectedLang].title }}</h1>

@@ -3,8 +3,8 @@
 		{
 			"img": {
 				"src": "assets/data/slider/1.jpg",
-				"width": 1920,
-				"height": 1080
+				"src_md": "assets/data/slider/1_md.jpg",
+				"src_sm": "assets/data/slider/1_sm.jpg"
 			},
 			"txt": {
 				"sk": {
@@ -37,8 +37,8 @@
 		{
 			"img": {
 				"src": "assets/data/slider/2.jpg",
-				"width": 1920,
-				"height": 1080
+				"src_md": "assets/data/slider/2_md.jpg",
+				"src_sm": "assets/data/slider/2_sm.jpg"
 			},
 			"txt": {
 				"sk": {

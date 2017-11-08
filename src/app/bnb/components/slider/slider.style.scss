@@ -89,11 +89,15 @@
 		h1 {
 			position: relative;
 			text-align: center;
-			padding: 20px;
+			padding: 50px 0;
 			width: 100%;
 			color: #eee;
 			background: rgba(0,0,0, 0.5);
 			cursor: pointer;
+
+			@media (max-width: 600px) {
+				padding: 20px 0;
+			}
 		}
 	}
 }
