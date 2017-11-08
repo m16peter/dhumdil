@@ -3,24 +3,26 @@
 	<!-- Slides -->
 	<div class="slide {{ animateIfActive(i) }}" *ngFor="let slide of slider.slides; let i = index;">
 
-		<img class="slide__img" src="{{ slide.img.src }}" alt="{{ slide.img.title }}" />
+		<img class="slide_img" src="{{ slide.img.src }}" alt="Slider cover image..." />
 
-		<div class="slide__content">
-			<h1 class="slide__content_title" (click)="openPopup(i)">{{ slide.txt[app.selectedLang].title }}</h1>
+		<div class="slide_content" (click)="openPopup(i)">
+			<h1>{{ slide.txt[app.selectedLang].title }}</h1>
 		</div>
 
 	</div>
 
 	<!-- Navigation -->
 	<div class="navigation" *ngIf="(slider.slides.length > 1)">
+
 		<div class="navigation__list">
 
-			<div class = "navigation__list_btn {{ (i === slider.activeSlide) ? 'active' : '' }}"
-				 *ngFor = "let slide of slider.slides; let i = index;"
-				 (click) = "selectSlide(i)"
+			<div class 		= "navigation__list_btn {{ (i === slider.activeSlide) ? 'active' : '' }}"
+				 *ngFor 	= "let slide of slider.slides; let i = index;"
+				 (click) 	= "selectSlide(i)"
 			></div>
 
 		</div>
+
 	</div>
 
 </div>

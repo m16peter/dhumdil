@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
 	selector: 'bnb-footer',
@@ -9,17 +9,8 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 export class FooterComponent
 {
 	@Input() app;
+	@Input() popup;
 	@Input() footer;
-
-	@Output() openPopupEv = new EventEmitter();
-
-	public openPopup(): void
-	{
-		this.openPopupEv.emit({
-			'title': this.footer.description[this.app.selectedLang].title,
-			'lines': this.footer.description[this.app.selectedLang].lines
-		});
-	}
 
 	public imgSrc(icon: string): string
 	{
@@ -29,6 +20,15 @@ export class FooterComponent
 	public isSet(str: string): boolean
 	{
 		return (str !== '');
+	}
+
+	public openPopup(data: any): void
+	{
+		this.popup.update({
+			'title': data.title,
+			'lines': data.lines
+		});
+		this.popup.show();
 	}
 
 }

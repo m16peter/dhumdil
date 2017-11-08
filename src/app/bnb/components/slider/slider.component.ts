@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 
 @Component({
 	selector: 'bnb-slider',
@@ -10,21 +10,17 @@ export class SliderComponent implements AfterViewInit
 {
 	public selectedIndexes = [];
 
-	@Input() slider;
 	@Input() app;
-
-	@Output() openPopupEv = new EventEmitter();
+	@Input() popup;
+	@Input() slider;
 
 	ngAfterViewInit(): void
 	{
-		console.log('ngAfterViewInit()');
 		this.setAutoSlideOn();
 	}
 
 	private setAutoSlideOn(): void
 	{
-		console.log('setAutoSlideOn()');
-
 		if (this.slider.slides.length > 1)
 		{
 			this.slider.isAutoSlideOn = true;
@@ -40,15 +36,12 @@ export class SliderComponent implements AfterViewInit
 
 	private setAutoSlideOff(): void
 	{
-		console.log('setAutoSlideOff()');
 		this.slider.isAutoSlideOn = false;
 		clearInterval(this.slider['auto-slide']);
 	}
 
 	public selectSlide(index: number, autoSlide = false): void
 	{
-		console.log('selectSlide()');
-
 		if (this.slider.isFirstTime)
 		{
 			this.slider.isFirstTime = false;
@@ -116,8 +109,6 @@ export class SliderComponent implements AfterViewInit
 
 	public animateIfActive(index: number): string
 	{
-		console.log('animateIfActive()');
-
 		if (this.slider.isFirstTime)
 		{
 			return ((index === this.slider.activeSlide) ? 'animated' : 'hidden');
@@ -125,14 +116,13 @@ export class SliderComponent implements AfterViewInit
 		return ((index === this.slider.activeSlide) ? 'animate' : 'hide');
 	}
 
-	public openPopup(i: number): void
+	public openPopup(index: number): void
 	{
-		console.log('openPopup()');
-
-		this.openPopupEv.emit({
-			'title': this.slider.slides[i].txt[this.app.selectedLang].title,
-			'lines': this.slider.slides[i].txt[this.app.selectedLang].lines
+		this.popup.update({
+			'title': this.slider.slides[index].txt[this.app.selectedLang].title,
+			'lines': this.slider.slides[index].txt[this.app.selectedLang].lines
 		});
+		this.popup.show();
 
 		if (this.slider.isAutoSlideOn)
 		{

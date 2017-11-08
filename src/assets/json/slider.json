@@ -4,8 +4,7 @@
 			"img": {
 				"src": "assets/data/slider/1.jpg",
 				"width": 1920,
-				"height": 1080,
-				"title": "Image Description..."
+				"height": 1080
 			},
 			"txt": {
 				"sk": {
@@ -39,8 +38,7 @@
 			"img": {
 				"src": "assets/data/slider/2.jpg",
 				"width": 1920,
-				"height": 1080,
-				"title": "Image Description..."
+				"height": 1080
 			},
 			"txt": {
 				"sk": {

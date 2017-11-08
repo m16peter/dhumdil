@@ -1,4 +1,4 @@
-import { Component, ViewChildren, HostListener, AfterViewInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, HostListener, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { App } from './models/bnb.model';
 import { Popup } from './models/popup.model';
 import { Slider } from './models/slider.model';
@@ -36,6 +36,12 @@ export class BNBComponent implements AfterViewInit
 	{
 		this.handleResize();
 		this.cdr.detectChanges();
+
+		setTimeout(() =>
+		{
+			this.browser.isLoaded = true;
+			this.cdr.detectChanges();
+		}, 1000);
 	}
 
 	private handleResize(): void
@@ -44,10 +50,9 @@ export class BNBComponent implements AfterViewInit
 		this.browser.height = window.innerHeight;
 	}
 
-	public openPopup(ev: any): void
+	public isSet(str: string): boolean
 	{
-		this.popup.title = ev.title;
-		this.popup.lines = ev.lines;
-		this.popup.isVisible = true;
+		return (str !== '');
 	}
+
 }

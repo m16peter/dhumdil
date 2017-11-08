@@ -2,23 +2,26 @@
 
 	<bnb-slider *ngIf 				= "slider.isLoaded"
 				[app] 				= "app"
+				[popup] 			= "popup"
 				[slider] 			= "slider"
-				(openPopupEv) 		= "openPopup($event)"
 				[style.height.px] 	= "browser.height"
 	></bnb-slider>
 
-	<router-outlet></router-outlet>
+	<div *ngIf="browser.isLoaded">
 
-	<bnb-footer	*ngIf 				= "footer.isLoaded"
-				[app] 				= "app"
-				[footer] 			= "footer"
-				(openPopupEv) 		= "openPopup($event)"
-				[style.height.px] 	= "browser.height"
-	></bnb-footer>
+		<!-- <bnb-header></bnb-header> -->
 
-	<bnb-popup *ngIf 	= "popup.isVisible"
-			   [app] 	= "app"
-			   [popup] 	= "popup"
-	></bnb-popup>
+		<router-outlet></router-outlet>
+
+		<bnb-footer	*ngIf 				= "footer.isLoaded"
+					[app] 				= "app"
+					[popup] 			= "popup"
+					[footer] 			= "footer"
+					[style.height.px] 	= "browser.height"
+		></bnb-footer>
+
+		<bnb-popup [popup] = "popup"></bnb-popup>
+
+	</div>
 
 </div>

@@ -1,23 +1,23 @@
 import { NgModule } 			from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// npm
-// import {} 					from '@angular-pipes';
-
 // components
 import { BNBComponent } 		from "./bnb.component";
-import { PopupComponent } 		from "./components/features/popup/popup.component";
 import { SliderComponent } 		from "./components/slider/slider.component";
 import { FooterComponent } 		from './components/footer/footer.component';
 import { EmptyComponent } 		from './components/content/empty/empty.component';
 import { ErrorComponent } 		from './components/content/error/error.component';
 
+
+// TODO: implement fetures module for npm, pipes, directives and modules, services, and other feature components
+import { PopupComponent } 		from "./components/features/popup/popup.component";
+// pipes
+import { SafeUrlPipe } 			from "./pipes/safe-url.pipe";
+// import {} 					from '@angular-pipes';
 // services
 import { ScrollService } 		from "./services/scroll.service";
 import { HttpService } 			from "./services/http.service";
 
-// pipes
-import { SafeUrlPipe } 			from "./pipes/safe-url.pipe";
 
 const routes: Routes = [
 	{

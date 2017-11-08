@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild } from '@angular/core';
 
 @Component({
 	selector: 'bnb-popup',
@@ -6,25 +6,39 @@ import { Component, Input } from '@angular/core';
 	styleUrls: ['./popup.style.scss']
 })
 
-export class PopupComponent
+export class PopupComponent implements AfterViewInit
 {
-	public animation = '';
-
 	@Input() popup;
-	@Input() app;
 
-	public onClose(): void
+	@ViewChild('scrollEl') scrollEl;
+
+	ngAfterViewInit()
 	{
-		this.animation = 'close';
-		setTimeout(() =>
-		{
-			this.popup.isVisible = false;
-		}, 300);
+		console.log(this.scrollEl);
 	}
 
-	public imgSrc(icon: string): string
+	public getState(): string
 	{
-		return (this.app.pathToImg + icon);
+		if (this.popup.state === 'visible')
+		{
+			document.body.style.overflow = 'hidden';
+			this.scrollEl.nativeElement.scrollTop = 100;
+			return 'visible';
+		}
+		else if (this.popup.state === 'hidden')
+		{
+			document.body.style.overflow = 'auto';
+			return 'hidden';
+		}
+		else
+		{
+			return '';
+		}
+	}
+
+	public hidePopup(): void
+	{
+		this.popup.hide();
 	}
 
 }

@@ -34,7 +34,7 @@
 	</div>
 
 	<!-- Description -->
-	<div class="about font-regular" (click)="openPopup()">
+	<div class="about font-regular" (click)="openPopup(footer.description[app.selectedLang])">
 		<h3 class="about__title">{{ footer.description[app.selectedLang].title }}</h3>
 		<h3 class="about__more">{{ footer.description[app.selectedLang]['read-more'] }}</h3>
 	</div>
