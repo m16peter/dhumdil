@@ -78,7 +78,6 @@
 		left: 0;
 		width: 100%;
 		height: calc(100% - 50px);
-		cursor: pointer;
 
 		&_title {
 			width: 100%;
@@ -87,6 +86,7 @@
 			text-align: center;
 			background: rgba(0,0,0, 0.5);
 			padding: 50px 0;
+			cursor: pointer;
 		}
 	}
 }
@@ -116,6 +116,7 @@
 		&:hover {
 			.navigation__list_btn::after {
 				box-shadow: 0 0 20px 1px rgba(255,255,255, 0.75);
+				background: #fff;
 			}
 		}
 		&_btn {
@@ -140,7 +141,7 @@
 			}
 		}
 		.active::after {
-			background: #000;
+			background: #000 !important;
 		}
 	}
 }

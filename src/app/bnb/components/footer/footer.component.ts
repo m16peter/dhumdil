@@ -26,4 +26,9 @@ export class FooterComponent
 		return (this.app.pathToImg + icon);
 	}
 
+	public isSet(str: string): boolean
+	{
+		return (str !== '');
+	}
+
 }

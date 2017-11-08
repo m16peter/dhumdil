@@ -1,61 +1,42 @@
-<div class="footer">
-	<div class="contact">
+<div class="footer layout-column">
 
-		<!-- Title -->
-		<div class="font-bold-italic">
-			<h1 class="title layout-center">{{ footer.title[app.selectedLang] }}</h1>
-		</div>
+	<!-- Title -->
+	<div class="title font-italic">
+		<h1>{{ footer.title[app.selectedLang] }}</h1>
+	</div>
 
-		<div class="txt flex">
-			<div>
+	<!-- Names, Addresses... -->
+	<div class="contact font-extra-light">
 
-				<!-- Name & Address -->
-				<div class="contact-info">
-					<div class="flex">
-						<div class="layout-row">
-							<div class="items">
-
-								<div class="layout-row" *ngFor="let item of footer.names">
-									<div class="icon">
-										<img src="{{ imgSrc('name.svg') }}" />
-									</div>
-									<div class="item">
-										<h3>{{ item.name }}</h3>
-										<h3>{{ item.phone }}</h3>
-										<h3>{{ item.mail }}</h3>
-									</div>
-									<div class="flex"></div>
-								</div>
-
-								<div class="layout-row" *ngFor="let item of footer.locations">
-									<div class="icon">
-										<img src="{{ imgSrc('location.svg') }}" />
-									</div>
-									<div class="item">
-										<h3>{{ item.address }}</h3>
-										<h3>{{ item.city }}</h3>
-										<h3>{{ item.country }}</h3>
-									</div>
-									<div class="flex"></div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Description -->
-				<div class="desc">
-					<div class="layout-row flex">
-						<h2>{{ footer.description[app.selectedLang].title }}</h2>
-					</div>
-					<div class="layout-row">
-						<h3 (click)="openPopup()">{{ footer.description[app.selectedLang]['read-more'] }}</h3>
-					</div>
-				</div>
-
+		<div class="contact__card" *ngFor="let item of footer.names">
+			<div class="contact__card_icon">
+				<img src="{{ imgSrc('name.svg') }}" alt=".svg icon for name" />
+			</div>
+			<div class="contact__card_item">
+				<h3 *ngIf="isSet(item.name)">{{ item.name }}</h3>
+				<h3 *ngIf="isSet(item.phone)">{{ item.phone }}</h3>
+				<h3 *ngIf="isSet(item.mail)">{{ item.mail }}</h3>
 			</div>
 		</div>
 
+		<div class="contact__card" *ngFor="let item of footer.locations">
+			<div class="contact__card_icon">
+				<img src="{{ imgSrc('location.svg') }}" alt=".svg icon for location" />
+			</div>
+			<div class="contact__card_item font-extra-light">
+				<h2 *ngIf="isSet(item.address)">{{ item.address }}</h2>
+				<h2 *ngIf="isSet(item.city)">{{ item.city }}</h2>
+				<h2 *ngIf="isSet(item.country)">{{ item.country }}</h2>
+			</div>
+			<div class="flex"></div>
+		</div>
+
 	</div>
+
+	<!-- Description -->
+	<div class="about font-regular" (click)="openPopup()">
+		<h3 class="about__title">{{ footer.description[app.selectedLang].title }}</h3>
+		<h3 class="about__more">{{ footer.description[app.selectedLang]['read-more'] }}</h3>
+	</div>
+
 </div>
