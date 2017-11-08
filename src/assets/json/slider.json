@@ -3,8 +3,7 @@
 		{
 			"img": {
 				"src": "assets/data/slider/1.jpg",
-				"src_md": "assets/data/slider/1_md.jpg",
-				"src_sm": "assets/data/slider/1_sm.jpg"
+				"src_md": "assets/data/slider/1_md.jpg"
 			},
 			"txt": {
 				"sk": {

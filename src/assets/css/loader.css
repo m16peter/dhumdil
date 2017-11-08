@@ -1,0 +1,42 @@
+.loading {
+	position: absolute;
+	display: flex;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
+.loading .layout-row {
+	position: relative;
+	margin: auto;
+	width: 200px;
+	height: 200px;
+}
+.loading .logo {
+	position: absolute;
+	top: 50px;
+	left: 50px;
+	width: 100px;
+	height: 100px;
+}
+.loading .logo .st0 {
+	fill: #dd0031;
+}
+.loading .logo .st1 {
+	fill: #c3002f;
+}
+.loading .logo .st2 {
+	fill: #fff;
+}
+.loader {
+	position: absolute;
+	border: 10px solid #f3f3f3;
+	border-radius: 100px;
+	border-top: 10px solid #3498db;
+	width: 180px;
+	height: 180px;
+	-webkit-animation: spin 1s linear infinite;
+	animation: spin 1s linear infinite;
+}
+@-webkit-keyframes spin {0%{-webkit-transform: rotate(0deg);}100%{-webkit-transform: rotate(360deg);}}
+@keyframes spin {0%{transform: rotate(0deg);}100%{transform: rotate(360deg);}}
