@@ -10,6 +10,7 @@
 	background: #ffffff;
 	transform: translateX(-100%);
 	opacity: 0;
+	-webkit-overflow-scrolling: touch;
 
 	> div {
 		max-width: 1024px;
