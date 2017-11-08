@@ -1,15 +1,8 @@
 export class Popup
 {
-	public state: string;
-	public title: string;
-	public lines: any;
-
-	constructor()
-	{
-		this.state = '';
-		this.title = '';
-		this.lines = [];
-	}
+	public state = '';
+	public title = '';
+	public lines = [];
 
 	public update(data: any): void
 	{

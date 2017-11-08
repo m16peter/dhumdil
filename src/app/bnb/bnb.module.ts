@@ -8,15 +8,10 @@ import { FooterComponent } 		from './components/footer/footer.component';
 import { EmptyComponent } 		from './components/content/empty/empty.component';
 import { ErrorComponent } 		from './components/content/error/error.component';
 
-
 // TODO: implement fetures module for npm, pipes, directives and modules, services, and other feature components
 import { PopupComponent } 		from "./components/features/popup/popup.component";
-// pipes
-// import { SafeUrlPipe } 			from "./pipes/safe-url.pipe";
-// import {} 					from '@angular-pipes';
-// services
-// import { ScrollService } 		from "./services/scroll.service";
-// import { HttpService } 			from "./services/http.service";
+import { ScrollService } 		from "./services/scroll.service";
+import { HttpService } 			from "./services/http.service";
 
 
 const routes: Routes = [
@@ -51,7 +46,10 @@ export const BNBComponents = [
 	ErrorComponent
 ];
 
-export const BNBServices = [];
+export const BNBServices = [
+	HttpService,
+	ScrollService
+];
 
 export const BNBPipes = [];
 

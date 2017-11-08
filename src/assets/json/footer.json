@@ -1,8 +1,12 @@
 {
     "data": {
-		"title": {
-			"sk": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-			"ro": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem"
+		"website": {
+			"sk": {
+				"title": "„Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.“"
+			},
+			"ro": {
+				"title": "„Suspendisse ornare eu sem non auctor. Nam vitae libero ut tortor sagittis auctor.“"
+			}
 		},
 		"names": [
 			{
@@ -16,28 +20,6 @@
 				"mail": ""
 			}
 		],
-		"locations": [],
-		"description": {
-			"sk": {
-				"title": "„Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.“",
-				"lines": [
-					"Nam consequat libero pulvinar, finibus tellus at, molestie sapien. Cras ac iaculis augue. Phasellus rutrum tincidunt cursus. Praesent maximus, nisi sit amet tempus aliquet, mi eros condimentum nisi, eget euismod felis lorem ut ex. Ut eu diam a tortor tincidunt pretium sed eu purus. Phasellus quis metus at sapien dictum viverra sit amet vel urna. Mauris pellentesque risus massa, ac auctor leo tempor in.",
-					"Aenean hendrerit lectus elit, vel cursus nisi laoreet in. Nullam odio felis, ultrices eget dui nec, vehicula volutpat nisi. Nunc nulla massa, maximus in risus non, dapibus eleifend nunc. Sed non urna iaculis, dapibus enim eu, congue risus. Morbi porttitor orci at tincidunt iaculis. Nullam sit amet felis blandit, rhoncus nisl ut, pulvinar lacus. Quisque porttitor urna nec nunc tristique pretium. Vestibulum ligula augue, convallis et pulvinar quis, placerat vitae turpis. Nam urna eros, egestas non lorem in, aliquet hendrerit nisi. Curabitur tempor id est sed egestas. Aliquam ac tristique lectus, id luctus dui. Mauris varius dolor quis aliquet mollis. Vestibulum iaculis risus at augue ultricies, vel facilisis quam venenatis.",
-					"Nullam laoreet sagittis pulvinar. Ut at pulvinar dui. In hac habitasse platea dictumst. Aliquam volutpat turpis non felis dignissim placerat. Quisque commodo laoreet turpis nec egestas. Fusce vehicula augue id tellus dignissim venenatis. Aliquam fermentum fermentum arcu et placerat. Proin quis sapien elementum, eleifend elit ac, fringilla lacus. Nulla eget ex vulputate, vulputate mi ac, blandit lacus. Ut nec dui et erat varius lacinia. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam lacinia condimentum hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at massa nibh. Etiam maximus, tellus id gravida facilisis, lorem sapien rhoncus turpis, et laoreet risus orci ut libero. Curabitur bibendum ultrices augue nec tristique.",
-					"Nulla in sodales magna, ut imperdiet justo. Morbi eleifend nulla ac odio consequat, et euismod nisl maximus. Maecenas ut gravida massa. Ut diam lectus, tempus vitae vestibulum dapibus, faucibus vel nibh. Vivamus in consequat nulla. Proin egestas eros eget lectus semper, et finibus magna maximus. Fusce rutrum et odio at pharetra. In sollicitudin in purus at viverra. Nulla non diam tincidunt, sagittis neque vel, accumsan ipsum. Cras tempus pharetra purus at hendrerit. Quisque porta sagittis lobortis. Phasellus convallis lacus nec aliquet congue. Cras et metus sit amet odio ullamcorper tempus sit amet sed arcu. Aenean fermentum varius egestas. Fusce id diam leo. Nam vehicula posuere porta.",
-					"In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed quis ipsum accumsan massa convallis facilisis. Morbi maximus ante massa, nec faucibus tellus sodales eget. Praesent nibh nisi, ullamcorper at mattis a, consectetur nec odio. Phasellus dictum urna sed risus scelerisque viverra. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce a massa vel eros fermentum vulputate. Nulla quis nibh non libero eleifend maximus.",
-					"Nam feugiat eleifend facilisis. Donec sed libero eleifend, varius odio et, congue tortor. Fusce sit amet quam sit amet arcu vulputate bibendum. Nullam sit amet hendrerit turpis, ac facilisis odio. Aenean sed nisi id nisl laoreet consectetur id ac enim. Vestibulum hendrerit felis sagittis, bibendum urna quis, luctus eros. Praesent erat ipsum, posuere id pretium at, ultricies sit amet sem. Donec in nisi feugiat, pharetra enim eu, gravida lectus. Pellentesque egestas rhoncus nisl, eget tincidunt leo euismod eu. Donec leo erat, finibus hendrerit massa eget, porttitor varius neque."
-				],
-				"read-more": "dozvi sa viac..."
-			},
-			"ro": {
-				"title": "„Suspendisse ornare eu sem non auctor. Nam vitae libero ut tortor sagittis auctor.“",
-				"lines": [
-					"Nulla nec ligula lorem. Ut ullamcorper faucibus est, non finibus purus maximus eu. Aliquam nunc mauris, consequat scelerisque risus sit amet, viverra volutpat orci. Maecenas quis urna sed sem vehicula blandit. Fusce sed nibh vel nulla porttitor venenatis. Cras sit amet placerat est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet erat sit amet risus sodales venenatis. Ut pharetra lacus ut metus euismod, et finibus orci auctor. Proin molestie et nibh vitae egestas. Pellentesque metus dolor, vehicula id dignissim nec, hendrerit ut tellus. Vivamus ultrices non risus ac pulvinar. Vestibulum volutpat eget justo a eleifend. Maecenas dolor enim, vestibulum pharetra facilisis at, cursus eget urna. Vivamus dignissim sodales dapibus.",
-					"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam pharetra ante vitae elit feugiat, sit amet gravida ex rhoncus. Nullam molestie velit vel dolor consequat dictum. Vestibulum laoreet et mauris nec vehicula. In quis dolor vel enim sollicitudin consectetur eu et ligula. In quis tortor ut ipsum gravida molestie vitae id tellus. Curabitur pharetra gravida sapien sit amet feugiat. Mauris nec felis imperdiet, pharetra sapien in, euismod ante. Donec imperdiet erat et dapibus pharetra. Integer laoreet mauris purus, eget mattis enim congue at. Pellentesque bibendum aliquet lobortis. Etiam vel sapien ex. Aliquam porttitor, tellus sit amet dictum egestas, est magna cursus erat, ut varius libero diam eget neque."
-				],
-				"read-more": "află mai mult..."
-			}
-		}
+		"locations": []
 	}
 }

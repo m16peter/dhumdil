@@ -8,27 +8,28 @@ import { Component, Input, ViewChild } from '@angular/core';
 
 export class PopupComponent
 {
+	public state = '';
+
 	@Input() popup;
 
 	@ViewChild('scrollEl') scrollEl;
 
 	public getState(): string
 	{
-		if (this.popup.state === 'visible')
+		if (this.popup.state !== this.state)
 		{
-			document.body.style.overflow = 'hidden';
-			this.scrollEl.nativeElement.scrollTop = 100;
-			return 'visible';
+			if (this.popup.state === 'visible')
+			{
+				document.body.style.overflow = 'hidden';
+				this.scrollEl.nativeElement.scrollTop = 100;
+			}
+			else
+			{
+				document.body.style.overflow = 'auto';
+			}
+			this.state = this.popup.state;
 		}
-		else if (this.popup.state === 'hidden')
-		{
-			document.body.style.overflow = 'auto';
-			return 'hidden';
-		}
-		else
-		{
-			return '';
-		}
+		return (this.state);
 	}
 
 	public hidePopup(): void

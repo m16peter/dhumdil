@@ -11,27 +11,43 @@
 	color: #eee;
 	z-index: 1;
 	display: flex;
+	flex-direction: column;
 	overflow: hidden;
-}
 
-.title {
-	padding: 0 20px;
+	.title {
+		overflow: hidden;
 
-	h1 {
-		text-align: center;
+		h1 {
+			width: 1024px;
+			margin-left: auto;
+			margin-right: auto;
+
+			@media (max-width: 1024px) {
+				width: 600px;
+			}
+			@media (max-width: 600px) {
+				width: 300px;
+			}
+		}
 	}
 }
 
 .contact {
-	position: relative;
-	width: 100%;
-	display: flex;
 	flex: 1;
-	min-height: 160px;
+	height: 100%;
+	position: relative;
+	display: flex;
+	overflow: hidden;
 
+	> div {
+		margin: auto;
+		display: flex;
+		width: 1024px;
+	}
 	&__card {
 		display: flex;
 		margin: auto;
+		height: 100%;
 
 		&_item {
 			margin: auto 0;
@@ -41,9 +57,10 @@
 				overflow: hidden;
 				text-overflow: ellipsis;
 				padding: 5px;
-
-				@media(max-width: 1024px) {
-					padding: 0;
+			}
+			@media(max-width: 600px) {
+				h3 {
+					font-size: 18px;
 				}
 			}
 		}
@@ -51,7 +68,7 @@
 			display: flex;
 			padding: 20px;
 
-			img {
+			svg {
 				width: 120px;
 				height: 120px;
 				margin: auto;
@@ -59,40 +76,34 @@
 			@media(max-width: 1024px) {
 				padding: 10px;
 
-				img {
+				svg {
 					width: 80px;
 					height: 80px;
 				}
 			}
 		}
 	}
-	@media(max-width: 1024px) {
-		min-height: 100px;
-	}
-}
+	@media (max-width: 1024px) {
 
-.about {
-	position: relative;
-	width: 100%;
-	cursor: pointer;
-	opacity: 0.75;
-	margin-bottom: 50px;
+		> div {
+			width: 600px;
+		}
+	}
+	@media (max-width: 600px) {
 
-	&:hover {
-		opacity: 1;
-	}
-	&__title {
-		text-align: center;
-		padding: 50px;
-		line-height: 150%;
-		font-size: 24px;
-		margin: 0;
-	}
-	&__more {
-		position: absolute;
-		font-size: 20px;
-		bottom: -25px;
-		right: 50px;
-		padding: 20px
+		> div {
+			flex-direction: column;
+			width: 300px;
+		}
+		.contact__card::before {
+			content: '';
+			display: block;
+			flex: 1;
+		}
+		.contact__card::after {
+			content: '';
+			display: block;
+			flex: 1;
+		}
 	}
 }

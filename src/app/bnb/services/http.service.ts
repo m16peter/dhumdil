@@ -1,4 +1,3 @@
-/*
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable";
 import { Injectable } from '@angular/core';
@@ -26,4 +25,3 @@ export class HttpService
 		});
 	}
 }
-*/

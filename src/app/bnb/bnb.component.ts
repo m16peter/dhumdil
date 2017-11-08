@@ -20,39 +20,29 @@ export class BNBComponent implements AfterViewInit
 
 	@HostListener('window:resize') onResize()
 	{
-		this.handleResize();
+		this.browser.width = window.innerWidth;
+		this.browser.height = window.innerHeight;
 	}
 
 	constructor(private cdr: ChangeDetectorRef)
 	{
 		this.browser = {};
 		this.app = new App();
-		this.popup = new Popup();
 		this.slider = new Slider();
-		this.footer = new Footer();
 	}
 
 	ngAfterViewInit(): void
 	{
-		this.handleResize();
+		this.browser.width = window.innerWidth;
+		this.browser.height = window.innerHeight;
 		this.cdr.detectChanges();
 
 		setTimeout(() =>
 		{
+			this.popup = new Popup();
+			this.footer = new Footer();
 			this.browser.isLoaded = true;
 			this.cdr.detectChanges();
 		}, 1000);
 	}
-
-	private handleResize(): void
-	{
-		this.browser.width = window.innerWidth;
-		this.browser.height = window.innerHeight;
-	}
-
-	public isSet(str: string): boolean
-	{
-		return (str !== '');
-	}
-
 }
