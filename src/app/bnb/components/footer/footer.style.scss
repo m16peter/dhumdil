@@ -27,6 +27,7 @@
 	width: 100%;
 	display: flex;
 	flex: 1;
+	min-height: 160px;
 
 	&__card {
 		display: flex;
@@ -39,8 +40,11 @@
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
-				max-width: 100%;
 				padding: 5px;
+
+				@media(max-width: 1024px) {
+					padding: 0;
+				}
 			}
 		}
 		&_icon {
@@ -52,7 +56,18 @@
 				height: 120px;
 				margin: auto;
 			}
+			@media(max-width: 1024px) {
+				padding: 10px;
+
+				img {
+					width: 80px;
+					height: 80px;
+				}
+			}
 		}
+	}
+	@media(max-width: 1024px) {
+		min-height: 100px;
 	}
 }
 
@@ -61,6 +76,7 @@
 	width: 100%;
 	cursor: pointer;
 	opacity: 0.75;
+	margin-bottom: 50px;
 
 	&:hover {
 		opacity: 1;
@@ -75,7 +91,8 @@
 	&__more {
 		position: absolute;
 		font-size: 20px;
-		bottom: 0;
+		bottom: -25px;
 		right: 50px;
+		padding: 20px
 	}
 }

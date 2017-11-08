@@ -44,12 +44,6 @@ export class BNBComponent implements AfterViewInit
 		this.browser.height = window.innerHeight;
 	}
 
-	public onSwipeLeft(): void
-	{}
-
-	public onSwipeRight(): void
-	{}
-
 	public openPopup(ev: any): void
 	{
 		this.popup.title = ev.title;
