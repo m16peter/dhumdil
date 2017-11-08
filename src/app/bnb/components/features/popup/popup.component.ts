@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 
 @Component({
 	selector: 'bnb-popup',
@@ -6,16 +6,11 @@ import { Component, Input, AfterViewInit, ViewChild } from '@angular/core';
 	styleUrls: ['./popup.style.scss']
 })
 
-export class PopupComponent implements AfterViewInit
+export class PopupComponent
 {
 	@Input() popup;
 
 	@ViewChild('scrollEl') scrollEl;
-
-	ngAfterViewInit()
-	{
-		console.log(this.scrollEl);
-	}
 
 	public getState(): string
 	{

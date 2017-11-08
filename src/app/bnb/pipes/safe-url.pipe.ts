@@ -1,3 +1,4 @@
+/*
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -14,5 +15,5 @@ export class SafeUrlPipe implements PipeTransform
 		return this.domSanitizer.bypassSecurityTrustResourceUrl(url);
 	}
 }
-
+*/
 /* HowTo: <a href="'unsafe-url' | safeUrl"></a> */

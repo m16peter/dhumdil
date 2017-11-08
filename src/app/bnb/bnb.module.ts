@@ -12,11 +12,11 @@ import { ErrorComponent } 		from './components/content/error/error.component';
 // TODO: implement fetures module for npm, pipes, directives and modules, services, and other feature components
 import { PopupComponent } 		from "./components/features/popup/popup.component";
 // pipes
-import { SafeUrlPipe } 			from "./pipes/safe-url.pipe";
+// import { SafeUrlPipe } 			from "./pipes/safe-url.pipe";
 // import {} 					from '@angular-pipes';
 // services
-import { ScrollService } 		from "./services/scroll.service";
-import { HttpService } 			from "./services/http.service";
+// import { ScrollService } 		from "./services/scroll.service";
+// import { HttpService } 			from "./services/http.service";
 
 
 const routes: Routes = [
@@ -51,15 +51,8 @@ export const BNBComponents = [
 	ErrorComponent
 ];
 
-export const BNBServices = [
-	ScrollService,
-	HttpService
-];
+export const BNBServices = [];
 
-export const BNBPipes = [
-	SafeUrlPipe
-];
+export const BNBPipes = [];
 
-export const BNBDirectives = [
-
-];
+export const BNBDirectives = [];

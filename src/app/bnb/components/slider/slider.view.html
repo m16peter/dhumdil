@@ -5,8 +5,8 @@
 
 		<img class="slide_img" src="{{ slide.img.src }}" alt="Slider cover image..." />
 
-		<div class="slide_content" (click)="openPopup(i)">
-			<h1>{{ slide.txt[app.selectedLang].title }}</h1>
+		<div class="slide_content">
+			<h1 (click)="openPopup(i)">{{ slide.txt[app.selectedLang].title }}</h1>
 		</div>
 
 	</div>
