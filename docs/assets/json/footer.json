@@ -1,0 +1,25 @@
+{
+    "data": {
+		"website": {
+			"sk": {
+				"title": "„Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.“"
+			},
+			"ro": {
+				"title": "„Suspendisse ornare eu sem non auctor. Nam vitae libero ut tortor sagittis auctor.“"
+			}
+		},
+		"names": [
+			{
+				"name": "Cicero",
+				"phone": "+421 123 456 789",
+				"mail": ""
+			},
+			{
+				"name": "Gandalf the White",
+				"phone": "+40 123 456 789",
+				"mail": ""
+			}
+		],
+		"locations": []
+	}
+}
