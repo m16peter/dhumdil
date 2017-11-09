@@ -1,24 +1,31 @@
-<div class="bnb">
+<div class = "bnb">
 
-	<bnb-slider *ngIf 				= "slider.isLoaded"
-				[app] 				= "app"
-				[popup] 			= "popup"
-				[slider] 			= "slider"
-				[style.height.px] 	= "browser.height"
+	<bnb-slider	*ngIf		= "slider.loaded"
+				[slider]	= "slider"
+				[popup]		= "popup"
+				[bnb]		= "bnb"
 	></bnb-slider>
 
-	<div *ngIf="browser.isLoaded">
+	<div *ngIf = "browser.loaded">
 
-		<!-- <bnb-header></bnb-header> -->
-		<!-- <router-outlet></router-outlet> -->
+		<bnb-header	*ngIf		= "header.loaded"
+					[header]	= "header"
+					[bnb]		= "bnb"
+					[app]		= "app"
+		></bnb-header>
 
-		<bnb-footer	*ngIf 				= "footer.isLoaded"
-					[app] 				= "app"
-					[footer] 			= "footer"
-					[style.height.px] 	= "browser.height"
+		<div class = "content" [style.min-height.px] = "bnb.height">
+			<router-outlet></router-outlet>
+		</div>
+
+		<bnb-footer	*ngIf		= "footer.loaded"
+					[footer]	= "footer"
+					[bnb]		= "bnb"
 		></bnb-footer>
 
-		<bnb-popup [popup] = "popup"></bnb-popup>
+		<bnb-popup	*ngIf	= "footer.loaded"
+					[popup]	= "popup"
+		></bnb-popup>
 
 	</div>
 

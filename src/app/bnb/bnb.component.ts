@@ -1,8 +1,9 @@
 import { Component, HostListener, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { App } from './models/bnb.model';
+import { App } from './models/app.model';
 import { Popup } from './models/popup.model';
 import { Slider } from './models/slider.model';
 import { Footer } from './models/footer.model';
+import { Header } from './models/header.model';
 
 @Component({
 	selector: 'bnb-app',
@@ -12,37 +13,48 @@ import { Footer } from './models/footer.model';
 
 export class BNBComponent implements AfterViewInit
 {
-	public browser: any;
+	public bnb: any;
 	public app: App;
 	public popup: Popup;
 	public slider: Slider;
 	public footer: Footer;
+	public header: Header;
 
 	@HostListener('window:resize') onResize()
 	{
-		this.browser.width = window.innerWidth;
-		this.browser.height = window.innerHeight;
+		this.handleResize();
 	}
 
 	constructor(private cdr: ChangeDetectorRef)
 	{
-		this.browser = {};
+		this.bnb = {};
 		this.app = new App();
+		this.bnb.lang = this.app[0].id;	// TODO: enable cookies for lang...
 		this.slider = new Slider();
 	}
 
 	ngAfterViewInit(): void
 	{
-		this.browser.width = window.innerWidth;
-		this.browser.height = window.innerHeight;
+		this.handleResize();
 		this.cdr.detectChanges();
 
+		// focus on loading the slider,
+		// animate it's entrance for '1000' ms
+		// load the rest of the page after this...
 		setTimeout(() =>
 		{
 			this.popup = new Popup();
 			this.footer = new Footer();
-			this.browser.isLoaded = true;
+			this.header = new Header();
+			this.bnb.loaded = true;
 			this.cdr.detectChanges();
 		}, 1000);
 	}
+
+	private handleResize(): void
+	{
+		this.bnb.width = window.innerWidth;
+		this.bnb.height = window.innerHeight;
+	}
+
 }

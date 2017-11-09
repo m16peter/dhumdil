@@ -12,23 +12,27 @@ export class PopupComponent
 
 	@Input() popup;
 
-	@ViewChild('scrollEl') scrollEl;
+	@ViewChild('scrollContainer') scrollContainer;
 
-	public getState(): string
+	public getPopupState(): string
 	{
+		// ugly workaround for zone.js...
+
 		if (this.popup.state !== this.state)
 		{
 			if (this.popup.state === 'visible')
 			{
 				document.body.style.overflow = 'hidden';
-				this.scrollEl.nativeElement.scrollTop = 100;
+				this.scrollContainer.nativeElement.scrollTop = 100;
 			}
 			else
 			{
 				document.body.style.overflow = 'auto';
 			}
+
 			this.state = this.popup.state;
 		}
+
 		return (this.state);
 	}
 

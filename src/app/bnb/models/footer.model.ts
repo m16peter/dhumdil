@@ -1,9 +1,9 @@
-import * as json from './../../../assets/json/footer.json';
+import * as json from './../../../assets/data/footer/footer.json';
 const footer = (<any>json).data;
 
 export class Footer
 {
-	public isLoaded: boolean;
+	public loaded: boolean;
 	public website: any;
 	public names: any;
 	public locations: any;
@@ -12,17 +12,19 @@ export class Footer
 	{
 		try
 		{
+			this.loaded = true;
 			this.website = footer.website;
 			this.names = footer.names;
 			this.locations = footer.locations;
-			this.isLoaded = true;
 		}
 		catch (e)
 		{
+			// TODO: handle errors...
+			console.log(e);
+			this.loaded = false;
 			this.website = {};
 			this.names = [];
 			this.locations = [];
-			this.isLoaded = false;
 		}
 	}
 }
