@@ -1,34 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { AppComponent } from './app.component';
-import { BNBRoutingModule, BNBComponents, BNBServices, BNBPipes, BNBDirectives } from './bnb/bnb.module';
-import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { AppRouting } from './app.routing';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		BNBComponents,
-		BNBDirectives,
-		BNBPipes
-	],
 	imports: [
 		BrowserModule,
-		BrowserAnimationsModule,
-		BNBRoutingModule,
-		HttpClientModule
+		AppRouting
 	],
-	providers: [
-		{
-			provide: HAMMER_GESTURE_CONFIG,
-			useClass: HammerGestureConfig
-		},
-		BNBServices
+	declarations: [
+		AppComponent
 	],
 	bootstrap: [
 		AppComponent
-	]
+	],
+	providers: []
 })
 
 export class AppModule {}

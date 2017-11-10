@@ -1,0 +1,46 @@
+{
+    "data": {
+		"website": {
+			"sk": {
+				"title": "„Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.“"
+			},
+			"ro": {
+				"title": "„Suspendisse ornare eu sem non auctor. Nam vitae libero ut tortor sagittis auctor.“"
+			}
+		},
+		"names": [
+			{
+				"title": "Roman Politician",
+				"name": "Cicero",
+				"phone": "+421 123 456 789",
+				"mail": "",
+				"show": true
+			},
+			{
+				"title": "Wizard",
+				"name": "Gandalf the White",
+				"phone": "+40 123 456 789",
+				"mail": "",
+				"show": true
+			},
+			{
+				"title": "Pastor",
+				"name": "Ioan Lakatos",
+				"phone": "+40 740 837 386",
+				"mail": "lakatos_janko@yahoo.ro",
+				"show": false
+			}
+		],
+		"locations": [
+			{
+				"title": "Biserica Penticostală Budoi",
+				"location": "Budoi 270, Bihor",
+				"google-maps": {
+					"img": "assets/footer/map.jpg",
+					"url": "https://www.google.ro/maps"
+				},
+				"show": false
+			}
+		]
+	}
+}

@@ -117,7 +117,7 @@
     "component-selector": [
       true,
       "element",
-      "bnb",
+      "app",
       "kebab-case"
     ],
     "use-input-property-decorator": true,

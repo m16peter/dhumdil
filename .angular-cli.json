@@ -1,15 +1,14 @@
 {
 	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
 	"project": {
-		"name": "dhumdil"
+		"name": "angular-5"
 	},
 	"apps": [
 		{
 			"root": "src",
 			"outDir": "docs",
 			"assets": [
-				"assets",
-				"favicon.ico"
+				"assets"
 			],
 			"index": "index.html",
 			"main": "main.ts",
@@ -30,14 +29,6 @@
 	"lint": [
 		{
 			"project": "src/tsconfig.app.json",
-			"exclude": "**/node_modules/**"
-		},
-		{
-			"project": "src/tsconfig.spec.json",
-			"exclude": "**/node_modules/**"
-		},
-		{
-			"project": "e2e/tsconfig.e2e.json",
 			"exclude": "**/node_modules/**"
 		}
 	],
