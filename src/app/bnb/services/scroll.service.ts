@@ -3,42 +3,42 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ScrollService
 {
-	public scrollTo(position: number): void
+	public toPosition(y: number): void
 	{
 		let now = window.pageYOffset;
 
-		if (position < now)
+		if (y < now)
 		{
 			const interval = setInterval(() =>
 			{
-				const diff = (now - position) / 2;
+				const diff = (now - y) / 2;
 				now -= (diff > 1 ? diff : 1);
 
-				if (position < now)
+				if (y < now)
 				{
 					window.scrollTo(0, now);
 				}
 				else
 				{
-					window.scrollTo(0, position);
+					window.scrollTo(0, y);
 					clearInterval(interval);
 				}
 			}, 20);
 		}
-		else if (position > now)
+		else if (y > now)
 		{
 			const interval = setInterval(() =>
 			{
-				const diff = (position - now) / 2;
+				const diff = (y - now) / 2;
 				now += (diff > 1 ? diff : 1);
 
-				if (position > now)
+				if (y > now)
 				{
 					window.scrollTo(0, now);
 				}
 				else
 				{
-					window.scrollTo(0, position);
+					window.scrollTo(0, y);
 					clearInterval(interval);
 				}
 			}, 20);

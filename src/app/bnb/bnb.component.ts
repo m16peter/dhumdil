@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 
 @Component({
 	selector: 'app-bnb',
@@ -6,12 +6,11 @@ import { Component } from '@angular/core';
 	styleUrls: ['./bnb.style.scss']
 })
 
-export class BnbComponent
+export class BnbComponent implements AfterViewInit
 {
-/*
 	public app: any;
-	public bnb: Bnb;
-	public popup: Popup;
+	// public bnb: Bnb;
+	// public popup: Popup;
 
 	@HostListener('window:resize') onResize()
 	{
@@ -21,18 +20,16 @@ export class BnbComponent
 	constructor(private cdr: ChangeDetectorRef)
 	{
 		this.app = {};
-		this.bnb = new Bnb();
+		// this.bnb = new Bnb();
 		// TODO: enable cookies (try to load the lang from cookies...)
-		this.app.lang = this.bnb[0].id;
+		// this.app.lang = this.bnb[0].id;
 	}
 
 	ngAfterViewInit(): void
 	{
 		this.handleResize();
+		this.app.loaded = true;
 		this.cdr.detectChanges();
-		// this.popup = new Popup();
-		// this.app.loaded = true;
-		// this.cdr.detectChanges();
 	}
 
 	private handleResize(): void
@@ -40,5 +37,4 @@ export class BnbComponent
 		this.app.width = window.innerWidth;
 		this.app.height = window.innerHeight;
 	}
-*/
 }

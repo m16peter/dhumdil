@@ -1,30 +1,4 @@
 {
 	"data": [
-		{
-			"title": "Passenger - Let Her Go",
-			"lines": [
-				"Ja som cesta, pravda i život.",
-				"Nik neprichádza k Otcovi, ak len nie skrze mňa."
-			],
-			"img": "assets/admin/img/video-album/rails.jpg",
-			"id": "RBumgq5yVrA"
-		},
-		{
-			"title": "25.07.2019",
-			"lines": [
-				"Ale naša vlasť je v nebesiach,",
-				"odkiaľ očakávame aj Spasiteľa, Pána Ježiša Krista."
-			],
-			"img": "assets/admin/img/video-album/feathers.jpg",
-			"id": "LxX_OVNOo0w"
-		},
-		{
-			"title": "25.07.2020",
-			"lines": [
-				"Už nežijem ja, ale žije vo mne Kristus"
-			],
-			"img": "assets/admin/img/video-album/Koala.jpg",
-			"id": "ru5DJRh5tQE"
-		}
 	]
 }

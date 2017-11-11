@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Meta, Title }	from '@angular/platform-browser';
+// import { Meta, Title }	from '@angular/platform-browser';
 
 @Component({
 	selector: 'bnb-events',
@@ -9,12 +9,14 @@ import { Meta, Title }	from '@angular/platform-browser';
 
 export class EventsComponent
 {
+/*
 	constructor(title: Title, meta: Meta)
 	{
-		title.setTitle('EventsComponent');
+		title.setTitle('...');
 		meta.addTags([{
 			name: 'description',
-			content: 'Events Component...'
+			content: '...'
 		}]);
 	}
+*/
 }
