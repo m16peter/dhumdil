@@ -1,14 +1,14 @@
-/*
 import { Component, Input, Output, EventEmitter, HostListener }	from "@angular/core";
-import { Navigation } 											from "./header.model";
+// import { Navigation } 											from "./header.model";
 
 @Component({
-	selector: 'bnb-navigation',
+	selector: 'app-navigation',
 	templateUrl: './navigation.view.html',
 	styleUrls: ['./navigation.style.scss']
 })
 
 export class NavigationComponent {
+	/*
 
 	public animate: any;
 
@@ -99,5 +99,5 @@ export class NavigationComponent {
 		return (this.app['path'].app + icon);
 	}
 
+	*/
 }
-*/

@@ -1,7 +1,9 @@
 import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 
-import { HomeRouting, HomeComponents } from './home.routing';
+import { HomeComponent } from './home.component';
+
+import { HomeRouting } from './home.routing';
 
 @NgModule({
 	imports: [
@@ -11,7 +13,7 @@ import { HomeRouting, HomeComponents } from './home.routing';
 	],
 	declarations: [
 		// components
-		HomeComponents
+		HomeComponent
 	],
 	providers: [
 		// services

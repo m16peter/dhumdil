@@ -1,7 +1,6 @@
 export class Bnb
 {
-	public loaded = false;
-	public languages = [];
+	public languages: any;
 
 	constructor(languages: any)
 	{
@@ -10,12 +9,17 @@ export class Bnb
 			if (languages.length && languages[0].length)
 			{
 				this.languages = languages;
-				this.loaded = true;
+			}
+			else
+			{
+				console.log('error', languages);
+				this.languages = [];
 			}
 		}
 		catch (e)
 		{
-			console.log(e.message);
+			console.log('error', e);
+			this.languages = [];
 		}
 	}
 }

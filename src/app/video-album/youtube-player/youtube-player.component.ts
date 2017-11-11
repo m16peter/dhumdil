@@ -1,3 +1,4 @@
+/*
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -7,7 +8,6 @@ import { Component, Input } from '@angular/core';
 })
 
 export class YoutubePlayerComponent {
-/*
 	public yt: any;
 
 	@Input() app;
@@ -61,5 +61,5 @@ export class YoutubePlayerComponent {
 		this.app['player'].id = '';
 		this.app['player'].isVisible = false;
 	}
-*/
 }
+*/

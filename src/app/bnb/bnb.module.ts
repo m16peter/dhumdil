@@ -2,15 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // components
-import { BNBComponent } from './bnb.component';
-import { SliderComponent } from './slider/slider.component';
-import { HeaderComponent } from './header/header.component';
-import { NavigationComponent } from './header/navigation/navigation.component';
-import { FooterComponent } from './footer/footer.component';
-
-// services
-import { HttpService } from './services/http.service';
-import { ScrollService } from './services/scroll.service'
+import { SliderComponent } from './components/slider/slider.component';
+import { HeaderComponent } from './components/header/header.component';
+import { NavigationComponent } from './components/header/navigation/navigation.component';
+import { PopupComponent } from './components/popup/popup.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
 	imports: [
@@ -19,16 +15,18 @@ import { ScrollService } from './services/scroll.service'
 	],
 	declarations: [
 		// components
-		BNBComponent,
 		SliderComponent,
 		HeaderComponent,
 		NavigationComponent,
+		PopupComponent,
 		FooterComponent
 	],
 	providers: [
 		// services
-		HttpService,
-		ScrollService
+	],
+	exports: [
+		BNBComponent,
+		PopupComponent
 	]
 })
 

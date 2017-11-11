@@ -1,3 +1,4 @@
+/*
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Meta, Title }	from '@angular/platform-browser';
 
@@ -8,7 +9,6 @@ import { Meta, Title }	from '@angular/platform-browser';
 })
 
 export class VideoAlbumComponent {
-/*
 	public album: any;
 
 
@@ -252,5 +252,5 @@ export class VideoAlbumComponent {
 	}
 
 
-	*/
 }
+*/

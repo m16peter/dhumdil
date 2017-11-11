@@ -1,14 +1,14 @@
+/*
 import { Component, ViewChildren, HostListener, AfterViewInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 
 @Component({
-	selector: 'bnb-app',
-	templateUrl: './bnb.view.html',
-	styleUrls: ['./bnb.style.scss']
+	selector: 'app-article',
+	templateUrl: './article.view.html',
+	styleUrls: ['./article.style.scss']
 })
 
-export class BNBComponent implements AfterViewInit
+export class ArticleComponent
 {
-/*
 	@ViewChildren('breakPoints') breakPoints;
 
 	@ViewChild('scrollTracker') scrollTracker;
@@ -66,5 +66,5 @@ export class BNBComponent implements AfterViewInit
 			this.main.scrollSection.breakPoints.push(this.breakPoints._results[i].nativeElement.offsetTop + offset);
 		}
 	}
-*/
 }
+*/

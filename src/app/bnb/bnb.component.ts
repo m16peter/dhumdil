@@ -1,4 +1,6 @@
-import { Component, HostListener, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, HostListener, ChangeDetectorRef, AfterViewInit, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Bnb } from './bnb.model';
 
 @Component({
 	selector: 'app-bnb',
@@ -6,10 +8,10 @@ import { Component, HostListener, ChangeDetectorRef, AfterViewInit } from '@angu
 	styleUrls: ['./bnb.style.scss']
 })
 
-export class BnbComponent implements AfterViewInit
+export class BNBComponent implements OnInit, AfterViewInit
 {
 	public app: any;
-	// public bnb: Bnb;
+	public bnb: Bnb;
 	// public popup: Popup;
 
 	@HostListener('window:resize') onResize()
@@ -17,18 +19,19 @@ export class BnbComponent implements AfterViewInit
 		this.handleResize();
 	}
 
-	constructor(private cdr: ChangeDetectorRef)
+	constructor(private cdr: ChangeDetectorRef, private http: HttpClient)
 	{
 		this.app = {};
-		// this.bnb = new Bnb();
-		// TODO: enable cookies (try to load the lang from cookies...)
-		// this.app.lang = this.bnb[0].id;
 	}
 
-	ngAfterViewInit(): void
+	ngOnInit()
+	{
+		this.init()
+	}
+
+	ngAfterViewInit()
 	{
 		this.handleResize();
-		this.app.loaded = true;
 		this.cdr.detectChanges();
 	}
 
@@ -37,4 +40,34 @@ export class BnbComponent implements AfterViewInit
 		this.app.width = window.innerWidth;
 		this.app.height = window.innerHeight;
 	}
+
+	// TODO: try to load 'lang' from local storage...
+	private init(): void
+	{
+		this.app.loaded = false;
+		this.app.width = 0;
+		this.app.height = 0;
+
+		this.http.get('assets/app/app.json').subscribe(
+			data =>
+			{
+				this.bnb = new Bnb(data);
+
+				if (this.bnb.languages.lenght > 0)
+				{
+					this.app.lang = this.bnb.languages[0].id;
+					this.app.loaded = true;
+				}
+				
+				console.log(this.app);
+
+			},
+			err =>
+			{
+				console.log(err);
+				this.app.loaded = false;
+			}
+		);
+	}
+
 }

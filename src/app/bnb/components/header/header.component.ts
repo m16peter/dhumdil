@@ -1,7 +1,7 @@
 import { Component, Input } from "@angular/core";
 
 @Component({
-	selector: 'bnb-header',
+	selector: 'app-header',
 	templateUrl: './header.view.html',
 	styleUrls: ['./header.style.scss']
 })

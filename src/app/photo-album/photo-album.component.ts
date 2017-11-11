@@ -1,3 +1,4 @@
+/*
 import { Component } from "@angular/core";
 import { Meta, Title }	from '@angular/platform-browser';
 
@@ -18,3 +19,4 @@ export class PhotoAlbumComponent
 	// 	}]);
 	// }
 }
+*/

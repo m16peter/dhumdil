@@ -20,7 +20,3 @@ const routes: Routes = [
 })
 
 export class HomeRouting {}
-
-export const HomeComponents = [
-	HomeComponent
-];

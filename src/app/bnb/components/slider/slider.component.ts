@@ -1,14 +1,14 @@
-/*
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-	selector: 'bnb-slider',
+	selector: 'app-slider',
 	templateUrl: './slider.view.html',
 	styleUrls: ['./slider.style.scss']
 })
 
-export class SliderComponent implements AfterViewInit
+export class SliderComponent
 {
+	/*
 	public selectedIndexes = [];
 
 	@Input() app;
@@ -135,5 +135,5 @@ export class SliderComponent implements AfterViewInit
 		}
 	}
 
+	*/
 }
-*/
