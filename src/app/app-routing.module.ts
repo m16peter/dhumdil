@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+// lazy load all the features
 const routes: Routes = [
 	{
 		path: '',
-		loadChildren: 'app/home/home.module#HomeModule'
+		loadChildren: 'app/features/home/home.module#HomeModule'
 	},
 	{
 		path: 'about',
-		loadChildren: 'app/about/about.module#AboutModule'
+		loadChildren: 'app/features/about/about.module#AboutModule'
 	},
 	{
 		path: '**',
@@ -19,7 +20,8 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [
-		// The option '{ useHash: true }' is useful when combined with backend router (like laravel or github pages)
+		// Use the option '{ useHash: true }' when combining with backend router
+		// (example: with laravel's router or deployed on gh-pages)
 		RouterModule.forRoot(routes, { useHash: true })
 	],
 	exports: [
@@ -27,4 +29,4 @@ const routes: Routes = [
 	]
 })
 
-export class AppRouting {}
+export class AppRoutingModule {}

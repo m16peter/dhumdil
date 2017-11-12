@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 
 @Component({
 	selector: 'app-slider',
@@ -6,12 +6,11 @@ import { Component, Input } from '@angular/core';
 	styleUrls: ['./slider.style.scss']
 })
 
-export class SliderComponent
+export class SliderComponent implements AfterViewInit
 {
-	/*
 	public selectedIndexes = [];
 
-	@Input() app;
+	@Input() browser;
 	@Input() popup;
 	@Input() slider;
 
@@ -123,8 +122,8 @@ export class SliderComponent
 	public openPopup(index: number): void
 	{
 		this.popup.update({
-			'title': this.slider.slides[index].txt[this.app.lang].title,
-			'lines': this.slider.slides[index].txt[this.app.lang].lines
+			'title': this.slider.slides[index].txt[this.browser.lang].title,
+			'lines': this.slider.slides[index].txt[this.browser.lang].lines
 		});
 		this.popup.show();
 
@@ -134,6 +133,4 @@ export class SliderComponent
 			this.setAutoslideOff();
 		}
 	}
-
-	*/
 }
