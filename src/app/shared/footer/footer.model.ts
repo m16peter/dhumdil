@@ -16,7 +16,7 @@ export class Footer
     this.locations = [];
   }
 
-  private reset(e: any): void
+  private handleError(e: any): void
   {
     console.log('error', e);
     this.init();
@@ -28,7 +28,6 @@ export class Footer
     {
       if (json.data.names && json.data.locations)
       {
-        this.loaded = true;
         this.names = [];
         this.locations = [];
 
@@ -40,16 +39,16 @@ export class Footer
         {
           this.locations.push(location);
         });
+        this.loaded = true;
       }
       else
       {
-        this.reset(json);
+        this.handleError(json);
       }
     }
     catch (e)
     {
-      this.reset(e);
+      this.handleError(e);
     }
   }
-
 }
