@@ -14,36 +14,24 @@ export class Header
     this.links = [];
   }
 
-  private handleError(e: any): void
-  {
-    console.log('error', e);
-    this.init();
-  }
-
   public initialize(json: any): void
   {
     try
     {
-      if (json.data.links)
+      this.links = [];
+      json.data.links.forEach((item) =>
       {
-        this.links = [];
-        json.data.links.forEach((item) =>
+        if (item.show)
         {
-          if (item.show)
-          {
-            this.links.push(item.link);
-          }
-        });
-        this.loaded = true;
-      }
-      else
-      {
-        this.handleError(json);
-      }
+          this.links.push(item.link);
+        }
+      });
+      this.loaded = true;
     }
     catch (e)
     {
-      this.handleError(e);
+      console.log('error', e);
+      this.init();
     }
   }
 }

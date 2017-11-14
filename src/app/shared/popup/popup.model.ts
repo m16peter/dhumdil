@@ -26,32 +26,19 @@ export class Popup
     this.state = 'hidden';
   }
 
-  private handleError(e: any): void
-  {
-    console.log('error', e);
-    this.init();
-  }
-
-
   public update(popup: any): void
   {
+    console.log(popup);
     try
     {
-      if (popup.title && popup.lines)
-      {
-        this.title = popup.title;
-        this.lines = popup.lines;
-        this.show();
-      }
-      else
-      {
-        this.handleError(popup);
-      }
+      this.title = popup.title;
+      this.lines = popup.lines;
+      this.show();
     }
     catch (e)
     {
-      this.handleError(e);
+      console.log('error', e);
+      this.init();
     }
   }
-
 }

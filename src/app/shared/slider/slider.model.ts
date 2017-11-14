@@ -14,35 +14,23 @@ export class Slider
     this.loaded = false;
   }
 
-  private handleError(e: any): void
-  {
-    console.log('error', e);
-    this.init();
-  }
-
   public initialize(json: any): void
   {
     try
     {
-      if (json.data.slides)
+      json.data.slides.forEach((item) =>
       {
-        json.data.slides.forEach((item) =>
+        if (item.show)
         {
-          if (item.show)
-          {
-            this.slides.push(item.slide);
-          }
-        });
-        this.loaded = true;
-      }
-      else
-      {
-        this.handleError(json);
-      }
+          this.slides.push(item.slide);
+        }
+      });
+      this.loaded = true;
     }
     catch (e)
     {
-      this.handleError(e);
+      console.log('error', e);
+      this.init();
     }
   }
 }

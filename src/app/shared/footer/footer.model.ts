@@ -16,39 +16,28 @@ export class Footer
     this.locations = [];
   }
 
-  private handleError(e: any): void
-  {
-    console.log('error', e);
-    this.init();
-  }
-
   public initialize(json: any): void
   {
+    console.log(json);
     try
     {
-      if (json.data.names && json.data.locations)
-      {
-        this.names = [];
-        this.locations = [];
+      this.names = [];
+      this.locations = [];
 
-        json.data.names.forEach((name) =>
-        {
-          this.names.push(name);
-        });
-        json.data.locations.forEach((location) =>
-        {
-          this.locations.push(location);
-        });
-        this.loaded = true;
-      }
-      else
+      json.data.names.forEach((name) =>
       {
-        this.handleError(json);
-      }
+        this.names.push(name);
+      });
+      json.data.locations.forEach((location) =>
+      {
+        this.locations.push(location);
+      });
+      this.loaded = true;
     }
     catch (e)
     {
-      this.handleError(e);
+      console.log('error', e);
+      this.init();
     }
   }
 }
