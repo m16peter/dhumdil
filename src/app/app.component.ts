@@ -91,6 +91,7 @@ export class AppComponent implements OnInit, AfterViewInit
         },
         e =>
         {
+          // TODO: handle error
           console.log('error', e);
         }
       );
@@ -104,19 +105,12 @@ export class AppComponent implements OnInit, AfterViewInit
         json =>
         {
           this.slider.initialize(json);
-
-          if (this.slider.slides.length > 0)
-          {
-            this.sliderComponent.setAutoslideOn();
-          }
-          else
-          {
-            this.sliderComponent.hide();
-          }
+          // TODO: hide loader
           this.initializeHeader();
         },
         e =>
         {
+          // TODO: handle error
           console.log('error', e);
         }
       )
@@ -135,6 +129,7 @@ export class AppComponent implements OnInit, AfterViewInit
         },
         e =>
         {
+          // TODO: handle error
           console.log('error', e);
         }
       )
@@ -153,10 +148,10 @@ export class AppComponent implements OnInit, AfterViewInit
         },
         e =>
         {
+          // TODO: handle error
           console.log('error', e);
         }
       )
     ;
   }
-
 }

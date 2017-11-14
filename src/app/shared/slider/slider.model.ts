@@ -1,11 +1,7 @@
 export class Slider
 {
-  public firstTime: boolean;
-  public isAutoslideOn: boolean;
-  public autoSlide: any;
-  public active: number;
-  public slides: any;
   public loaded: boolean;
+  public slides: any;
 
   constructor()
   {
@@ -14,9 +10,6 @@ export class Slider
 
   private init(): void
   {
-    this.active = 0;
-    this.isAutoslideOn = false;
-    this.firstTime = true;
     this.slides = [];
     this.loaded = false;
   }
@@ -31,13 +24,13 @@ export class Slider
   {
     try
     {
-      if (json.data)
+      if (json.data.slides)
       {
-        json.data.forEach((slider) =>
+        json.data.slides.forEach((item) =>
         {
-          if (slider.show)
+          if (item.show)
           {
-            this.slides.push(slider.slide);
+            this.slides.push(item.slide);
           }
         });
         this.loaded = true;
@@ -52,5 +45,4 @@ export class Slider
       this.handleError(e);
     }
   }
-
 }

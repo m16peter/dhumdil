@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-slider',
@@ -6,9 +6,13 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./slider.style.scss']
 })
 
-export class SliderComponent
+export class SliderComponent implements AfterViewInit
 {
+  public active: number;
   public selectedIndexes: any;
+  public firstTime: boolean;
+  public isAutoslideOn: boolean;
+  public autoSlide: any;
 
   @Input() slider;
   @Input() browser;
@@ -18,27 +22,35 @@ export class SliderComponent
 
   constructor()
   {
+    this.active = 0;
     this.selectedIndexes = [];
+    this.firstTime = true;
+    this.isAutoslideOn = false;
+  }
+
+  ngAfterViewInit()
+  {
+    this.setAutoslideOn();
   }
 
   public setAutoslideOn(): void
   {
     if (this.canSlide())
     {
-      this.slider.isAutoslideOn = true;
+      this.isAutoslideOn = true;
 
-      this.slider.autoSlide = setInterval(() =>
+      this.autoSlide = setInterval(() =>
       {
-        this.slider.active++;
-        this.selectSlide((this.slider.active < this.slider.slides.length ? this.slider.active : 0), true);
+        this.active++;
+        this.selectSlide((this.active < this.slider.slides.length ? this.active : 0), true);
       }, 5000);
     }
   }
 
   private setAutoslideOff(): void
   {
-    this.slider.isAutoslideOn = false;
-    clearInterval(this.slider.autoSlide);
+    this.isAutoslideOn = false;
+    clearInterval(this.autoSlide);
   }
 
   public selectSlide(index: number, autoslide = false): void
@@ -78,9 +90,9 @@ export class SliderComponent
     {
       index = this.selectedIndexes[0];
 
-      if (this.slider.active !== index)
+      if (this.active !== index)
       {
-        this.slider.active = index;
+        this.active = index;
       }
 
       const interval = setInterval(() =>
@@ -91,9 +103,9 @@ export class SliderComponent
         {
           index = this.selectedIndexes[0];
 
-          if (this.slider.active !== index)
+          if (this.active !== index)
           {
-            this.slider.active = index;
+            this.active = index;
           }
         }
         else
@@ -106,13 +118,13 @@ export class SliderComponent
 
   public animateSlide(i: number): string
   {
-    if (this.slider.firstTime)
+    if (this.firstTime)
     {
-      return ((i === this.slider.active) ? 'animated' : 'hidden');
+      return ((i === this.active) ? 'animated' : 'hidden');
     }
     else
     {
-      return ((i === this.slider.active) ? 'animate' : 'hide');
+      return ((i === this.active) ? 'animate' : 'hide');
     }
   }
 
@@ -124,7 +136,7 @@ export class SliderComponent
 
   private checkAutoslideStatus(): void
   {
-    if (this.slider.isAutoslideOn)
+    if (this.isAutoslideOn)
     {
       this.setAutoslideOff();
     }
@@ -132,9 +144,9 @@ export class SliderComponent
 
   private checkSliderStatus(): void
   {
-    if (this.slider.firstTime)
+    if (this.firstTime)
     {
-      this.slider.firstTime = false;
+      this.firstTime = false;
     }
   }
 
@@ -145,6 +157,6 @@ export class SliderComponent
 
   public isActive(i: number): string
   {
-    return ((i === this.slider.active) ? 'active' : '');
+    return ((i === this.active) ? 'active' : '');
   }
 }
