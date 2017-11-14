@@ -1,11 +1,10 @@
 <div class="footer">
-  <!-- App Title -->
-  <div class="title font-italic">
-    <h1>{{ footer.title[browser.lang] }}</h1>
-  </div>
-  <!-- Contact: Names, Addresses -->
+
+  <!-- Contact -->
   <div class="contact font-extra-light">
     <div>
+
+      <!-- Names -->
       <div class="contact__card" *ngFor="let item of footer.names">
         <div class="contact__card_icon">
           <svg fill="#FFFFFF" viewBox="0 0 24 24">
@@ -19,6 +18,8 @@
           <h3 *ngIf="isSet(item['mail'])">{{ item['mail'] }}</h3>
         </div>
       </div>
+
+      <!-- Locations -->
       <div class="contact__card" *ngFor="let item of footer.locations">
         <div class="contact__card_icon">
           <svg fill="#FFFFFF" viewBox="0 0 24 24">
@@ -33,6 +34,8 @@
         </div>
         <div class="flex"></div>
       </div>
+
     </div>
   </div>
+
 </div>

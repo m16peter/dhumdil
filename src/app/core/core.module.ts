@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-// import { CommonModule } from '@angular/common';
 
 // HttpModule is depracated but HttpClientModule is buggy... so replace it once it's fixed
 // https://github.com/angular/angular/issues/18680

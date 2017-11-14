@@ -12,7 +12,5 @@ export class HeaderComponent
   @Input() browser;
   @Input() app;
 
-  public toggleNavigation(): void
-  {}
-
+  // TODO
 }

@@ -17,7 +17,8 @@ export class PopupComponent
 
   public getPopupState(): string
   {
-    // workaround for zone.js auto checking...
+    // TODO: refactor
+    // workaround for zone.js...
     if (this.popup.state !== this.state)
     {
       if (this.popup.state === 'visible')
@@ -38,5 +39,4 @@ export class PopupComponent
   {
     this.popup.hide();
   }
-
 }

@@ -1,7 +1,7 @@
-<div class="slider {{ getStyle() }}" [style.height.px] = "browser.height" *ngIf="sliderStatus === 'active'">
+<div class="slider" [style.height.px] = "browser.height" [style.background-color] = "#26a0da">
 
   <!-- Slider Content -->
-  <div class = "slider-content {{ animateIfActive(i) }}" *ngFor = "let slide of slider.slides; let i = index;">
+  <div class = "slider-content {{ animateSlide(i) }}" *ngFor = "let slide of slider.slides; let i = index;">
     <div class = "slider-content_title">
       <h1 class = "font-italic" (click)="openPopup(i)">{{ slide[browser.lang].title }}</h1>
     </div>

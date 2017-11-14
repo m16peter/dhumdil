@@ -1,7 +1,6 @@
 export class Footer
 {
   public loaded: boolean;
-  public title: any;
   public names: any;
   public locations: any;
 
@@ -13,7 +12,6 @@ export class Footer
   private init(): void
   {
     this.loaded = false;
-    this.title = {};
     this.names = [];
     this.locations = [];
   }
@@ -28,10 +26,9 @@ export class Footer
   {
     try
     {
-      if (json.data.title && json.data.names && json.data.locations)
+      if (json.data.names && json.data.locations)
       {
         this.loaded = true;
-        this.title = json.data.title;
         this.names = [];
         this.locations = [];
 

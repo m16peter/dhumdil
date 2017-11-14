@@ -3,11 +3,11 @@ import { Component, ChangeDetectorRef, OnInit, AfterViewInit, HostListener, View
 import { HttpGetService } from '@app/core/services/http-get.service';
 import { AppService } from '@app/core/services/app.service';
 
-import { App } from '@app/core/models/app.model';
-import { Slider } from '@app/core/models/slider.model';
-import { Header } from '@app/core/models/header.model';
-import { Footer } from '@app/core/models/footer.model';
-import { Popup } from '@app/core/models/popup.model';
+import { App } from '@app/app.model';
+import { Slider } from '@app/shared/slider/slider.model';
+import { Header } from '@app/shared/header/header.model';
+import { Footer } from '@app/shared/footer/footer.model';
+import { Popup } from '@app/shared/popup/popup.model';
 
 import { SliderComponent } from '@app/shared/slider/slider.component';
 

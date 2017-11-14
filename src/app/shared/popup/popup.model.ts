@@ -26,7 +26,7 @@ export class Popup
     this.state = 'hidden';
   }
 
-  private reset(e: any): void
+  private handleError(e: any): void
   {
     console.log('error', e);
     this.init();
@@ -45,12 +45,12 @@ export class Popup
       }
       else
       {
-        this.reset(popup);
+        this.handleError(popup);
       }
     }
     catch (e)
     {
-      this.reset(e);
+      this.handleError(e);
     }
   }
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-slider',
@@ -8,17 +8,17 @@ import { Component, Input } from '@angular/core';
 
 export class SliderComponent
 {
-  public sliderStatus: string;
   public selectedIndexes: any;
 
   @Input() slider;
   @Input() browser;
   @Input() popup;
 
+  @Output() openPopupEv = new EventEmitter();
+
   constructor()
   {
     this.selectedIndexes = [];
-    this.sliderStatus = 'active';
   }
 
   public setAutoslideOn(): void
@@ -70,7 +70,7 @@ export class SliderComponent
       this.checkAutoslideStatus();
     }
 
-    // TODO: make a fn for this
+    // TODO: make a fn for this, eventually refactor...
     // The length of 'selectedIndexes' is always 1, in case the user waited for animatin end.
     // If he didn't waited, those indexes will be pushed in 'selectedIndexes' list,
     // and once the animation ends the indexes will shifted until the list is empty...
@@ -104,7 +104,7 @@ export class SliderComponent
     }
   }
 
-  public animateIfActive(i: number): string
+  public animateSlide(i: number): string
   {
     if (this.slider.firstTime)
     {
@@ -118,10 +118,7 @@ export class SliderComponent
 
   public openPopup(i: number): void
   {
-    this.popup.update({
-      'title': this.slider.slides[i][this.browser.lang].title,
-      'lines': this.slider.slides[i][this.browser.lang].lines
-    });
+    this.openPopupEv.emit();
     this.checkAutoslideStatus();
   }
 
@@ -150,15 +147,4 @@ export class SliderComponent
   {
     return ((i === this.slider.active) ? 'active' : '');
   }
-
-  public getStyle(): string
-  {
-    return ('color-' + this.slider.active % 6);
-  }
-
-  public hide(): void
-  {
-    this.sliderStatus = 'inactive';
-  }
-
 }

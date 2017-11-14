@@ -1,7 +1,6 @@
 export class Header
 {
   public loaded: boolean;
-  public home: any;
   public links: any;
 
   constructor()
@@ -12,7 +11,6 @@ export class Header
   private init(): void
   {
     this.loaded = false;
-    this.home = {};
     this.links = [];
   }
 
@@ -26,10 +24,9 @@ export class Header
   {
     try
     {
-      if (json.data && json.data.home && json.data.links)
+      if (json.data.links)
       {
         this.loaded = true;
-        this.home = json.data.home;
         this.links = json.data.links;
       }
       else

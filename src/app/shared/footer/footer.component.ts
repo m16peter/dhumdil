@@ -8,12 +8,11 @@ import { Component, Input } from "@angular/core";
 
 export class FooterComponent
 {
-  @Input() browser;
   @Input() footer;
+  @Input() browser;
 
   public isSet(str: string): boolean
   {
     return (str !== '');
   }
-
 }

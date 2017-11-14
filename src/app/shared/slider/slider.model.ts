@@ -21,7 +21,7 @@ export class Slider
     this.loaded = false;
   }
 
-  private reset(e: any): void
+  private handleError(e: any): void
   {
     console.log('error', e);
     this.init();
@@ -33,7 +33,6 @@ export class Slider
     {
       if (json.data)
       {
-        this.loaded = true;
         json.data.forEach((slider) =>
         {
           if (slider.show)
@@ -41,15 +40,16 @@ export class Slider
             this.slides.push(slider.slide);
           }
         });
+        this.loaded = true;
       }
       else
       {
-        this.reset(json);
+        this.handleError(json);
       }
     }
     catch (e)
     {
-      this.reset(e);
+      this.handleError(e);
     }
   }
 
