@@ -1,6 +1,7 @@
 <div class = "app">
 
-  <app-slider [slider]  = "slider"
+  <app-slider *ngIf     = "slider.loaded"
+              [slider]  = "slider"
               [browser] = "browser"
               [popup]   = "popup"
   ></app-slider>

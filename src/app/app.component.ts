@@ -32,12 +32,7 @@ export class AppComponent implements OnInit, AfterViewInit
   public footer: Footer;
   public popup: Popup;
 
-  public browser = {
-    'loaded': false,
-    'width': 0,
-    'height': 0,
-    'lang': ''
-  };
+  public browser: any;
 
   @ViewChild(SliderComponent) sliderComponent;
 
@@ -48,6 +43,13 @@ export class AppComponent implements OnInit, AfterViewInit
 
   constructor(private cdr: ChangeDetectorRef, private httpGet: HttpGetService, private appService: AppService)
   {
+    this.browser =
+    {
+      'loaded': false,
+      'width': 0,
+      'height': 0,
+      'lang': ''
+    };
     this.app = new App();
     this.slider = new Slider();
     this.header = new Header();

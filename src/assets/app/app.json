@@ -4,12 +4,15 @@
     "languages": [
       {
         "id": "sk",
+        "title": "„Suspendisse ornare eu sem non auctor, nam vitae libero ut tortor sagittis auctor“",
         "icon": "assets/app/sk.svg"
       },
       {
         "id": "ro",
+        "title": "„Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit“",
         "icon": "assets/app/ro.svg"
       }
-    ]
+    ],
+    "logo-icon": "assets/app/angular.svg"
   }
 }

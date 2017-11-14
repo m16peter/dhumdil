@@ -5,8 +5,7 @@
   "scripts": {
     "start": "ng serve --aot",
     "build": "ng build --prod",
-    "release": "standard-version && git push — follow-tags origin master && npm publish",
-    "build-gh": "ng build --prod --bh /dhumdil/"
+    "github": "ng build --prod --bh /dhumdil/"
   },
   "private": true,
   "dependencies": {
