@@ -1,5 +1,21 @@
 {
   "data": {
-    "links": []
+    "links": [
+      {
+        "link": {
+          "type": "about",
+          "url-i18n": {
+            "sk": "o-nas",
+            "ro": "despre-noi"
+          },
+          "title-i18n": {
+            "sk": "O Nas",
+            "ro": "Despre Noi"
+          },
+          "icon": ""
+        },
+        "show": false
+      }
+    ]
   }
 }

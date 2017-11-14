@@ -14,7 +14,7 @@ export class Header
     this.links = [];
   }
 
-  private reset(e: any): void
+  private handleError(e: any): void
   {
     console.log('error', e);
     this.init();
@@ -26,18 +26,24 @@ export class Header
     {
       if (json.data.links)
       {
+        this.links = [];
+        json.data.links.forEach((item) =>
+        {
+          if (item.show)
+          {
+            this.links.push(item.link);
+          }
+        });
         this.loaded = true;
-        this.links = json.data.links;
       }
       else
       {
-        this.reset(json);
+        this.handleError(json);
       }
     }
     catch (e)
     {
-      this.reset(e);
+      this.handleError(e);
     }
   }
-
 }
