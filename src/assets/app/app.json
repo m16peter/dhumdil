@@ -1,15 +1,15 @@
 {
-	"data":
-	{
-		"languages": [
-			{
-				"id": "sk",
-				"icon": "assets/app/sk.svg"
-			},
-			{
-				"id": "ro",
-				"icon": "assets/app/ro.svg"
-			}
-		]
-	}
+  "data":
+  {
+    "languages": [
+      {
+        "id": "sk",
+        "icon": "assets/app/sk.svg"
+      },
+      {
+        "id": "ro",
+        "icon": "assets/app/ro.svg"
+      }
+    ]
+  }
 }

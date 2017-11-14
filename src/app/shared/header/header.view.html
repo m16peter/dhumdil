@@ -1,31 +1,23 @@
 <div class="header font-semi-bold">
 
-	<a class="link home" routerLink="/" routerLinkActive="active">
-		<div class="link__btn">
-			<img class="link__btn_img" src="{{ header.home.icon }}" alt="{{ header.home.title }}" />
-			<div class="link__btn_pulse"></div>
-		</div>
-		<div class="link__title">{{ header.home.title }}</div>
-	</a>
+  <a class="link home" routerLink="/" routerLinkActive="active">
+    <div class="link__btn">
+      <img class="link__btn_img" src="{{ header.home.icon }}" alt="{{ header.home.title }}" />
+      <div class="link__btn_pulse"></div>
+    </div>
+    <div class="link__title">{{ header.home.title }}</div>
+  </a>
 
-	<div class="flex"></div>
-<!--
-	<a class="link" *ngFor="let link of header.links" routerLink="{{ link.id }}" routerLinkActive="active">
-		<div class="link__btn">
-			<img class="link__btn_img" src="{{ link.icon }}" alt="{{ link.title }}" />
-			<div class="link__btn_pulse"></div>
-		</div>
-		<div class="link__title">{{ link.title }}</div>
-	</a>
- -->
-	<a class="link menu" (click)="toggleNavigation()">
-		<div class="link__btn">
-			<svg class="link__btn_img" fill="#fff" viewBox="0 0 24 24">
-			    <path d="M0 0h24v24H0z" fill="none"/>
-			    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-			</svg>
-			<div class="link__btn_pulse"></div>
-		</div>
-	</a>
+  <div class="flex"></div>
+
+  <a class="link menu" (click)="toggleNavigation()">
+    <div class="link__btn">
+      <svg class="link__btn_img" fill="#fff" viewBox="0 0 24 24">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+      </svg>
+      <div class="link__btn_pulse"></div>
+    </div>
+  </a>
 
 </div>

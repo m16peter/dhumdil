@@ -5,13 +5,13 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class HttpGetService
 {
-	constructor(private http: Http)
-	{}
+  constructor(private http: Http)
+  {}
 
-	public get(url: string): any
-	{
-		return this.http
-			.get(url)
-			.pipe(map(res => res.json()));
-	}
+  public get(url: string): any
+  {
+    return this.http
+      .get(url)
+      .pipe(map(res => res.json()));
+  }
 }

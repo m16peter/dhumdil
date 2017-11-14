@@ -1,28 +1,31 @@
 <div class = "app">
 
-	<app-slider	[slider]	= "slider"
-				[popup]		= "popup"
-				[browser]	= "browser"
-	></app-slider>
-<!--
+  <app-slider [slider]  = "slider"
+              [browser] = "browser"
+              [popup]   = "popup"
+  ></app-slider>
 
-        <div *ngIf = "browser.loaded && header.loaded && footer.loaded">
-            <app-header	*ngIf		= "header.loaded"
-                        [header]	= "header"
-                        [app]		= "app"
-                        [browser]	= "browser"
-            ></bnb-header>
+  <div *ngIf = "browser.loaded">
 
-            <div class = "content" [style.min-height.px] = "browser.height">
-                <router-outlet></router-outlet>
-            </div>
+    <app-header *ngIf     = "header.loaded"
+                [header]  = "header"
+                [browser] = "browser"
+                [app]     = "app"
+    ></app-header>
 
-            <app-footer	*ngIf		= "footer.loaded"
-                        [footer]	= "footer"
-                        [browser]	= "browser"
-            ></bnb-footer>
+    <div class = "content" [style.min-height.px] = "browser.height">
+      <router-outlet></router-outlet>
+    </div>
 
-            <app-popup [popup] = "popup"></bnb-popup>
-	</div>
--->
+    <app-footer *ngIf     = "footer.loaded"
+                [footer]  = "footer"
+                [browser] = "browser"
+    ></app-footer>
+
+    <app-popup [popup]   = "popup"
+               [browser] = "browser"
+    ></app-popup>
+
+  </div>
+
 </div>

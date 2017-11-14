@@ -1,31 +1,19 @@
- <div class="slider font-italic" [style.height.px] = "browser.height">
+<div class="slider {{ getStyle() }}" [style.height.px] = "browser.height" *ngIf="sliderStatus === 'active'">
 
-	 <!--Slides -->
-	 <div class="slide {{ animateIfActive(i) }}" *ngFor="let slide of slider.slides; let i = index;" [style.height.px] = "browser.height">
+  <!-- Slider Content -->
+  <div class = "slider-content {{ animateIfActive(i) }}" *ngFor = "let slide of slider.slides; let i = index;">
+    <div class = "slider-content_title">
+      <h1 class = "font-italic" (click)="openPopup(i)">{{ slide[browser.lang].title }}</h1>
+    </div>
+  </div>
 
-		 <picture>
-			 <source media="(min-width: 1024px)" srcset="{{ slide.img.src_md }}">
-			 <img class="slide_img_lg" src="{{ slide.img.src }}" alt="Slider background image">
-		 </picture>
+  <!-- Slider Navigation -->
+  <div class = "slider-navigation" *ngIf = "canSlide()">
+    <div class = "list">
+      <div class = "list__item" (click) = "selectSlide(i)" *ngFor = "let slide of slider.slides; let i = index;">
+        <div class = "list__item_btn {{ isActive(i) }}"></div>
+      </div>
+    </div>
+  </div>
 
-		 <div class="slide_content">
-			 <h1 (click)="openPopup(i)">{{ slide.txt[browser.lang].title }}</h1>
-		 </div>
-
-	 </div>
-
-	 <!--Navigation -->
-	 <div class="navigation" *ngIf="(slider.slides.length > 1)">
-
-		 <div class="navigation__list">
-
-			 <div class 		= "navigation__list_btn {{ (i === slider.activeSlide) ? 'active' : '' }}"
-				  *ngFor 	= "let slide of slider.slides; let i = index;"
-				  (click) 	= "selectSlide(i)"
-			 ></div>
-
-		 </div>
-
-	 </div>
-
- </div>
+</div>
