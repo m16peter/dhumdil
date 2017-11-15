@@ -9,37 +9,99 @@
   z-index: 150;
 
   .home {
+    width: auto;
     max-width: calc(100% - 100px);
     display: flex;
 
+    &:hover {
+      .title::after {
+        transform: scaleX(1);
+      }
+    }
     .title {
+      position: relative;
       font-size: 24px;
       color: #fff;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       margin: auto;
+      padding: 2px 0;
 
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background: #fff;
+        transform: scaleX(0);
+        transition: all 300ms ease-in-out;
+      }
       @media (max-width: 600px) {
         display: none;
       }
     }
   }
   .menu {
-    width: 100px;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: auto;
+    transform: rotate(0deg);
+    transition: 300ms ease-in-out;
+
+    span {
+      display: block;
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      background: #fff;
+      border-radius: 2px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: 150ms ease-in-out;
+
+      &:nth-child(1) {
+        top: 8px;
+      }
+      &:nth-child(2) {
+        top: 18px;
+      }
+      &:nth-child(3) {
+        top: 28px;
+      }
+    }
+  }
+  .active {
+
+    span {
+
+      &:nth-child(1) {
+        top: 18px;
+        transform: rotate(-135deg);
+      }
+      &:nth-child(2) {
+        opacity: 0;
+        left: 60px;
+      }
+      &:nth-child(3) {
+        top: 18px;
+        transform: rotate(135deg);
+      }
+    }
   }
 }
 
 .link {
   display: flex;
   position: relative;
-  height: 49px;
-  border-bottom: 1px solid transparent;
+  width: 100px;
+  height: 50px;
   cursor: pointer;
 
-  &:hover {
-    border-bottom: 1px solid #fff;
-  }
   .btn {
     position: relative;
     display: flex;

@@ -8,13 +8,20 @@ import { Component, Input } from "@angular/core";
 
 export class HeaderComponent
 {
+  public menuIsActive: boolean;
+
   @Input() header;
   @Input() browser;
   @Input() app;
 
+  constructor()
+  {
+    this.menuIsActive = false;
+  }
+
   public toggleNavigation(): void
   {
-    // TODO
+    this.menuIsActive = !this.menuIsActive;
   }
 
   public i18n(val: any, key: string): any

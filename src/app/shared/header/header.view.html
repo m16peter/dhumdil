@@ -1,6 +1,6 @@
 <div class="header">
 
-  <a class="link home" routerLink="/" routerLinkActive="active">
+  <a class="link home" routerLink="/">
     <div class="btn">
       <img class="btn_img" src="{{ app.app.icon }}"/>
     </div>
@@ -9,12 +9,11 @@
 
   <div class="flex"></div>
 
-  <a class="link menu" (click)="toggleNavigation()">
-    <div class="btn">
-      <svg class="btn_img" fill="#fff" viewBox="0 0 24 24">
-        <path d="M0 0h24v24H0z" fill="none"/>
-        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-      </svg>
+  <a class="link" (click)="toggleNavigation()">
+    <div class="menu {{ menuIsActive ? 'active' : '' }}">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
   </a>
 
