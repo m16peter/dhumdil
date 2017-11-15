@@ -1,9 +1,15 @@
 <div class="slider" [style.height.px] = "browser.height" [style.background-color]="slider.slides[active]['background-color']">
 
   <!-- Slider Content -->
-  <div class = "slider-content {{ animateSlide(i) }}" *ngFor = "let slide of slider.slides; let i = index;"  [style.background-image]="slider.slides[i]['background-image']">
-    <div class = "slider-content_title">
-      <h1 class = "font-italic" (click)="openPopup(i18n(slide, 'title'), i18n(slide, 'lines'))">{{ i18n(slide, 'title') }}</h1>
+  <div class = "slide {{ animateSlide(i) }}" *ngFor = "let slide of slider.slides; let i = index;"  [style.background-image] = "slider.slides[i]['background-image']">
+    <div class = "slide__content">
+      <div (click) = "openPopup(i18n(slide, 'title'), i18n(slide, 'lines'))">
+        <div class = "glass-effect"></div>
+        <div class = "title">
+          <h1 class = "font-italic">{{ i18n(slide, 'title') }}</h1>
+        </div>
+        <h1 class = "placeholder font-italic">{{ i18n(slide, 'title') }}</h1>
+      </div>
     </div>
   </div>
 
