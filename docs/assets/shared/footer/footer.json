@@ -1,0 +1,33 @@
+{
+  "data": {
+    "names": [
+      {
+        "title": "Wizard",
+        "name": "Gandalf the White",
+        "phone": "+40 123 456 789",
+        "mail": "",
+        "show": true
+      },
+      {
+        "title-i18n": {
+          "sk": "Pastor",
+          "ro": "Păstor"
+        },
+        "name": "Lakatos Ioan",
+        "phone": "+40 740 837 386",
+        "mail": "",
+        "show": false
+      }
+    ],
+    "locations": [
+      {
+        "title-i18n": {
+          "sk": "Apoštolská Cirkev Bodonoš",
+          "ro": "Biserica Penticostală Budoi"
+        },
+        "address": "Budoi 270, Bihor",
+        "show": true
+      }
+    ]
+  }
+}

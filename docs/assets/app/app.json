@@ -1,0 +1,18 @@
+{
+  "data":
+  {
+    "languages": [
+      {
+        "id": "sk",
+        "title": "„Suspendisse ornare eu sem non auctor, nam vitae libero ut tortor sagittis auctor“",
+        "icon": "assets/app/img/sk.svg"
+      },
+      {
+        "id": "ro",
+        "title": "„Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit“",
+        "icon": "assets/app/img/ro.svg"
+      }
+    ],
+    "icon": "assets/app/img/angular.svg"
+  }
+}
