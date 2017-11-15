@@ -13,9 +13,9 @@
           </svg>
         </div>
         <div class="contact__card_item">
-          <h3 *ngIf="isSet(item['name'])">{{ item['name'] }}</h3>
-          <h3 *ngIf="isSet(item['phone'])">{{ item['phone'] }}</h3>
-          <h3 *ngIf="isSet(item['mail'])">{{ item['mail'] }}</h3>
+          <h3 *ngIf="isSet(i18n(item, 'name'))">{{ i18n(item, 'name') }}</h3>
+          <h3 *ngIf="isSet(i18n(item, 'phone'))">{{ i18n(item, 'phone') }}</h3>
+          <h3 *ngIf="isSet(i18n(item, 'mail'))">{{ i18n(item, 'mail') }}</h3>
         </div>
       </div>
 
@@ -28,9 +28,9 @@
           </svg>
         </div>
         <div class="contact__card_item">
-          <h2 *ngIf="isSet(item['address'])">{{ item['address'] }}</h2>
-          <h2 *ngIf="isSet(item['city'])">{{ item['city'] }}</h2>
-          <h2 *ngIf="isSet(item['country'])">{{ item['country'] }}</h2>
+          <h2 *ngIf="isSet(i18n(item, 'address'))">{{ i18n(item, 'address') }}</h2>
+          <h2 *ngIf="isSet(i18n(item, 'city'))">{{ i18n(item, 'city') }}</h2>
+          <h2 *ngIf="isSet(i18n(item, 'country'))">{{ i18n(item, 'country') }}</h2>
         </div>
         <div class="flex"></div>
       </div>

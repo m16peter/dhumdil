@@ -16,6 +16,7 @@ export class Header
 
   public initialize(json: any): void
   {
+    console.log(json);
     try
     {
       this.links = [];

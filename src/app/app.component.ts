@@ -154,4 +154,20 @@ export class AppComponent implements OnInit, AfterViewInit
       )
     ;
   }
+
+  /* TODO: make avalable globally...
+  public i18n(val: any, key: string): any
+  {
+    try
+    {
+      const KEY = key + "-i18n";
+      const VAL = obj[KEY][this.browser.lang];
+      return (VAL);
+    }
+    catch (e)
+    {
+      return (val[key]);
+    }
+  }
+  */
 }

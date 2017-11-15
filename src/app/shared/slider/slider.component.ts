@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-slider',
@@ -17,8 +17,6 @@ export class SliderComponent implements AfterViewInit
   @Input() slider;
   @Input() browser;
   @Input() popup;
-
-  @Output() openPopupEv = new EventEmitter();
 
   constructor()
   {
@@ -128,9 +126,13 @@ export class SliderComponent implements AfterViewInit
     }
   }
 
-  public openPopup(i: number): void
+  public openPopup(title, lines): void
   {
-    this.openPopupEv.emit();
+    this.popup.update({
+      'title': title,
+      'lines': lines
+    });
+
     this.checkAutoslideStatus();
   }
 
@@ -158,5 +160,19 @@ export class SliderComponent implements AfterViewInit
   public isActive(i: number): string
   {
     return ((i === this.active) ? 'active' : '');
+  }
+
+  public i18n(val: any, key: string): any
+  {
+    try
+    {
+      const KEY = key + "-i18n";
+      const VAL = val[KEY][this.browser.lang];
+      return (VAL);
+    }
+    catch (e)
+    {
+      return (val[key]);
+    }
   }
 }

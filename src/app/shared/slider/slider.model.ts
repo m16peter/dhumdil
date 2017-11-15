@@ -16,6 +16,7 @@ export class Slider
 
   public initialize(json: any): void
   {
+    console.log(json);
     try
     {
       json.data.slides.forEach((item) =>
