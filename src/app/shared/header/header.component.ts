@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, HostListener } from "@angular/core";
 
 @Component({
   selector: 'app-header',
@@ -9,19 +9,31 @@ import { Component, Input } from "@angular/core";
 export class HeaderComponent
 {
   public menuIsActive: boolean;
+  public headerIsActive: boolean;
 
   @Input() header;
   @Input() browser;
   @Input() app;
 
+  @HostListener('window:scroll') onScroll()
+  {
+    this.handleScroll();
+  }
+
   constructor()
   {
     this.menuIsActive = false;
+    this.headerIsActive = false;
   }
 
   public toggleNavigation(): void
   {
     this.menuIsActive = !this.menuIsActive;
+  }
+
+  public handleScroll(): void
+  {
+    this.headerIsActive = (document.scrollingElement.scrollTop !== 0);
   }
 
   public i18n(val: any, key: string): any
