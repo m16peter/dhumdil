@@ -24,13 +24,19 @@ export class Footer
       this.names = [];
       this.locations = [];
 
-      json.data.names.forEach((name) =>
+      json.data.names.forEach((item) =>
       {
-        this.names.push(name);
+        if (item.show)
+        {
+          this.names.push(item.name);
+        }
       });
-      json.data.locations.forEach((location) =>
+      json.data.locations.forEach((item) =>
       {
-        this.locations.push(location);
+        if (item.show)
+        {
+          this.locations.push(item.location);
+        }
       });
       this.loaded = true;
     }

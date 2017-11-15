@@ -8,9 +8,9 @@ import { Component, Input, AfterViewInit } from '@angular/core';
 
 export class SliderComponent implements AfterViewInit
 {
+  public firstTime: boolean;
   public active: number;
   public selectedIndexes: any;
-  public firstTime: boolean;
   public isAutoslideOn: boolean;
   public autoSlide: any;
 
@@ -20,9 +20,9 @@ export class SliderComponent implements AfterViewInit
 
   constructor()
   {
+    this.firstTime = true;
     this.active = 0;
     this.selectedIndexes = [];
-    this.firstTime = true;
     this.isAutoslideOn = false;
   }
 
@@ -53,8 +53,7 @@ export class SliderComponent implements AfterViewInit
 
   public selectSlide(index: number, autoslide = false): void
   {
-    // workaround for animation for the first time
-    this.checkSliderStatus();
+    this.firstTime = false;
 
     // TODO: make a fn for this
     // If the animation isn't over when user changes the slide,
@@ -110,7 +109,7 @@ export class SliderComponent implements AfterViewInit
         {
           clearInterval(interval);
         }
-      }, 300);
+      }, 600);
     }
   }
 
@@ -118,12 +117,9 @@ export class SliderComponent implements AfterViewInit
   {
     if (this.firstTime)
     {
-      return ((i === this.active) ? 'animated' : 'hidden');
+      return ((i === this.active) ? '' : 'hidden');
     }
-    else
-    {
-      return ((i === this.active) ? 'animate' : 'hide');
-    }
+    return ((i === this.active) ? 'animate' : 'hide');
   }
 
   public openPopup(title, lines): void
@@ -141,14 +137,6 @@ export class SliderComponent implements AfterViewInit
     if (this.isAutoslideOn)
     {
       this.setAutoslideOff();
-    }
-  }
-
-  private checkSliderStatus(): void
-  {
-    if (this.firstTime)
-    {
-      this.firstTime = false;
     }
   }
 

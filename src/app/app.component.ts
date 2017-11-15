@@ -105,7 +105,7 @@ export class AppComponent implements OnInit, AfterViewInit
         json =>
         {
           this.slider.initialize(json);
-          // TODO: hide loader
+          document.body.removeChild(document.getElementById('loader'));
           this.initializeHeader();
         },
         e =>

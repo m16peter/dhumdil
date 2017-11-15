@@ -27,6 +27,7 @@
               "Per aenean massa convallis dapibus viverra. Est proin bibendum aliquam venenatis maecenas id nullam vestibulum. Risus at adipiscing enim in leo. Nullam praesent maecenas. Eu vestibulum quisque. Nec praesent erat turpis curabitur ut. Cras turpis et quis id pellentesque. Ligula at nec. Sit nostrud sed ligula at quam dui mauris."
             ]
           },
+          "background-image": "url('assets/shared/slider/img/img_girl.jpg')",
           "background-color": "#26a0da"
         },
         "show": true
@@ -35,6 +36,7 @@
         "slide": {
           "title": "#27ae60",
           "lines": [],
+          "background-image": "",
           "background-color": "#27ae60"
         },
         "show": true
@@ -43,6 +45,7 @@
         "slide": {
           "title": "#F09819",
           "lines": [],
+          "background-image": "",
           "background-color": "#F09819"
         },
         "show": true
@@ -51,6 +54,7 @@
         "slide": {
           "title": "#800080",
           "lines": [],
+          "background-image": "",
           "background-color": "#800080"
         },
         "show": true
@@ -59,6 +63,7 @@
         "slide": {
           "title": "#2c3e50",
           "lines": [],
+          "background-image": "",
           "background-color": "#2c3e50"
         },
         "show": true
@@ -67,6 +72,7 @@
         "slide": {
           "title": "#9733EE",
           "lines": [],
+          "background-image": "",
           "background-color": "#9733EE"
         },
         "show": true

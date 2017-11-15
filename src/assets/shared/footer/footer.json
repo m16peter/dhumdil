@@ -2,30 +2,36 @@
   "data": {
     "names": [
       {
-        "title": "Wizard",
-        "name": "Gandalf the White",
-        "phone": "+40 123 456 789",
-        "mail": "",
-        "show": true
+        "name": {
+          "title": "Wizard",
+          "name": "Gandalf the White",
+          "phone": "+40 123 456 789",
+          "mail": ""
+        },
+        "show": false
       },
       {
-        "title-i18n": {
-          "sk": "Pastor",
-          "ro": "Păstor"
+        "name": {
+          "title-i18n": {
+            "sk": "Pastor",
+            "ro": "Păstor"
+          },
+          "name": "Lakatos Ioan",
+          "phone": "+40 740 837 386",
+          "mail": ""
         },
-        "name": "Lakatos Ioan",
-        "phone": "+40 740 837 386",
-        "mail": "",
-        "show": false
+        "show": true
       }
     ],
     "locations": [
       {
-        "title-i18n": {
-          "sk": "Apoštolská Cirkev Bodonoš",
-          "ro": "Biserica Penticostală Budoi"
+        "location": {
+          "title-i18n": {
+            "sk": "Apoštolská Cirkev Bodonoš",
+            "ro": "Biserica Penticostală Budoi"
+          },
+          "address": "Budoi 270, Bihor"
         },
-        "address": "Budoi 270, Bihor",
         "show": true
       }
     ]
