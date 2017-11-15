@@ -1,22 +1,11 @@
-<div class = "slider" [style.height.px] = "browser.height" [style.background-color] = "slider.slides[active]['background-color']">
+<div class = "slider" [style.height.px] = "browser.height - 50" [style.background-color] = "slider.slides[active]['background-color']">
 
-  <!-- Slider -->
+  <!-- Slides -->
   <div class = "slide {{ animateSlide(i) }}" *ngFor = "let slide of slider.slides; let i = index;"  [style.background-image] = "slider.slides[i]['background-image']">
 
-    <!-- Glass effect for header -->
-    <div class = "header-placeholder">
-      <div class = "glass-effect"></div>
-    </div>
-
-    <!-- Slide -->
+    <!-- Slide Content -->
     <div class = "slide__content">
       <div (click) = "openPopup(i18n(slide, 'title'), i18n(slide, 'lines'))">
-
-        <!-- Glass effect for slide title -->
-        <div class = "glass-effect"></div>
-
-        <!-- Title placeholder -->
-        <h1 class = "title-placeholder font-italic">{{ i18n(slide, 'title') }}</h1>
 
         <!-- Title -->
         <div class = "title">
@@ -31,9 +20,12 @@
   <!-- Slider Navigation -->
   <div class = "slider-navigation" *ngIf = "canSlide()">
     <div class = "list">
+
+      <!-- Navigation Buttons -->
       <div class = "list__item" (click) = "selectSlide(i)" *ngFor = "let slide of slider.slides; let i = index;">
         <div class = "list__item_btn {{ isActive(i) }}"></div>
       </div>
+
     </div>
   </div>
 

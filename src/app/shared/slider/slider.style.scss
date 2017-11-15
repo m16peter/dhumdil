@@ -1,6 +1,7 @@
 .slider {
   position: relative;
   width: 100%;
+  top: 50px;
   overflow: hidden;
   transition: all 400ms ease-in-out;
   background-color: #fff;
@@ -13,9 +14,6 @@
     opacity: 0;
     transition: all 300ms ease-in-out;
     z-index: -1;
-    .header-placeholder {
-      opacity: 0;
-    }
   }
   .hidden {
     opacity: 0;
@@ -33,14 +31,12 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
   z-index: 50;
 
   &__content {
     display: flex;
     flex-direction: column;
     width: 100%;
-    background: inherit;
 
     &::before {
       content: '';
@@ -54,28 +50,10 @@
       position: relative;
       margin: auto;
       width: 100%;
-      background: inherit;
       cursor: pointer;
 
       .title {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
         background: rgba(0,0,0, 0.5);
-      }
-      .glass-effect {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: inherit;
-        filter: blur(10px);
-      }
-      .title-placeholder {
-        visibility: hidden;
       }
       h1 {
         padding: 50px 0;
