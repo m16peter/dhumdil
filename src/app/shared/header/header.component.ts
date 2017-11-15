@@ -12,5 +12,22 @@ export class HeaderComponent
   @Input() browser;
   @Input() app;
 
-  // TODO
+  public toggleNavigation(): void
+  {
+    // TODO
+  }
+
+  public i18n(val: any, key: string): any
+  {
+    try
+    {
+      const KEY = key + "-i18n";
+      const VAL = val[KEY][this.browser.lang];
+      return (VAL);
+    }
+    catch (e)
+    {
+      return (val[key]);
+    }
+  }
 }

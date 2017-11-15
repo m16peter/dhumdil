@@ -1,7 +1,7 @@
 export class App
 {
+  public app: any;
   public languages: any;
-  public icon: string;
 
   constructor()
   {
@@ -10,6 +10,7 @@ export class App
 
   private init(): void
   {
+    this.app = {};
     this.languages = [];
   }
 
@@ -24,23 +25,14 @@ export class App
     console.log(json);
     try
     {
-      if (json.data.languages && json.data.icon)
+      if (json.data.app && json.data.languages)
       {
-        this.languages = [];
-
-        json.data.languages.forEach((lang) =>
-        {
-          this.languages.push({
-            'id': lang.id,
-            'title': lang.title,
-            'icon': lang.icon
-          });
-        });
-        this.icon = json.data.icon;
+        this.app = json.data.app;
+        this.languages = json.data.languages;
       }
       else
       {
-        this.handleError("Undefined 'languages' or 'icon'");
+        this.handleError("Undefined 'app' or 'languages'");
       }
     }
     catch (e)

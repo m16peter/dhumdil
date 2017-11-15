@@ -78,7 +78,8 @@
 
     &:hover {
       .list__item_btn {
-        transform: scale3d(1, 1, 1);
+        transform: scale3d(0.7, 0.7, 0.7);
+        transition: transform 50ms ease-out;
       }
     }
     &_btn {
@@ -86,11 +87,11 @@
       height: 20px;
       border-radius: 50%;
       background: #fff;
-      transition: all 100ms ease-in-out;
-      transform: scale3d(0.75, 0.75, 0.75);
+      transition: transform 300ms ease-out;
+      transform: scale3d(0.5, 0.5, 0.5);
     }
     .active {
-      transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1) !important;
     }
   }
 }
