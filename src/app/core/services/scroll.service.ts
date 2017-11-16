@@ -23,7 +23,7 @@ export class ScrollService
           window.scrollTo(0, position);
 					clearInterval(interval);
 				}
-			}, 20);
+			}, 10);
 		}
 		else if (position > now)
 		{
@@ -41,7 +41,7 @@ export class ScrollService
           window.scrollTo(0, position);
 					clearInterval(interval);
 				}
-			}, 20);
+			}, 10);
 		}
 	}
 }
