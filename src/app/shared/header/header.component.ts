@@ -1,5 +1,6 @@
 import { Component, Input, HostListener } from "@angular/core";
 import { I18nService } from '@app/core/services/i18n.service';
+import { ScrollService } from '@app/core/services/scroll.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,7 @@ export class HeaderComponent
     this.handleScroll();
   }
 
-  constructor(private i18nService: I18nService)
+  constructor(private i18nService: I18nService, private scrollService: ScrollService)
   {
     this.isActive = false;
     this.isSolid = false;
@@ -64,7 +65,7 @@ export class HeaderComponent
 
   public scrollTo(position: number): void
   {
-    // TODO
+    this.scrollService.browserScrollTo(position);
   }
 
   public i18n(obj: any, key: string): any

@@ -8,6 +8,7 @@ import { HttpGetService } from './services/http-get.service';
 import { MetaService } from './services/meta.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { I18nService } from './services/i18n.service';
+import { ScrollService } from './services/scroll.service';
 import { AppService } from './services/app.service';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AppService } from './services/app.service';
     MetaService,
     LocalStorageService,
     I18nService,
+    ScrollService,
     AppService
   ],
   declarations: []
