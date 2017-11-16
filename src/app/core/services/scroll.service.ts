@@ -5,7 +5,7 @@ export class ScrollService
 {
   public browserScrollTo(position: number): void
 	{
-		let now = document.body.scrollTop;
+		let now = window.scrollY;
 
 		if (position < now)
 		{

@@ -30,16 +30,7 @@ export class HeaderComponent
 
   public toggleNavigation(): void
   {
-    if (this.isActive)
-    {
-      this.isActive = false;
-      document.body.style.overflow = 'auto';
-    }
-    else
-    {
-      this.isActive = true;
-      document.body.style.overflow = 'hidden';
-    }
+    this.isActive ? this.closeNavigation() : this.openNavigation();
   }
 
   public handleScroll(): void
@@ -66,10 +57,23 @@ export class HeaderComponent
   public scrollTo(position: number): void
   {
     this.scrollService.browserScrollTo(position);
+    this.closeNavigation();
   }
 
   public i18n(obj: any, key: string): any
   {
     return this.i18nService.i18n(obj, key, this.browser.lang);
+  }
+
+  public openNavigation(): void
+  {
+    this.isActive = true;
+    document.body.style.overflow = 'hidden';
+  }
+
+  public closeNavigation(): void
+  {
+    this.isActive = false;
+    document.body.style.overflow = 'auto';
   }
 }

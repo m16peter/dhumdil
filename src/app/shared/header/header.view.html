@@ -6,9 +6,9 @@
     <!-- App / Home page -->
     <a class = "link app" routerLink = "/" (click) = "scrollTo(0)">
       <div class = "app_icon">
-        <img src = "{{ app.app.icon }}" />
+        <img src = "{{ app.brand.icon }}" />
       </div>
-      <span class = "title font-italic">{{ i18n(app.app, 'title') }}</span>
+      <span class = "title font-italic">{{ i18n(app.brand, 'title') }}</span>
     </a>
 
     <div class = "flex"></div>
@@ -29,7 +29,7 @@
     <div class = "layout-center">
 
       <!-- TODO: handle any type of link (redirect, scroll, content, ...) -->
-      <a class = "link" *ngFor = "let link of header.links">
+      <a class = "link" *ngFor = "let link of header.links" (click) = "scrollTo(0)">
         <span class = "title font-italic">{{ i18n(link, 'title') }}</span>
       </a>
 
