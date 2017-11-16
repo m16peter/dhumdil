@@ -28,9 +28,9 @@ export class Popup
 
   public update(popup: any): void
   {
-    console.log(popup);
     try
     {
+      console.log(popup);
       this.title = popup.title;
       this.lines = popup.lines;
       this.show();

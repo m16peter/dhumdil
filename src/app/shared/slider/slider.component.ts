@@ -1,4 +1,5 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
+import { I18nService } from '@app/core/services/i18n.service';
 
 @Component({
   selector: 'app-slider',
@@ -18,7 +19,7 @@ export class SliderComponent implements AfterViewInit
   @Input() browser;
   @Input() popup;
 
-  constructor()
+  constructor(private i18nService: I18nService)
   {
     this.firstTime = true;
     this.active = 0;
@@ -150,17 +151,8 @@ export class SliderComponent implements AfterViewInit
     return ((i === this.active) ? 'active' : '');
   }
 
-  public i18n(val: any, key: string): any
+  public i18n(obj: any, key: string): any
   {
-    try
-    {
-      const KEY = key + "-i18n";
-      const VAL = val[KEY][this.browser.lang];
-      return (VAL);
-    }
-    catch (e)
-    {
-      return (val[key]);
-    }
+    return this.i18nService.i18n(obj, key, this.browser.lang);
   }
 }

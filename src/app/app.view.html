@@ -1,9 +1,10 @@
 <div class = "app">
 
-  <app-slider *ngIf     = "slider.loaded"
-              [slider]  = "slider"
-              [browser] = "browser"
-              [popup]   = "popup"
+  <app-slider *ngIf             = "slider.loaded"
+              [slider]          = "slider"
+              [browser]         = "browser"
+              [popup]           = "popup"
+              [style.height.px] = "browser.height"
   ></app-slider>
 
   <div *ngIf = "browser.loaded">
@@ -14,7 +15,7 @@
                 [app]     = "app"
     ></app-header>
 
-    <div class = "content" [style.min-height.px] = "browser.height">
+    <div class = "content" [style.min-height.px] = "browser.height - 50">
       <router-outlet></router-outlet>
     </div>
 

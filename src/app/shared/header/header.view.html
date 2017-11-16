@@ -1,20 +1,39 @@
-<div class="header {{ headerIsActive ? 'solid-background' : ''}}">
+<div class = "header {{ headerState() }}">
 
-  <a class="link home" routerLink="/">
-    <div class="btn">
-      <img class="btn_img" src="{{ app.app.icon }}"/>
+  <!-- Main Section -->
+  <div class = "app-section">
+
+    <!-- App / Home page -->
+    <a class = "link app" routerLink = "/" (click) = "scrollTo(0)">
+      <div class = "app_icon">
+        <img src = "{{ app.app.icon }}" />
+      </div>
+      <span class = "title font-italic">{{ i18n(app.app, 'title') }}</span>
+    </a>
+
+    <div class = "flex"></div>
+
+    <!-- Menu -->
+    <a class = "menu" (click) = "toggleNavigation()">
+      <div class = "menu_btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Links Section -->
+  <div class = "navigation-section" *ngIf = "isActive">
+    <div class = "layout-center">
+
+      <!-- TODO: handle any type of link (redirect, scroll, content, ...) -->
+      <a class = "link" *ngFor = "let link of header.links">
+        <span class = "title font-italic">{{ i18n(link, 'title') }}</span>
+      </a>
+
     </div>
-    <span class="title font-semi-bold">{{ i18n(app.app, 'title') }}</span>
-  </a>
-
-  <div class="flex"></div>
-
-  <a class="link" (click)="toggleNavigation()">
-    <div class="menu {{ menuIsActive ? 'active' : '' }}">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </a>
+  </div>
 
 </div>

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
 	selector: 'app-bnb',
-	template: `<h1>Home</h1>`
+	template: `<div>Home</div>`
 })
 
 export class HomeComponent {}

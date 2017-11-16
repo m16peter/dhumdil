@@ -1,5 +1,11 @@
 {
   "data": {
+    "contact": {
+      "title-i18n": {
+        "sk": "Kontakt",
+        "ro": "Contact"
+      }
+    },
     "names": [
       {
         "name": {

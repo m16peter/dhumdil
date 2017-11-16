@@ -1,4 +1,5 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
+import { I18nService } from '@app/core/services/i18n.service';
 
 @Component({
   selector: 'app-footer',
@@ -11,22 +12,16 @@ export class FooterComponent
   @Input() footer;
   @Input() browser;
 
+  constructor(private i18nService: I18nService)
+  {}
+
   public isSet(str: string): boolean
   {
     return (str !== '');
   }
 
-  public i18n(val: any, key: string): any
+  public i18n(obj: any, key: string): any
   {
-    try
-    {
-      const KEY = key + "-i18n";
-      const VAL = val[KEY][this.browser.lang];
-      return (VAL);
-    }
-    catch (e)
-    {
-      return (val[key]);
-    }
+    return this.i18nService.i18n(obj, key, this.browser.lang);
   }
 }

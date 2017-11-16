@@ -1,4 +1,5 @@
 import { Component, Input, HostListener } from "@angular/core";
+import { I18nService } from '@app/core/services/i18n.service';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +9,8 @@ import { Component, Input, HostListener } from "@angular/core";
 
 export class HeaderComponent
 {
-  public menuIsActive: boolean;
-  public headerIsActive: boolean;
+  public isActive: boolean;
+  public isSolid: boolean;
 
   @Input() header;
   @Input() browser;
@@ -20,33 +21,54 @@ export class HeaderComponent
     this.handleScroll();
   }
 
-  constructor()
+  constructor(private i18nService: I18nService)
   {
-    this.menuIsActive = false;
-    this.headerIsActive = false;
+    this.isActive = false;
+    this.isSolid = false;
   }
 
   public toggleNavigation(): void
   {
-    this.menuIsActive = !this.menuIsActive;
+    if (this.isActive)
+    {
+      this.isActive = false;
+      document.body.style.overflow = 'auto';
+    }
+    else
+    {
+      this.isActive = true;
+      document.body.style.overflow = 'hidden';
+    }
   }
 
   public handleScroll(): void
   {
-    this.headerIsActive = (document.scrollingElement.scrollTop !== 0);
+    this.isSolid = (document.scrollingElement.scrollTop !== 0);
   }
 
-  public i18n(val: any, key: string): any
+  public headerState(): string
   {
-    try
+    if (this.isActive)
     {
-      const KEY = key + "-i18n";
-      const VAL = val[KEY][this.browser.lang];
-      return (VAL);
+      return ('header_active');
     }
-    catch (e)
+    else if (this.isSolid)
     {
-      return (val[key]);
+      return ('header_solid');
     }
+    else
+    {
+      return ('');
+    }
+  }
+
+  public scrollTo(position: number): void
+  {
+    // TODO
+  }
+
+  public i18n(obj: any, key: string): any
+  {
+    return this.i18nService.i18n(obj, key, this.browser.lang);
   }
 }

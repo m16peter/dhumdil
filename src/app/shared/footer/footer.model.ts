@@ -1,6 +1,7 @@
 export class Footer
 {
   public loaded: boolean;
+  public contact: any;
   public names: any;
   public locations: any;
 
@@ -12,17 +13,19 @@ export class Footer
   private init(): void
   {
     this.loaded = false;
+    this.contact = '';
     this.names = [];
     this.locations = [];
   }
 
   public initialize(json: any): void
   {
-    console.log(json);
     try
     {
+      console.log(json);
       this.names = [];
       this.locations = [];
+      this.contact = json.data.contact;
 
       json.data.names.forEach((item) =>
       {
@@ -31,6 +34,7 @@ export class Footer
           this.names.push(item.name);
         }
       });
+
       json.data.locations.forEach((item) =>
       {
         if (item.show)
@@ -38,6 +42,7 @@ export class Footer
           this.locations.push(item.location);
         }
       });
+
       this.loaded = true;
     }
     catch (e)

@@ -16,9 +16,10 @@ export class Slider
 
   public initialize(json: any): void
   {
-    console.log(json);
     try
     {
+      console.log(json);
+
       json.data.slides.forEach((item) =>
       {
         if (item.show)
@@ -26,6 +27,7 @@ export class Slider
           this.slides.push(item.slide);
         }
       });
+
       this.loaded = true;
     }
     catch (e)

@@ -16,10 +16,11 @@ export class Header
 
   public initialize(json: any): void
   {
-    console.log(json);
     try
     {
+      console.log(json);
       this.links = [];
+
       json.data.links.forEach((item) =>
       {
         if (item.show)
@@ -27,6 +28,7 @@ export class Header
           this.links.push(item.link);
         }
       });
+
       this.loaded = true;
     }
     catch (e)

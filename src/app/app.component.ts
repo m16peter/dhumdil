@@ -26,13 +26,12 @@ const configJsonUrl = {
 
 export class AppComponent implements OnInit, AfterViewInit
 {
+  public browser: any;
   public app: App;
   public slider: Slider;
   public header: Header;
   public footer: Footer;
   public popup: Popup;
-
-  public browser: any;
 
   @ViewChild(SliderComponent) sliderComponent;
 
@@ -68,7 +67,7 @@ export class AppComponent implements OnInit, AfterViewInit
     this.cdr.detectChanges();
   }
 
-  handleResize()
+  private handleResize(): void
   {
     this.browser.width = window.innerWidth;
     this.browser.height = window.innerHeight;
@@ -81,18 +80,28 @@ export class AppComponent implements OnInit, AfterViewInit
       .subscribe(
         json =>
         {
-          this.app.initialize(json);
-
-          if (this.app.languages.length > 0)
+          try
           {
-            this.browser.lang = this.appService.getLang(this.app.languages);
-            this.initializeSlider();
+            this.app.initialize(json);
+
+            if (this.app.languages.length > 0)
+            {
+              this.browser.lang = this.appService.getLang(this.app.languages);
+              this.initializeSlider();
+            }
+            else
+            {
+              this.handleError('Languages not loaded', this.app);
+            }
+          }
+          catch (e)
+          {
+            this.handleError(e.message, this.app);
           }
         },
         e =>
         {
-          // TODO: handle error
-          console.log('error', e);
+          this.handleError(e.message, e);
         }
       );
   }
@@ -104,14 +113,28 @@ export class AppComponent implements OnInit, AfterViewInit
       .subscribe(
         json =>
         {
-          this.slider.initialize(json);
-          document.body.removeChild(document.getElementById('loader'));
-          this.initializeHeader();
+          try
+          {
+            this.slider.initialize(json);
+            document.body.removeChild(document.getElementById('loader')); // page content loaded, remove the loader...
+
+            if (this.slider.loaded)
+            {
+              this.initializeHeader();
+            }
+            else
+            {
+              this.handleError('Slider not loaded', this.slider);
+            }
+          }
+          catch (e)
+          {
+            this.handleError(e.message, this.slider);
+          }
         },
         e =>
         {
-          // TODO: handle error
-          console.log('error', e);
+          this.handleError(e.message, e);
         }
       )
     ;
@@ -124,13 +147,27 @@ export class AppComponent implements OnInit, AfterViewInit
       .subscribe(
         json =>
         {
-          this.header.initialize(json);
-          this.initializeFooter();
+          try
+          {
+            this.header.initialize(json);
+
+            if (this.header.loaded)
+            {
+              this.initializeFooter();
+            }
+            else
+            {
+              this.handleError('Header not loaded', this.header);
+            }
+          }
+          catch (e)
+          {
+            this.handleError(e.message, this.header);
+          }
         },
         e =>
         {
-          // TODO: handle error
-          console.log('error', e);
+          this.handleError(e.message, e);
         }
       )
     ;
@@ -143,31 +180,35 @@ export class AppComponent implements OnInit, AfterViewInit
       .subscribe(
         json =>
         {
-          this.footer.initialize(json);
-          this.browser.loaded = true;
+          try
+          {
+            this.footer.initialize(json);
+
+            if (this.footer.loaded)
+            {
+              this.browser.loaded = true;
+            }
+            else
+            {
+              this.handleError('Footer not loaded', this.footer);
+            }
+          }
+          catch (e)
+          {
+            this.handleError(e.message, this.footer);
+          }
         },
         e =>
         {
-          // TODO: handle error
-          console.log('error', e);
+          this.handleError(e.message, e);
         }
       )
     ;
   }
 
-  /* TODO: make avalable globally...
-  public i18n(val: any, key: string): any
+  public handleError(msg: string, obj: any): void
   {
-    try
-    {
-      const KEY = key + "-i18n";
-      const VAL = obj[KEY][this.browser.lang];
-      return (VAL);
-    }
-    catch (e)
-    {
-      return (val[key]);
-    }
+    console.log(msg, obj);
+    // TODO: notify the user: "Ooops, something went wrong!"
   }
-  */
 }

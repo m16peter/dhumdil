@@ -1,22 +1,23 @@
 <div class = "slider" [style.height.px] = "browser.height - 50" [style.background-color] = "slider.slides[active]['background-color']">
 
   <!-- Slides -->
-  <div class = "slide {{ animateSlide(i) }}" *ngFor = "let slide of slider.slides; let i = index;"  [style.background-image] = "slider.slides[i]['background-image']">
+  <div class="container">
+    <div class = "slide {{ animateSlide(i) }}" *ngFor = "let slide of slider.slides; let i = index;"  [style.background-image] = "slider.slides[i]['background-image']">
 
-    <!-- Slide Content -->
-    <div class = "slide__content">
-      <div (click) = "openPopup(i18n(slide, 'title'), i18n(slide, 'lines'))">
+      <!-- Slide Content -->
+      <div class = "slide__content">
+        <div (click) = "openPopup(i18n(slide, 'title'), i18n(slide, 'lines'))">
 
-        <!-- Title -->
-        <div class = "title">
-          <h1 class = "font-italic">{{ i18n(slide, 'title') }}</h1>
+          <!-- Title -->
+          <div class = "title">
+            <h1 class = "font-italic">{{ i18n(slide, 'title') }}</h1>
+          </div>
+
         </div>
-
       </div>
+
     </div>
-
   </div>
-
   <!-- Slider Navigation -->
   <div class = "slider-navigation" *ngIf = "canSlide()">
     <div class = "list">

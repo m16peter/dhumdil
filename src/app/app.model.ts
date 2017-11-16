@@ -1,6 +1,6 @@
 export class App
 {
-  public app: any;
+  public brand: any;
   public languages: any;
 
   constructor()
@@ -10,14 +10,8 @@ export class App
 
   private init(): void
   {
-    this.app = {};
+    this.brand = {};
     this.languages = [];
-  }
-
-  private handleError(e: any): void
-  {
-    console.log('error:', e);
-    this.init();
   }
 
   public initialize(json: any): void
@@ -25,19 +19,13 @@ export class App
     console.log(json);
     try
     {
-      if (json.data.app && json.data.languages)
-      {
-        this.app = json.data.app;
-        this.languages = json.data.languages;
-      }
-      else
-      {
-        this.handleError("Undefined 'app' or 'languages'");
-      }
+      this.brand = json.data.brand;
+      this.languages = json.data.languages;
     }
     catch (e)
     {
-      this.handleError(e.message);
+      console.log('error:', e);
+      this.init();
     }
   }
 }
