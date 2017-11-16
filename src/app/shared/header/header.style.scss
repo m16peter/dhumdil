@@ -1,10 +1,9 @@
 .header {
   position: fixed;
-  animation: initialize-header 150ms ease-in;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 50;
+  z-index: 300;
   background-color: #000;
   box-shadow: 0 0 10px 2px #000;
 
@@ -46,11 +45,6 @@
     width: 100px;
     cursor: pointer;
 
-    &:hover {
-      span {
-        background: #fff;
-      }
-    }
     &_btn {
       position: relative;
       width: 40px;
@@ -66,7 +60,7 @@
         position: absolute;
         height: 2px;
         width: 100%;
-        background: #ddd;
+        background: #fff;
         border-radius: 2px;
         opacity: 1;
         left: 0;
@@ -153,16 +147,5 @@
       transform: scaleX(0);
       transition: all 300ms ease-in-out;
     }
-  }
-}
-
-@keyframes initialize-header {
-  from {
-    transform: translateY(-25px);
-    opacity: 0;
-  }
-  to {
-    transform: none;
-    opacity: 1;
   }
 }

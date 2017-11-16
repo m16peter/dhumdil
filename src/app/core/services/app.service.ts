@@ -43,15 +43,31 @@ export class AppService
   {
     try
     {
+      const browserLang = window.navigator.language;
+
+      if (browserLang)
+      {
+        if (this.isAvailableLang(browserLang, langs))
+        {
+          console.log('lang (source: browser):', browserLang);
+          this.saveLang(browserLang);
+          return (browserLang);
+        }
+      }
+
       console.log('lang (source: json):', langs[0].id);
-      this.localStorage.setItem(config['local-storage-id'], langs[0].id);
+      this.saveLang(langs[0].id);
       return (langs[0].id);
     }
     catch (e)
     {
       console.log('error', e);
+      return ('');
     }
-    return ('');
   }
 
+  private saveLang(lang: string): void
+  {
+    this.localStorage.setItem(config['local-storage-id'], lang);
+  }
 }

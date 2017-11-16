@@ -1,10 +1,9 @@
 <div class = "header {{ headerState() }}">
 
-  <!-- Main Section -->
   <div class = "app-section">
 
     <!-- App / Home page -->
-    <a class = "link app" routerLink = "/" (click) = "scrollTo(0)">
+    <a class = "link app" *ngIf = "header.loaded || isActive" routerLink = "/" (click) = "scrollTo(0)">
       <div class = "app_icon">
         <img src = "{{ app.brand.icon }}" />
       </div>
@@ -29,7 +28,7 @@
     <div class = "layout-center">
 
       <!-- TODO: handle any type of link (redirect, scroll, content, ...) -->
-      <a class = "link" *ngFor = "let link of header.links" (click) = "scrollTo(0)">
+      <a class = "link" routerLink = "/about" *ngFor = "let link of header.links" (click) = "scrollTo(browser.height - 50)">
         <span class = "title font-italic">{{ i18n(link, 'title') }}</span>
       </a>
 

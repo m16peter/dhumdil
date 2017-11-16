@@ -1,4 +1,4 @@
-import { Component, Input, HostListener } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { I18nService } from '@app/core/services/i18n.service';
 import { ScrollService } from '@app/core/services/scroll.service';
 
@@ -11,21 +11,14 @@ import { ScrollService } from '@app/core/services/scroll.service';
 export class HeaderComponent
 {
   public isActive: boolean;
-  public isSolid: boolean;
 
   @Input() header;
   @Input() browser;
   @Input() app;
 
-  @HostListener('window:scroll') onScroll()
-  {
-    this.handleScroll();
-  }
-
   constructor(private i18nService: I18nService, private scrollService: ScrollService)
   {
     this.isActive = false;
-    this.isSolid = false;
   }
 
   public toggleNavigation(): void
@@ -33,20 +26,11 @@ export class HeaderComponent
     this.isActive ? this.closeNavigation() : this.openNavigation();
   }
 
-  public handleScroll(): void
-  {
-    this.isSolid = (document.scrollingElement.scrollTop !== 0);
-  }
-
   public headerState(): string
   {
     if (this.isActive)
     {
       return ('header_active');
-    }
-    else if (this.isSolid)
-    {
-      return ('header_solid');
     }
     else
     {

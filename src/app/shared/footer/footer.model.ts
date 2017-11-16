@@ -4,10 +4,12 @@ export class Footer
   public contact: any;
   public names: any;
   public locations: any;
+  public zIndex: number;
 
   constructor()
   {
     this.init();
+    this.zIndex = 0;
   }
 
   private init(): void

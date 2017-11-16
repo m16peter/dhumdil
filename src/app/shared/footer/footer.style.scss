@@ -1,19 +1,23 @@
 .footer {
-  position: relative;
+  position: fixed;
+  top: 50px;
+  left: 0;
   width: 100%;
-  background: #333;
-  color: #eee;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background: #333;
+  color: #eee;
+  z-index: 0;
 }
+
 .contact {
   flex: 1;
   height: 100%;
   position: relative;
   display: flex;
   overflow: hidden;
+
   > div {
     margin: auto;
     display: flex;

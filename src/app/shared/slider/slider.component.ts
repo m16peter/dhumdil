@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { I18nService } from '@app/core/services/i18n.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { I18nService } from '@app/core/services/i18n.service';
   styleUrls: ['./slider.style.scss']
 })
 
-export class SliderComponent implements AfterViewInit
+export class SliderComponent
 {
   public firstTime: boolean;
   public active: number;
@@ -22,18 +22,14 @@ export class SliderComponent implements AfterViewInit
   constructor(private i18nService: I18nService)
   {
     this.firstTime = true;
-    this.active = 0;
+    this.active = -1;
     this.selectedIndexes = [];
     this.isAutoslideOn = false;
   }
 
-  ngAfterViewInit()
-  {
-    this.setAutoslideOn();
-  }
-
   public setAutoslideOn(): void
   {
+    this.active = 0;
     if (this.canSlide())
     {
       this.isAutoslideOn = true;
@@ -154,5 +150,27 @@ export class SliderComponent implements AfterViewInit
   public i18n(obj: any, key: string): any
   {
     return this.i18nService.i18n(obj, key, this.browser.lang);
+  }
+
+  public getBackgroundColor(): string
+  {
+    if (this.isInitiated())
+    {
+      return (this.slider.slides[this.active]['background-color']);
+    }
+    else
+    {
+      return ('#fff');
+    }
+  }
+
+  public getHeight(): number
+  {
+    return (this.browser.height - 50)
+  }
+
+  public isInitiated(): boolean
+  {
+    return (this.active !== -1);
   }
 }

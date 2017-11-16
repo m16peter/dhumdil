@@ -40,6 +40,11 @@ export class AppComponent implements OnInit, AfterViewInit
     this.handleResize();
   }
 
+  @HostListener('window:scroll') onScroll()
+  {
+    this.handleScroll();
+  }
+
   constructor(private cdr: ChangeDetectorRef, private httpGet: HttpGetService, private appService: AppService)
   {
     this.browser =
@@ -73,6 +78,18 @@ export class AppComponent implements OnInit, AfterViewInit
     this.browser.height = window.innerHeight;
   }
 
+  private handleScroll(): void
+  {
+    if (window.scrollY >= (window.innerHeight - 50))
+    {
+      this.footer.zIndex = 100;
+    }
+    else
+    {
+      this.footer.zIndex = 0;
+    }
+  }
+
   private initializeApp(): void
   {
     this.httpGet
@@ -87,6 +104,7 @@ export class AppComponent implements OnInit, AfterViewInit
             if (this.app.languages.length > 0)
             {
               this.browser.lang = this.appService.getLang(this.app.languages);
+              window.document.documentElement.lang = this.browser.lang;
               this.initializeSlider();
             }
             else
@@ -116,7 +134,9 @@ export class AppComponent implements OnInit, AfterViewInit
           try
           {
             this.slider.initialize(json);
+            this.cdr.detectChanges();
             document.body.removeChild(document.getElementById('loader')); // page content loaded, remove the loader...
+            this.sliderComponent.setAutoslideOn();
 
             if (this.slider.loaded)
             {
