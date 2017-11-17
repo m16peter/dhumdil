@@ -40,7 +40,7 @@ export class HeaderComponent
 
   public scrollTo(position: number): void
   {
-    this.scrollService.browserScrollTo(position);
+    this.scrollService.scrollTo(position);
     this.closeNavigation();
   }
 
