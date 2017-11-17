@@ -8,7 +8,7 @@ export class ScrollService
 
   private scrollUp(position: number, now: number): void
   {
-    now -= Math.ceil((now - position) / 2);
+    now -= Math.ceil((now - position) / 10 + 10);
 
     if (position < now)
     {
@@ -23,7 +23,7 @@ export class ScrollService
 
   private scrollDown(position: number, now: number)
   {
-    now += Math.ceil((position - now) / 2);
+    now += Math.ceil((position - now) / 10 + 10);
 
     if (position > now)
     {
