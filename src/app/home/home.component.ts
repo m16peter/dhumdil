@@ -1,4 +1,5 @@
-import { Component, HostListener, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { MetaService } from '@app/core/services/meta.service';
 
 @Component({
 	selector: 'app-home',
@@ -6,33 +7,10 @@ import { Component, HostListener, ChangeDetectorRef, AfterViewInit } from '@angu
   styleUrls: ['home.style.scss']
 })
 
-export class HomeComponent implements AfterViewInit
+export class HomeComponent
 {
-  public home: any;
-
-  @HostListener('window:resize') onResize()
+  constructor(private meta: MetaService)
   {
-    this.handleResize();
+    this.meta.update('Title', 'Description');
   }
-
-  constructor(private cdr: ChangeDetectorRef)
-  {
-    this.home = {};
-  }
-
-  ngAfterViewInit()
-  {
-    // this.handleResize();
-    // this.cdr.detectChanges();
-  }
-
-
-  private handleResize(): void
-  {
-    // this.app.width = window.innerWidth;
-    // this.app.height = window.innerHeight;
-    // this.app.rectangleSize = ((((this.app.width / 2) > (this.app.height - 50)) ? (this.app.height - 50) : (this.app.width / 2)) - 100);
-    // this.mobileView = (this.app.width <= 600 || this.app.height <= 600);
-  }
-
 }
