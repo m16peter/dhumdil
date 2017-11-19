@@ -1,0 +1,21 @@
+<div class="header" [style.height.px]="(app.height - 50)">
+
+  <div class="news-txt"></div>
+
+  <div class="news-cards" *ngIf="!app.mobile">
+
+    <!-- News -->
+    <div [style.height.px]="app.newsSize" [style.width.px]="app.newsSize">
+
+      <div class="slide {{ slideState(i) }}" *ngFor="let slide of header.news; let i = index;" [style.background-color]="slide.background">
+          <h1 class="slide_txt font-italic">{{ i18n(slide, 'title') }}</h1>
+      </div>
+
+      <div class=""></div>
+
+    </div>
+
+
+  </div>
+
+</div>

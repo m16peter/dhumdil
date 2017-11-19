@@ -1,34 +1,50 @@
-<app-slider
-    [slider]  = "slider"
-    [browser] = "browser"
-    [popup]   = "popup"
-></app-slider>
+<div class="app">
 
-<app-header
-    [header]  = "header"
-    [browser] = "browser"
-    [app]     = "app"
-></app-header>
+  <div class="app__navigation {{ navigationState() }}">
 
-<div [style.height.px] = "browser.height"></div>
+    <div class="links">
+      <div>
 
-<div *ngIf = "browser.loaded">
+        <a class="header__link header__link_brand" routerLink="/" (click)="selectLink()">
+          <span class="header__link_title font-italic">{{ i18n(app.brand, 'title') }}</span>
+        </a>
 
-  <app-footer
-      *ngIf     = "footer.loaded"
-      [footer]  = "footer"
-      [browser] = "browser"
-  ></app-footer>
+        <a class="header__link" *ngFor="let link of app.links" routerLink="/about" (click)="selectLink()">
+          <span class="header__link_title font-italic">{{ i18n(link, 'title') }}</span>
+        </a>
 
-  <app-popup
-      [popup]   = "popup"
-      [browser] = "browser"
-  ></app-popup>
+      </div>
+    </div>
 
-  <div class = "content" [style.min-height.px] = "browser.height - 50">
+    <div class="header">
+
+      <!-- App Logo -->
+      <div class="header__brand_img" routerLink="/" (click)="scrollTo(0)">
+        <img *ngIf="app.loaded" src="{{ app.brand.icon }}" alt="..."/>
+      </div>
+
+      <!-- App Title -->
+      <div class="header__brand">
+        <a class="header__link" routerLink="/" (click)="scrollTo(0)">
+          <span *ngIf="app.loaded" class="header__link_title font-italic">{{ i18n(app.brand, 'title') }}</span>
+        </a>
+      </div>
+
+      <!-- Menu -->
+      <div class="header__menu" (click)="toggleNavigation()">
+        <div class="header__menu_btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div #scrollEl class="app__content" *ngIf="app.loaded">
     <router-outlet></router-outlet>
   </div>
 
 </div>
-
-<div [style.height.px] = "browser.height"></div>

@@ -5,11 +5,11 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: 'app/features/home/home.module#HomeModule'
+    loadChildren: 'app/home/home.module#HomeModule'
   },
   {
     path: 'about',
-    loadChildren: 'app/features/about/about.module#AboutModule'
+    loadChildren: 'app/about/about.module#AboutModule'
   },
   {
     path: '**',

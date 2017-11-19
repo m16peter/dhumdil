@@ -8,7 +8,6 @@ const config = {
 @Injectable()
 export class AppService
 {
-
   constructor(private localStorage: LocalStorageService)
   {}
 
@@ -21,6 +20,7 @@ export class AppService
       if (this.isAvailableLang(localStorageLang, langs))
       {
         console.log('lang (source: local-storage):', localStorageLang);
+        this.updateLang(localStorageLang);
         return (localStorageLang);
       }
     }
@@ -50,13 +50,13 @@ export class AppService
         if (this.isAvailableLang(browserLang, langs))
         {
           console.log('lang (source: browser):', browserLang);
-          this.saveLang(browserLang);
+          this.updateLang(browserLang);
           return (browserLang);
         }
       }
 
       console.log('lang (source: json):', langs[0].id);
-      this.saveLang(langs[0].id);
+      this.updateLang(langs[0].id);
       return (langs[0].id);
     }
     catch (e)
@@ -66,8 +66,9 @@ export class AppService
     }
   }
 
-  private saveLang(lang: string): void
+  private updateLang(lang: string): void
   {
     this.localStorage.setItem(config['local-storage-id'], lang);
+    window.document.documentElement.lang = lang;
   }
 }
