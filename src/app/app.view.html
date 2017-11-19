@@ -19,13 +19,13 @@
     <div class="header">
 
       <!-- App Logo -->
-      <div class="header__brand_img" routerLink="/" (click)="scrollTo(0)">
+      <div class="header__brand_img" routerLink="/" (click)="selectLink()">
         <img *ngIf="app.loaded" src="{{ app.brand.icon }}" alt="..."/>
       </div>
 
       <!-- App Title -->
       <div class="header__brand">
-        <a class="header__link" routerLink="/" (click)="scrollTo(0)">
+        <a class="header__link" routerLink="/" (click)="selectLink()">
           <span *ngIf="app.loaded" class="header__link_title font-italic">{{ i18n(app.brand, 'title') }}</span>
         </a>
       </div>
