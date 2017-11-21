@@ -1,58 +1,58 @@
-.app {
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  background-color: #000;
+  z-index: 300;
 
-  &__navigation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 50px;
-    width: 100%;
-    background-color: #000;
-    z-index: 300;
+  &_active {
 
-    &_active {
+    .header {
 
-      .header {
-
-        &__brand::before {
-          flex: 1;
-        }
-        &__menu_btn {
-
-          span:nth-child(1) {
-            top: 18px;
-            transform: rotate(-135deg) translateZ(0);
-          }
-          span:nth-child(2) {
-            opacity: 0;
-            left: 60px;
-          }
-          span:nth-child(3) {
-            top: 18px;
-            transform: rotate(135deg) translateZ(0);
-          }
-        }
+      &__brand::before {
+        flex: 1;
       }
-      .links {
-        transform: translate3d(0, 0, 0);
+      &__menu_btn {
 
-        > div {
-          opacity: 1;
+        span:nth-child(1) {
+          top: 18px;
+          transform: rotate(-135deg) translateZ(0);
+        }
+        span:nth-child(2) {
+          opacity: 0;
+          left: 60px;
+        }
+        span:nth-child(3) {
+          top: 18px;
+          transform: rotate(135deg) translateZ(0);
         }
       }
     }
+    .links {
+      transform: translate3d(0, 0, 0);
+
+      > div {
+        opacity: 1;
+        transition: opacity 150ms ease-in;
+        transition-delay: 150ms;
+      }
+    }
   }
-  &__content {
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 100%;
-    height: calc(100% - 50px);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    background: #fff;
-    will-change: transform;
-    transform: translateZ(0);
-  }
+}
+
+.content {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 50px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #fff;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .header {
@@ -101,7 +101,7 @@
     }
     &_brand {
 
-      @media(min-width: 600px) {
+      @media(min-width: 601px) {
         .header__link_title {
           display: none;
         }
@@ -206,7 +206,7 @@
   will-change: transform;
   transform: translate3d(0, -100%, 0);
   -webkit-overflow-scrolling: touch;
-  transition: all 200ms ease-in-out;
+  transition: transform 200ms ease-in-out;
 
   > div {
     margin: 100px auto;
@@ -215,6 +215,8 @@
     padding: 0 20px;
     display: flex;
     flex-direction: column;
+    transition: opacity 20ms ease-in;
+    transition-delay: 0;
 
     @media(max-width: 600px) {
       margin: 20px auto;

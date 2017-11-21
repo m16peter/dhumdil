@@ -8,7 +8,7 @@ const routes: Routes = [
     loadChildren: 'app/home/home.module#HomeModule'
   },
   {
-    path: 'about',
+    path: '01/:url',
     loadChildren: 'app/about/about.module#AboutModule'
   },
   {
@@ -21,7 +21,6 @@ const routes: Routes = [
 @NgModule({
   imports: [
     // Use the option '{ useHash: true }' when combining with backend router
-    // (example: with laravel router or deployed on gh-pages)
     RouterModule.forRoot(routes, { useHash: true })
   ],
   exports: [

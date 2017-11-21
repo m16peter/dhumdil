@@ -1,14 +1,17 @@
 {
   "data":
   {
-    "brand": {
-      "title-i18n": {
+    "brand":
+    {
+      "title-i18n":
+      {
         "sk": "„Suspendisse ornare eu sem non auctor, nam vitae libero ut tortor sagittis auctor“",
         "ro": "„Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit“"
       },
       "icon": "assets/img/angular.svg"
     },
-    "languages": [
+    "languages":
+    [
       {
         "id": "sk",
         "icon": "assets/img/sk.svg"
@@ -18,19 +21,23 @@
         "icon": "assets/img/ro.svg"
       }
     ],
-    "links": [
+    "links":
+    [
       {
-        "link": {
-          "title-i18n": {
+        "link":
+        {
+          "title-i18n":
+          {
             "sk": "About (sk)",
             "ro": "About (ro)"
           },
           "type": "about",
-          "id-i18n": {
-            "sk": "about-sk-url",
-            "ro": "about-ro-url"
+          "id-i18n":
+          {
+            "sk": "sk-about-url",
+            "ro": "ro-about-url"
           },
-          "icon": ""
+          "icon": "assets/about/about.svg"
         },
         "show": true
       }

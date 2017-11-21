@@ -5,11 +5,14 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { HttpGetService } from './services/http-get.service';
-import { MetaService } from './services/meta.service';
-import { LocalStorageService } from './services/local-storage.service';
 import { I18nService } from './services/i18n.service';
+import { LangService } from './services/lang.service';
+import { MetaService } from './services/meta.service';
 import { ScrollService } from './services/scroll.service';
-import { AppService } from './services/app.service';
+import { UrlService } from './services/url.service';
+
+import { AppService } from './singleton-services/app.service';
+import { LocalStorageService } from './singleton-services/local-storage.service';
 
 @NgModule({
   imports: [
@@ -17,11 +20,14 @@ import { AppService } from './services/app.service';
   ],
   providers: [
     HttpGetService,
-    MetaService,
-    LocalStorageService,
     I18nService,
+    LangService,
+    MetaService,
     ScrollService,
-    AppService
+    UrlService,
+
+    AppService,
+    LocalStorageService
   ],
   declarations: []
 })

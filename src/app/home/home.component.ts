@@ -11,6 +11,6 @@ export class HomeComponent
 {
   constructor(private meta: MetaService)
   {
-    this.meta.update('Title', 'Description');
+    this.meta.update('Home', 'Home description');
   }
 }

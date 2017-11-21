@@ -5,16 +5,11 @@ import { AboutRouting, AboutComponents } from './about.routing';
 
 @NgModule({
 	imports: [
-		// modules
 		CommonModule,
 		AboutRouting
 	],
 	declarations: [
-		// components
 		AboutComponents
-	],
-	providers: [
-		// services
 	]
 })
 

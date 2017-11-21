@@ -1,20 +1,25 @@
 import { Component, ChangeDetectorRef, OnInit, ViewChild } from '@angular/core';
 
 import { HttpGetService } from '@app/core/services/http-get.service';
-import { AppService } from '@app/core/services/app.service';
 import { I18nService } from '@app/core/services/i18n.service';
+import { LangService } from '@app/core/services/lang.service';
 import { ScrollService } from '@app/core/services/scroll.service';
+import { UrlService } from '@app/core/services/url.service';
+
+import { AppService } from '@app/core/singleton-services/app.service';
 
 import { App } from '@app/app.model';
 
-const config = {
+const config =
+{
   'json': 'assets/app.json'
 };
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.view.html',
-  styleUrls: ['./app.style.scss']
+  styleUrls: ['./app.style.scss'],
+  providers: [LangService]
 })
 
 export class AppComponent implements OnInit
@@ -26,10 +31,24 @@ export class AppComponent implements OnInit
   constructor(
     private cdr: ChangeDetectorRef,
     private httpGet: HttpGetService,
-    private appService: AppService,
     private i18nService: I18nService,
-    private scrollService: ScrollService
-  ) {}
+    private scrollService: ScrollService,
+    private urlService: UrlService,
+    private appService: AppService,
+    private langService: LangService
+  )
+  {
+    this.langService.languageChanged$.subscribe(lang =>
+    {
+      console.log('Language changed from ', this.app.lang, ' to ', lang);
+      this.selectLanguage(lang);
+    });
+    this.langService.languageVerify$.subscribe(() =>
+    {
+      console.log('Verifing app status');
+      this.langService.updateApp(this.app);
+    });
+  }
 
   ngOnInit()
   {
@@ -72,25 +91,13 @@ export class AppComponent implements OnInit
 
   public handleError(msg: string, obj: any): void
   {
-    console.log(msg, obj);
-    // alert("Ooops, something went wrong!");
+    console.log("Ooops, something went wrong!");
+    // console.log(msg, obj);
   }
 
   public toggleNavigation(): void
   {
     this.app.navigation.isActive ? this.closeNavigation() : this.openNavigation();
-  }
-
-  public navigationState(): string
-  {
-    if (this.app.navigation.isActive)
-    {
-      return ('app__navigation_active');
-    }
-    else
-    {
-      return ('');
-    }
   }
 
   public i18n(obj: any, key: string): any
@@ -108,9 +115,21 @@ export class AppComponent implements OnInit
     this.app.navigation.isActive = false;
   }
 
+  public parseUrl(type: string, id: string): string
+  {
+    return (this.urlService.getUrl(type, id));
+  }
+
   public selectLink(): void
   {
     this.closeNavigation();
     this.scrollService.scrollTo(this.scrollEl, 0);
+  }
+
+  public selectLanguage(lang: string): void
+  {
+    this.app.lang = lang;
+    this.appService.updateLang(lang);
+    this.langService.updateApp(this.app);
   }
 }

@@ -32,7 +32,6 @@ export class App
   {
     try
     {
-      // console.log(json);
       this.brand = json.data.brand;
       this.languages = json.data.languages;
 

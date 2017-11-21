@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LocalStorageService } from '@app/core/services/local-storage.service';
+import { LocalStorageService } from '@app/core/singleton-services/local-storage.service';
 
 const config = {
   'local-storage-id': 'app-lang'
@@ -66,7 +66,7 @@ export class AppService
     }
   }
 
-  private updateLang(lang: string): void
+  public updateLang(lang: string): void
   {
     this.localStorage.setItem(config['local-storage-id'], lang);
     window.document.documentElement.lang = lang;
