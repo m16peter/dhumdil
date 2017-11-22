@@ -2,15 +2,15 @@ import { Component } from '@angular/core';
 import { MetaService } from '@app/core/services/meta.service';
 
 @Component({
-	selector: 'app-home',
-	templateUrl: 'home.view.html',
-  styleUrls: ['home.style.scss']
+	selector: 'app-bajas',
+	templateUrl: 'bajas.view.html',
+  styleUrls: ['bajas.style.scss']
 })
 
-export class HomeComponent
+export class BajasComponent
 {
   constructor(private meta: MetaService)
   {
-    this.meta.update('Home', 'Home description');
+    this.meta.update('Bajas', 'Bajas description...');
   }
 }

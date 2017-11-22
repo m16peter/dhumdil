@@ -3,44 +3,16 @@
   {
     "brand":
     {
-      "title-i18n":
-      {
-        "sk": "„Suspendisse ornare eu sem non auctor, nam vitae libero ut tortor sagittis auctor“",
-        "ro": "„Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit“"
-      },
+      "title": "Angular 5",
       "icon": "assets/img/angular.svg"
     },
     "languages":
     [
       {
-        "id": "sk",
-        "icon": "assets/img/sk.svg"
-      },
-      {
-        "id": "ro",
-        "icon": "assets/img/ro.svg"
+        "id": "en",
+        "icon": ""
       }
     ],
-    "links":
-    [
-      {
-        "link":
-        {
-          "title-i18n":
-          {
-            "sk": "About (sk)",
-            "ro": "About (ro)"
-          },
-          "type": "about",
-          "id-i18n":
-          {
-            "sk": "sk-about-url",
-            "ro": "ro-about-url"
-          },
-          "icon": "assets/about/about.svg"
-        },
-        "show": true
-      }
-    ]
+    "links": []
   }
 }

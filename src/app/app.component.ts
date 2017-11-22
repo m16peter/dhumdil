@@ -36,23 +36,28 @@ export class AppComponent implements OnInit
     private urlService: UrlService,
     private appService: AppService,
     private langService: LangService
-  )
-  {
-    this.langService.languageChanged$.subscribe(lang =>
-    {
-      console.log('Language changed from ', this.app.lang, ' to ', lang);
-      this.selectLanguage(lang);
-    });
-    this.langService.languageVerify$.subscribe(() =>
-    {
-      console.log('Verifing app status');
-      this.langService.updateApp(this.app);
-    });
+  ) {
+    this.init();
   }
 
   ngOnInit()
   {
     this.initializeApp();
+  }
+
+  private init(): void
+  {
+    this.langService.languageChanged$.subscribe(lang =>
+    {
+      console.log('Language changed:', this.app.lang, '->', lang);
+      this.selectLanguage(lang);
+    });
+
+    this.langService.languageVerify$.subscribe(() =>
+    {
+      console.log('Verifing app status');
+      this.langService.updateApp(this.app);
+    });
   }
 
   private initializeApp(): void
