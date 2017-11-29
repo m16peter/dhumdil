@@ -2,11 +2,6 @@
   width: 100px;
   cursor: pointer;
 
-  &:hover {
-    .hamburger__lines_line {
-      background: #D8E3ED;
-    }
-  }
   &__lines {
     position: relative;
     margin: 5px 30px;
@@ -21,7 +16,7 @@
       position: absolute;
       height: 2px;
       width: 100%;
-      background: #fff;
+      background-color: #fff;
       border-radius: 2px;
       opacity: 1;
       left: 0;
@@ -42,8 +37,12 @@
 }
 
 .active {
+  
   .hamburger__lines {
 
+    &_line {
+      background: #dee;
+    }
     .line_1 {
       top: 18px;
       transform: rotate(-135deg) translateZ(0);

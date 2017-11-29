@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { HamburgerComponent } from './hamburger/hamburger.component';
-import { LinkComponent } from './link/link.component';
-import { StaticNavigationComponent } from './static-navigation/static-navigation.component';
+import { FeatureComponent } from './navigation/feature/feature.component';
+import { LanguageComponent } from './navigation/language/language.component';
+import { HamburgerComponent } from './navigation/hamburger/hamburger.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   imports: [
@@ -12,14 +13,16 @@ import { StaticNavigationComponent } from './static-navigation/static-navigation
     RouterModule
   ],
   declarations: [
+    FeatureComponent,
     HamburgerComponent,
-    LinkComponent,
-    StaticNavigationComponent
+    LanguageComponent,
+    NavigationComponent
   ],
   exports: [
+    FeatureComponent,
     HamburgerComponent,
-    LinkComponent,
-    StaticNavigationComponent,
+    LanguageComponent,
+    NavigationComponent
   ]
 })
 

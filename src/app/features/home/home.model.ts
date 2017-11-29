@@ -1,7 +1,6 @@
 export class Home
 {
   public loaded: boolean;
-  public txt: any;
 
   constructor()
   {
@@ -10,7 +9,6 @@ export class Home
 
   private init(): void
   {
-    this.txt = '';
     this.loaded = false;
   }
 
@@ -18,11 +16,11 @@ export class Home
   {
     try
     {
-      this.txt = json.data.txt;
       this.loaded = true;
     }
     catch (e)
     {
+      console.log("Ooops, something went wrong!");
       this.init();
     }
   }

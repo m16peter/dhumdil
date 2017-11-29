@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 
-// HttpModule is depracated, but 'HttpClientModule' is 'buggy'...
-// so replace this with 'HttpClientModule' once it's fixed
-// https://github.com/angular/angular/issues/18680
+// 'HttpModule' is depracated, but 'HttpClientModule' is 'buggy': https://github.com/angular/angular/issues/18680
 import { HttpModule } from '@angular/http';
 
 import { HttpGetService } from './services/http-get.service';
@@ -12,10 +10,7 @@ import { PageService } from './services/page.service';
 import { ScrollService } from './services/scroll.service';
 import { UrlService } from './services/url.service';
 
-import { AppCommunicationService } from './communication/app-communication.service';
 import { LanguageCommunicationService } from './communication/language-communication.service';
-
-import { UrlMappingService } from './url-mapping.service';
 
 @NgModule({
   imports: [
@@ -29,10 +24,7 @@ import { UrlMappingService } from './url-mapping.service';
     ScrollService,
     UrlService,
 
-    AppCommunicationService,
-    LanguageCommunicationService,
-
-    UrlMappingService
+    LanguageCommunicationService
   ],
   declarations: []
 })
