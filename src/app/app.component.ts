@@ -1,128 +1,163 @@
-import { Component, ChangeDetectorRef, OnInit, AfterViewInit, HostListener } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import 'rxjs/add/operator/retry';
 
 import { AppService } from '@app/app.service';
-import { HttpGetService } from '@app/core/services/http-get.service';
+import { I18nService } from '@app/core/services/i18n.service';
 
-import { LanguageCommunicationService } from '@app/core/communication/language-communication.service';
+import { LanguageService } from '@app/core/communication/language-communication.service';
 
 import { Language, Languages } from '@app/languages.model';
-import { Features } from '@app/features.model';
+import { Feature, Features } from '@app/features.model';
 
 const config =
 {
-  'json': 'assets/app/app.json'
+  'json': 'assets/app/app.json',
+  'error_message': "Ooops, something went wrong..."
 };
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.view.html',
-  styleUrls: ['./app.style.scss'],
+  templateUrl: 'app.view.html',
+  styleUrls: ['app.style.scss'],
   providers: [
-    LanguageCommunicationService
+    LanguageService
   ]
 })
 
-export class AppComponent implements OnInit, AfterViewInit
+export class AppComponent implements OnInit
 {
   public loaded: boolean;
-  public height: number;
+  public navigationState: string;
 
   public features: Features;
   public languages: Languages;
 
-  @HostListener('window:resize') onResize()
-  {
-    this.handleResize();
-  }
+  @ViewChild('appNavigation') appNavigation;
 
   constructor(
     private cdr: ChangeDetectorRef,
-    private httpGet: HttpGetService,
+    private renderer: Renderer2,
+    private http: HttpClient,
+    private i18nService: I18nService,
     private appService: AppService,
-    private languageCommunicationService: LanguageCommunicationService
-  ) {
-    this.init();
-  }
+    private languageService: LanguageService
+  ) { this.init(); }
 
-  ngOnInit()
-  {
-    this.initialize();
-  }
-
-  ngAfterViewInit()
-  {
-    this.handleResize();
-    this.cdr.detectChanges();
-  }
+  ngOnInit() { this.onInit(); }
 
   private init(): void
   {
     this.loaded = false;
-    this.height = 0;
+    this.navigationState = '';
+
     this.languages = new Languages();
     this.features = new Features();
 
-    this.languageCommunicationService.onChangeLanguage$.subscribe(
+    this.languageService.onChangeLanguage$.subscribe(
       (language) =>
       {
         this.selectLanguage(language);
       }
     );
 
-    this.languageCommunicationService.onVerifyLanguage$.subscribe(
+    this.languageService.onVerifyLanguage$.subscribe(
       () =>
       {
-        this.languageCommunicationService.updateLanguage(this.languages);
+        this.languageService.updateLanguage(this.languages);
       }
     );
   }
 
-  private initialize(): void
+  private onInit(): void
   {
-    this.httpGet.getJson(config.json).subscribe(
+    this.http.get(config.json).retry(3).subscribe(
       (json) =>
       {
         try
         {
-          this.languages.initialize(json.data.languages);
-          this.features.initialize(json.data.features);
+          this.languages.initialize(json['data']['languages']);
+          this.features.initialize(json['data']['features']);
 
           if (this.languages.list.length > 0)
           {
             this.languages.active = this.appService.initializeLanguage(this.languages.list);
-  
-            if (this.languages.active.id !== undefined)
-            {
-              this.loaded = true;
-              window.document.getElementById('logo').className = 'active';
-            }
-  
+            this.loaded = (this.languages.active.id !== undefined);
             this.cdr.detectChanges();
           }
         }
         catch (e)
         {
-          console.log("Ooops, something went wrong...");
+          console.log(config.error_message, e);
         }
       },
       (e) =>
       {
-        console.log("Ooops, something went wrong...");
+        console.log(config.error_message);
       }
     );
   }
 
-  private handleResize(): void
+  public i18n(obj: any, key: string): any
   {
-    this.height = window.innerHeight;
+    return this.i18nService.tryI18n(obj, key, this.languages.active.id);
   }
 
   public selectLanguage(language: Language): void
   {
-    console.log('Language changed:', this.languages.active.id, '->', language.id);
-    this.languages.active = language;
-    this.appService.updateLanguage(language.id);
-    this.languageCommunicationService.updateLanguage(this.languages);
-    this.cdr.detectChanges();
+    if (this.languages.active.id !== language.id)
+    {
+      // console.log('Language changed:', this.languages.active.id, '->', language.id);
+      this.languages.active = language;
+      this.appService.updateLanguage(language.id);
+      this.languageService.updateLanguage(this.languages);
+      this.cdr.detectChanges();
+    }
+  }
+
+  public selectFeature(): void
+  {
+    this.close();
+  }
+
+  public parseRoute(feature: Feature): string
+  {
+    return (this.appService.getRoute(feature.module) + this.i18n(feature, 'route'));
+  }
+
+  public featureStatus(id: number): string
+  {
+    return ((id === this.features.active.id) ? 'feature_active' : '');
+  }
+
+  public languageStatus(id: string): string
+  {
+    return ((id === this.languages.active.id) ? 'language_active' : '');
+  }
+
+  public toggle(): void
+  {
+    if (this.navigationState === '')
+    {
+      this.renderer.addClass(this.appNavigation.nativeElement, 'active');
+      this.navigationState = 'active';
+    }
+    else
+    {
+      this.renderer.removeClass(this.appNavigation.nativeElement, 'active');
+      this.navigationState = '';
+    }
+  }
+
+  public open(): void
+  {
+    this.navigationState = 'active';
+    this.renderer.addClass(this.appNavigation.nativeElement, 'active');
+  }
+
+  public close(): void
+  {
+    this.navigationState = '';
+    this.renderer.removeClass(this.appNavigation.nativeElement, 'active');
   }
 }
