@@ -5,9 +5,33 @@
 ### Develop
 `npm run start`
 
+##### Kill all node processes (win)
+`npm run suicide`
+
 ### Build
 `npm run build`
 
-### Kill all node processes (win)
-`npm run suicide`
 
+## Documentation
+
+### navigation
+
+##### TODO: add description
+
+### i18n
+
+##### TODO: add description
+
+### eager loaded module
+
+##### TODO: add description
+
+### lazy loaded module
+
+##### TODO: add description
+
+### Other
+
+##### TODO: add description
+
+### [Demo](https://m16peter.github.io/ngx/#/)
