@@ -5,6 +5,7 @@ export class About
   public feature: Feature;
   public languages: string[];
   public loaded: boolean;
+  public url: string;
 
   constructor()
   {
@@ -25,7 +26,7 @@ export class About
       console.log("Json loaded!");
       this.feature = json['data']['feature'];
       this.languages = json['data']['languages'];
-      this.loaded = true;
+      // this.loaded = true;
     }
     catch (e)
     {

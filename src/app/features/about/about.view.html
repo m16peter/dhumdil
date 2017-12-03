@@ -1,5 +1,5 @@
-<div *ngIf="loading$ | async">
-  <div class="about full-screen" *ngIf="about.loaded" #scrollEl>
+<div *ngIf="about.loaded">
+  <div class="about full-screen" #scrollEl>
     <div>
 
       <h1>{{ i18n(about.feature, 'title') }}</h1>

@@ -1,9 +1,10 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy, ViewChild } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { from } from 'rxjs/observable/from';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/do';
@@ -32,8 +33,6 @@ const config =
 
 export class AboutComponent implements OnInit, OnDestroy
 {
-  public loading$: Observable<any>;
-
   public about: About;
   public languageId: string;
 
@@ -42,14 +41,15 @@ export class AboutComponent implements OnInit, OnDestroy
   @ViewChild('scrollEl') scrollEl;
 
   constructor(
+    private appCommunicationService: AppCommunicationService,
     private cdr: ChangeDetectorRef,
     private http: HttpClient,
     private i18nService: I18nService,
     private pageService: PageService,
     private route: ActivatedRoute,
+    private router: Router,
     private scrollService: ScrollService,
-    private urlService: UrlService,
-    private appCommunicationService: AppCommunicationService
+    private urlService: UrlService
   ) {
     this.about = new About();
     this.languageId = undefined;
@@ -62,18 +62,22 @@ export class AboutComponent implements OnInit, OnDestroy
       {
         console.log('App language:', languageId);
         this.languageId = languageId;
-      });
+      }
+    );
   }
 
   ngOnInit()
   {
     this.appCommunicationService.verifyLanguage();
 
-    this.loading$ = this.route.paramMap
+    this.route.paramMap
+      .do(() =>
+      {
+        console.log('<!--');
+        this.about.loaded = false;
+      })
       .switchMap((params: ParamMap) =>
       {
-        console.log('<!-- loading');
-
         if (this.about.loaded)
         {
           this.detectLanguage(params.get('url'));
@@ -81,32 +85,53 @@ export class AboutComponent implements OnInit, OnDestroy
         }
         else
         {
-          return of(this.http.get(config.json)
+          this.about.url = params.get('url');
+          return from(this.http
+            .get(config.json)
             .retry(3)
-            .subscribe((json) =>
-            {
-              this.about.initialize(json);
-              this.detectLanguage(params.get('url'));
-              console.log('loaded -->');
-            },
-            (e) =>
-            {
-              console.log(config.err_message, e);
-            })
-          )
+          );
         }
       }
-    );
+    )
+    .subscribe((json) =>
+    {
+      this.about.initialize(json);
+      this.detectLanguage(this.about.url);
+      this.about.loaded = true;
+      console.log('-->');
+    },
+    (e) =>
+    {
+      console.log(config.err_message, e);
+    });
   }
 
   private detectLanguage(url: string): void
   {
     const language = this.urlService.detectedUrlLanguage(url, this.about.feature, this.about.languages);
 
-    if (language !== undefined && language !== '')
+    try
     {
-      this.languageId = language;
-      this.appCommunicationService.selectLanguage(language);
+      if (language === '')
+      {
+        if (this.about.feature['routeI18n'] === undefined)
+        {
+          this.router.navigate(['/01/' + this.about.feature['route']]);
+        }
+        else
+        {
+          this.router.navigate(['/01/' + this.about.feature['routeI18n'][this.languageId]]);
+        }
+      }
+      else
+      {
+        this.languageId = language;
+        this.appCommunicationService.selectLanguage(language);
+      }
+    }
+    catch (e)
+    {
+      console.log(config.err_message, e);
     }
 
     this.cdr.detectChanges();
