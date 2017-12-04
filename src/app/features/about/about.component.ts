@@ -54,14 +54,19 @@ export class AboutComponent implements OnInit, OnDestroy
     this.about = new About();
     this.languageId = undefined;
 
-    this.pageService.updateTitle(config.title);
-    this.pageService.updateDescription(config.description);
-
     this.subscription = this.appCommunicationService.onChangeLanguage$
       .subscribe((languageId) =>
       {
-        console.log('App language:', languageId);
-        this.languageId = languageId;
+        if (this.languageId !== languageId)
+        {
+          console.log('App language:', languageId);
+          this.languageId = languageId;
+
+          if (this.about.loaded)
+          {
+            this.router.navigate(['/01/' + this.about.feature['routeI18n'][this.languageId]]);
+          }
+        }
       }
     );
   }
@@ -71,33 +76,34 @@ export class AboutComponent implements OnInit, OnDestroy
     this.appCommunicationService.verifyLanguage();
 
     this.route.paramMap
-      .do(() =>
-      {
-        console.log('<!--');
-        this.about.loaded = false;
-      })
       .switchMap((params: ParamMap) =>
       {
+        console.log('<!--');
+
         if (this.about.loaded)
         {
-          this.detectLanguage(params.get('url'));
-          return of(this.languageId);
+          this.about.url = params.get('url');
+          this.detectLanguage(this.about.url);
+          return of('');
         }
         else
         {
           this.about.url = params.get('url');
-          return from(this.http
-            .get(config.json)
-            .retry(3)
-          );
+          return from(this.http.get(config.json).retry(3));
         }
       }
     )
     .subscribe((json) =>
     {
-      this.about.initialize(json);
-      this.detectLanguage(this.about.url);
-      this.about.loaded = true;
+      if (!this.about.loaded)
+      {
+        this.about.initialize(json);
+        this.detectLanguage(this.about.url);
+        this.about.loaded = true;
+      }
+
+      this.pageService.updateTitle(this.i18n(this.about.feature, 'title'));
+      this.pageService.updateDescription(this.i18n(this.about.feature, 'title'));
       console.log('-->');
     },
     (e) =>

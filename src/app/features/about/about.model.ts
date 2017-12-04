@@ -23,10 +23,9 @@ export class About
   {
     try
     {
-      console.log("Json loaded!");
+      console.log("Json loaded!", json);
       this.feature = json['data']['feature'];
       this.languages = json['data']['languages'];
-      // this.loaded = true;
     }
     catch (e)
     {
