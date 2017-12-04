@@ -4,6 +4,7 @@ import 'rxjs/add/operator/retry';
 
 import { AppCommunicationService } from '@app/app-communication.service';
 import { AppService } from '@app/app.service';
+import { GlobalsService } from '@app/core/globals.service';
 import { I18nService } from '@app/core/i18n.service';
 
 import { Language, Languages } from '@app/languages.model';
@@ -35,6 +36,7 @@ export class AppComponent implements OnInit
     private appCommunicationService: AppCommunicationService,
     private appService: AppService,
     private cdr: ChangeDetectorRef,
+    private globalsService: GlobalsService,
     private http: HttpClient,
     private i18nService: I18nService
   ) {

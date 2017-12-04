@@ -10,6 +10,7 @@ import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/do';
 
 import { AppCommunicationService } from '@app/app-communication.service';
+import { GlobalsService } from '@app/core/globals.service';
 import { I18nService } from '@app/core/i18n.service';
 import { PageService } from '@app/core/page.service';
 import { ScrollService } from '@app/core/scroll.service';
@@ -44,6 +45,7 @@ export class AboutComponent implements OnInit, OnDestroy
     private appCommunicationService: AppCommunicationService,
     private cdr: ChangeDetectorRef,
     private http: HttpClient,
+    private globalsService: GlobalsService,
     private i18nService: I18nService,
     private pageService: PageService,
     private route: ActivatedRoute,

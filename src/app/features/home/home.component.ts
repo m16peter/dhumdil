@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/retry';
 
 import { AppCommunicationService } from '@app/app-communication.service';
+import { GlobalsService } from '@app/core/globals.service';
 import { I18nService } from '@app/core/i18n.service';
 import { PageService } from '@app/core/page.service';
 
@@ -34,6 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy
     private cdr: ChangeDetectorRef,
     private http: HttpClient,
     private i18nService: I18nService,
+    private globalsService: GlobalsService,
     private pageService: PageService,
     private appCommunicationService: AppCommunicationService
   ) {
