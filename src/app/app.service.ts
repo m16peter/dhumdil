@@ -1,29 +1,22 @@
+// angular
 import { Injectable } from '@angular/core';
 
+// app
 import { LocalStorageService } from '@app/core/local-storage.service';
-
-import { Languages, Language } from '@app/languages.model';
-
-const config =
-{
-  'local-storage-id': 'app-language',
-  'routes':
-  {
-    'home': '/',
-    'about': '01/'
-  }
-};
+import { GlobalsService } from '@app/core/globals.service';
 
 @Injectable()
 export class AppService
 {
-  constructor(private localStorage: LocalStorageService)
-  {}
+  constructor(
+    private localStorage: LocalStorageService,
+    private globals: GlobalsService
+  ) {}
 
-  public initializeLanguage(languages: Language[]): Language
+  public initLanguage(languages: any[]): string
   {
     // Check the Local Storage for language
-    const localStorageLanguage = this.localStorage.getItem(config['local-storage-id']);
+    const localStorageLanguage = this.localStorage.getItem(this.globals.browserSetup.localStorageId);
 
     if (localStorageLanguage)
     {
@@ -31,8 +24,8 @@ export class AppService
 
       if (language !== undefined)
       {
-        console.log('lang (source: local-storage):', language.id);
-        this.updateLanguage(language.id);
+        console.log('language:', [language, 'source: local-storage']);
+        this.updateLanguage(language);
         return (language);
       }
     }
@@ -41,7 +34,7 @@ export class AppService
     return (this.getDefaultLanguage(languages));
   }
 
-  private getDefaultLanguage(languages: Language[]): Language
+  private getDefaultLanguage(languages: any[]): string
   {
     // Check users browser language preferences
     const browserLanguage = window.navigator.language;
@@ -52,25 +45,25 @@ export class AppService
 
       if (language !== undefined)
       {
-        console.log('(source: browser) language:', language.id);
-        this.updateLanguage(language.id);
+        console.log('language:', [language, 'source: browser']);
+        this.updateLanguage(language);
         return (language);
       }
     }
 
     // Just set the first available language as default
-    console.log('(source: json) language:', languages[0].id);
+    console.log('language:', [languages[0].id, 'source: json']);
     this.updateLanguage(languages[0].id);
-    return (languages[0]);
+    return (languages[0].id);
   }
 
-  private selectLanguage(language: string, languages: Language[]): Language
+  private selectLanguage(language: string, languages: any[]): string
   {
     for (let i = 0; i < languages.length; i++)
     {
       if (language === languages[i].id)
       {
-        return (languages[i]);
+        return (language);
       }
     }
     return (undefined);
@@ -78,17 +71,7 @@ export class AppService
 
   public updateLanguage(language: string): void
   {
-    this.localStorage.setItem(config['local-storage-id'], language);
+    this.localStorage.setItem(this.globals.browserSetup.localStorageId, language);
     window.document.documentElement.lang = language;
-  }
-
-  public getRoute(module: string): string
-  {
-    switch (module)
-    {
-      case 'home': return (config.routes.home);
-      case 'about': return (config.routes.about);
-      default: return ('/');
-    }
   }
 }

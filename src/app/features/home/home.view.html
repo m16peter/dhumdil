@@ -1,7 +1,27 @@
-<div class="home full-screen layout-row" *ngIf="home.loaded">
+<div class="home full-screen" #scrollEl *ngIf="home.loaded">
 
-  <div class="layout-center">
-    <h1>{{ i18n(home.feature, 'title') }}</h1>
+  <!-- News -->
+  <div class="news layout-row" [style.height.px]="globals.app.height">
+
+    <div class="content layout-row flex">
+      <div>
+
+        <div class="h2">{{ i18n.translate(home.news.content, 'title') }}</div>
+        <div class="p">{{ i18n.translate(home.news.content, 'description') }}</div>
+
+        <div class="layout-row">
+          <div class="button" routerLink="{{ route('news') }}">
+            <span>{{ i18n.translate(home.general, 'more') }}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cards" [style.width.px]="(globals.app.width / 2)" *ngIf="globals.app.width > 1024">
+
+    </div>
+
   </div>
 
 </div>

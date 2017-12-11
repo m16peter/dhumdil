@@ -1,9 +1,9 @@
-import { Feature } from '@app/features.model';
-
 export class Home
 {
-  public feature: Feature;
-  public height: number;
+  public features: any;
+  public general: any;
+  public news: any;
+
   public loaded: boolean;
 
   constructor()
@@ -13,21 +13,26 @@ export class Home
 
   private init(): void
   {
-    this.feature = new Feature();
-    this.height = 0;
+    this.features = [];
+    this.general = {};
+    this.news = {};
+
     this.loaded = false;
   }
 
-  public initialize(json: any): void
+  public initialize(data: any, general: any, features: any): void
   {
     try
     {
-      this.feature = json['data']['feature'];
+      this.features = features;
+      this.general = general;
+      this.news = data['news'];
+
       this.loaded = true;
     }
     catch (e)
     {
-      console.log("Ooops, something went wrong!");
+      console.warn('Ooops, something went wrong...', [e]);
       this.init();
     }
   }

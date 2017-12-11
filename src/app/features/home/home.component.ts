@@ -1,22 +1,19 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+// angular
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subscription } from 'rxjs/Subscription';
+
+// rxjs
 import 'rxjs/add/operator/retry';
 
+// app
 import { AppCommunicationService } from '@app/app-communication.service';
 import { GlobalsService } from '@app/core/globals.service';
 import { I18nService } from '@app/core/i18n.service';
 import { PageService } from '@app/core/page.service';
+import { ScrollService } from '@app/core/scroll.service';
 
+// others
 import { Home } from './home.model';
-
-const config =
-{
-  'json': 'assets/home/home.json',
-  'title': 'Home | www.bajas.sk',
-  'description': '...',
-  'err_message': 'Ooops, something went wrong!'
-};
 
 @Component({
   selector: 'app-home',
@@ -24,66 +21,87 @@ const config =
   styleUrls: ['home.style.scss']
 })
 
-export class HomeComponent implements OnInit, OnDestroy
+export class HomeComponent implements OnInit
 {
-  public home: Home;
-  public languageId: string;
-
-  private subscription: Subscription;
+  public home = new Home();
 
   constructor(
+    private communication: AppCommunicationService,
     private cdr: ChangeDetectorRef,
+    private globals: GlobalsService,
     private http: HttpClient,
-    private i18nService: I18nService,
-    private globalsService: GlobalsService,
-    private pageService: PageService,
-    private appCommunicationService: AppCommunicationService
-  ) {
-    this.languageId = undefined;
-    this.home = new Home();
-
-    this.pageService.updateTitle(config.title);
-    this.pageService.updateDescription(config.description);
-
-    this.subscription = this.appCommunicationService.onChangeLanguage$
-      .subscribe((languageId: string) =>
-      {
-        console.log('Language verifyed!', languageId);
-        this.languageId = languageId;
-        this.cdr.detectChanges();
-      }
-    );
-  }
+    private i18n: I18nService,
+    private page: PageService,
+    private scroll: ScrollService
+  ) {}
 
   ngOnInit()
   {
-    this.appCommunicationService.verifyLanguage();
+    // seo
+    this.page.updateTitle(this.globals.browserSetup.pageTitle);
+    this.page.updateDescription(this.globals.browserSetup.metaDescription);
 
-    this.http.get(config.json)
-      .retry(3)
-      .subscribe((json) =>
+    // initialize home with json data
+    if (this.globals.json.home.loaded)
+    {
+      // load stored json data
+      const home = this.globals.json.home;
+      const general = this.globals.json.general;
+      const features = this.globals.json.features;
+
+      // initialize home component, instead of http-get, use stored json data...
+      if (home.loaded && general.loaded && features.loaded)
       {
-        console.log('Json loaded!', json);
-        this.home.initialize(json);
-        this.cdr.detectChanges();
+        this.home.initialize(home['data'], general['data'], features['data']);
+        this.communication.updateFeature('home');
+      }
+      else
+      {
+        console.warn('Ooops, something went wrong...', [home, general, features]);
+      }
+    }
+    else
+    {
+      console.log('<!--');
+      this.http.get(this.globals.pathTo.home).retry(3).subscribe((json) =>
+      {
+        console.log('Json loaded!', [this.globals.pathTo.home, json]);
+        try
+        {
+          // store json data for later use
+          this.globals.json.home['data'] = json['data'];
+          this.globals.json.home.loaded = true;
+
+          const home = this.globals.json.home;
+          const general = this.globals.json.general;
+          const features = this.globals.json.features;
+
+          // initialize home component
+          if (home.loaded && general.loaded && features.loaded)
+          {
+            this.home.initialize(home['data'], general['data'], features['data']);
+            this.communication.updateFeature('home');
+          }
+          else
+          {
+            console.warn('Ooops, something went wrong...', [home, general, features]);
+          }
+          console.log('-->');
+        }
+        catch (e)
+        {
+          console.warn('Ooops, something went wrong...', [e, json]);
+        }
       },
       (e) =>
       {
-        console.log(config.err_message, e);
-      }
-    );
-  }
-
-  public i18n(obj: any, key: string): any
-  {
-    if (this.languageId !== undefined)
-    {
-      return this.i18nService.tryI18n(obj, key, this.languageId);
+        console.warn('Ooops, something went wrong...', [e]);
+      });
     }
   }
 
-  ngOnDestroy()
+  public route(key: string): string
   {
-    this.subscription.unsubscribe();
+    return (this.globals.routes[key] + this.i18n.translate(this.home.features[key], 'route'));
   }
 }

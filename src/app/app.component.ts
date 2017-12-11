@@ -1,136 +1,193 @@
-import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+// angular
+import { Component, ChangeDetectorRef, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
+// rxjs
 import 'rxjs/add/operator/retry';
 
+// app
 import { AppCommunicationService } from '@app/app-communication.service';
 import { AppService } from '@app/app.service';
 import { GlobalsService } from '@app/core/globals.service';
 import { I18nService } from '@app/core/i18n.service';
 
-import { Language, Languages } from '@app/languages.model';
-import { Feature, Features } from '@app/features.model';
-
-const config =
-{
-  'json': 'assets/app/app.json',
-  'error_message': "Ooops, something went wrong..."
-};
+// others
+import { routerTransition } from './router.transition';
+import { App } from './app.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.view.html',
   styleUrls: ['app.style.scss'],
-  providers: [
-    AppCommunicationService
-  ]
+  animations: [ routerTransition ],
+  providers: [ AppCommunicationService ]
 })
 
-export class AppComponent implements OnInit
+export class AppComponent implements OnInit, AfterViewInit
 {
-  public features: Features;
-  public languages: Languages;
-  public loaded: boolean;
-  public navigationState: string;
+  public app = new App();
+
+  @HostListener('window:resize') onResize() {
+    this.handleResize();
+  }
 
   constructor(
-    private appCommunicationService: AppCommunicationService,
+    private communication: AppCommunicationService,
     private appService: AppService,
     private cdr: ChangeDetectorRef,
-    private globalsService: GlobalsService,
+    private globals: GlobalsService,
     private http: HttpClient,
-    private i18nService: I18nService
+    private i18n: I18nService
   ) {
-    this.loaded = false;
-    this.navigationState = '';
-
-    this.languages = new Languages();
-    this.features = new Features();
-
-    this.appCommunicationService.onSelectLanguage$
-      .subscribe((languageId: string) =>
-      {
-        for (let i = 0; i < this.languages.list.length; i++)
-        {
-          if (this.languages.list[i].id === languageId)
-          {
-            this.selectLanguage(this.languages.list[i]);
-            break;
-          }
-        }
-      }
-    );
-
-    this.appCommunicationService.onVerifyLanguage$
-      .subscribe(() =>
-      {
-        this.appCommunicationService.changeLanguage(this.languages.active.id);
-      }
-    );
+    this.communication.onUpdateLanguage$.subscribe((languageId) => this.selectLanguage(languageId));
+    this.communication.onUpdateFeature$.subscribe((featureKey) => this.selectFeature(featureKey));
   }
 
   ngOnInit()
   {
-    this.http.get(config.json)
-      .retry(3)
-      .subscribe((json) =>
-      {
-        try
-        {
-          this.languages.initialize(json['data']['languages']);
-          this.features.initialize(json['data']['features']);
-
-          if (this.languages.list.length > 0 && this.languages.active.id !== undefined)
-          {
-            this.languages.active = this.appService.initializeLanguage(this.languages.list);
-            this.loaded = true;
-            this.cdr.detectChanges();
-          }
-        }
-        catch (e)
-        {
-          console.log(config.error_message, e);
-        }
-      },
-      (e) =>
-      {
-        console.log(config.error_message, e);
-      });
+    this.initLanguages();
+    this.initFeatures();
+    this.initGeneral();
   }
 
-  public i18n(obj: any, key: string): any
+  ngAfterViewInit()
   {
-    return this.i18nService.tryI18n(obj, key, this.languages.active.id);
+    this.handleResize();
+    this.cdr.detectChanges();
   }
 
-  public selectLanguage(language: Language): void
+  private initFeatures(): void
   {
-    if (this.languages.active.id !== language.id)
+    this.http.get(this.globals.pathTo.features).retry(3).subscribe((json) =>
     {
-      console.log('Language changed:', this.languages.active.id, '->', language.id);
-      this.languages.active = language;
-      this.appService.updateLanguage(language.id);
-      this.appCommunicationService.changeLanguage(this.languages.active.id);
+      try
+      {
+        console.log('Json loaded!', [this.globals.pathTo.features, json]);
+        this.globals.json.features['data'] = json['data']['features'];
+        this.globals.json.features.loaded = true;
+        this.initialize();
+      }
+      catch (e)
+      {
+        console.warn('Ooops, something went wrong...', [e, json]);
+      }
+    },
+    (e) =>
+    {
+      console.warn('Ooops, something went wrong...', [e]);
+    });
+  }
+
+  private initLanguages(): void
+  {
+    this.http.get(this.globals.pathTo.languages).retry(3).subscribe((json) =>
+    {
+      try
+      {
+        console.log('Json loaded!', [this.globals.pathTo.languages, json]);
+        this.globals.json.languages['data'] = json['data']['languages'];
+        this.globals.json.languages.loaded = true;
+        this.initialize();
+      }
+      catch (e)
+      {
+        console.log('Ooops, something went wrong...', [e, json]);
+      }
+    },
+    (e) =>
+    {
+      console.log('Ooops, something went wrong...', [e]);
+    });
+  }
+
+  private initGeneral(): void
+  {
+    this.http.get(this.globals.pathTo.general).retry(3).subscribe((json) =>
+    {
+      try
+      {
+        console.log('Json loaded!', [this.globals.pathTo.general, json]);
+        this.globals.json.general['data'] = json['data']['general'];
+        this.globals.json.general.loaded = true;
+      }
+      catch (e)
+      {
+        console.warn('Ooops, something went wrong...', [e, json]);
+      }
+    },
+    (e) =>
+    {
+      console.warn('Ooops, something went wrong...', [e]);
+    });
+  }
+
+  private initialize(): void
+  {
+    if (this.globals.json.languages.loaded && this.globals.json.features.loaded)
+    {
+      // initialize from stored json data
+      this.app.features = this.globals.json.features['data'];
+      this.app.languages = this.globals.json.languages['data'];
+
+      if (this.app.features.home !== undefined && this.app.languages.length > 0)
+      {
+        this.selectLanguage(this.appService.initLanguage(this.app.languages));
+        this.selectFeature('home');
+        this.app.loaded = true;
+      }
+    }
+  }
+
+  private handleResize(): void
+  {
+    this.globals.app.width = window.innerWidth;
+    this.globals.app.height = window.innerHeight;
+  }
+
+  public selectLanguage(languageId: string): void
+  {
+    if (this.app.languageId !== languageId)
+    {
+      console.log('Language changed:', [this.app.languageId, '->', languageId]);
+      this.globals.app.languageId = this.app.languageId = languageId;
+      this.appService.updateLanguage(languageId);
+      this.communication.languageChanged();
       this.cdr.detectChanges();
     }
   }
 
-  public parseRoute(feature: Feature): string
+  public selectFeature(featureKey: string): void
   {
-    return (this.appService.getRoute(feature.module) + this.i18n(feature, 'route'));
-  }
-
-  public featureStatus(id: number): string
-  {
-    return ((id === this.features.active.id) ? 'feature_active' : '');
-  }
-
-  public languageStatus(id: string): string
-  {
-    return ((id === this.languages.active.id) ? 'language_active' : '');
+    if (this.app.featureKey !== featureKey)
+    {
+      console.log('Feature changed:', [this.app.featureKey, '->', featureKey]);
+      this.globals.app.featureKey = this.app.featureKey = featureKey;
+      this.cdr.detectChanges();
+    }
   }
 
   public toggleMenu(): void
   {
-    this.navigationState = (this.navigationState === 'active') ? '' : 'active';
+    this.app.navigationState = !this.app.navigationState;
+  }
+
+  public featureStatus(module: string): string
+  {
+    return ((module === this.app.featureKey) ? 'feature_active' : '');
+  }
+
+  public languageStatus(id: string): string
+  {
+    return ((id === this.app.languageId) ? 'language_active' : '');
+  }
+
+  public getState(outlet)
+  {
+    return outlet.activatedRouteData.state;
+  }
+
+  public route(key: string): string
+  {
+    return (this.globals.routes[key] + this.i18n.translate(this.app.features[key], 'route'));
   }
 }

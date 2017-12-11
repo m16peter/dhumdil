@@ -1,16 +1,15 @@
 {
   "data":
   {
-    "feature":
+    "news":
     {
-      "id": 0,
-      "module": "home",
-      "route": "",
-      "titleI18n":
+      "content":
       {
-        "sk": "Suspendisse ornare",
-        "ro": "Neque porro quisquam"
-      }
+        "title": "Lorem ipsum dolor sit amet",
+        "description": "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+      },
+      "cards":
+      []
     }
   }
 }

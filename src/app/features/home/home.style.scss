@@ -5,12 +5,53 @@
   will-change: transform;
   transform: translateZ(0);
   background-color: #fff;
+}
 
-  > div {
-    padding: 20px;
+.news {
 
-    h1 {
-      text-transform: uppercase;
+  .content {
+
+    > div {
+     padding: 50px;
+     margin: auto;
+    }
+    .h2, .p {
+      text-align: right;
+      margin: 50px 0;
+
+      @media (max-width: 1024px)
+      {
+        text-align: center;
+      }
+    }
+    .button {
+      margin-left: auto;
+
+      @media (max-width: 1024px)
+      {
+        margin: 0 auto;
+      }
+    }
+    @media (max-width: 1024px)
+    {
+      > div {
+        padding: 50px 100px;
+      }
+    }
+    @media (max-width: 600px)
+    {
+      > div {
+        padding: 20px;
+      }
+    }
+  }
+  .cards {
+    position: relative;
+    background-color: #dee;
+
+    @media (max-width: 1024px)
+    {
+      display: none;
     }
   }
 }
