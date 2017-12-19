@@ -2,8 +2,13 @@ export class Home
 {
   public features: any;
   public general: any;
-  public news: any;
 
+  public announcements: any;
+  public videoArchive: any;
+  public photoArchive: any;
+  public contact: any;
+
+  public box: any;
   public loaded: boolean;
 
   constructor()
@@ -15,8 +20,17 @@ export class Home
   {
     this.features = [];
     this.general = {};
-    this.news = {};
 
+    this.announcements = {};
+    this.videoArchive = {};
+    this.photoArchive = {};
+    this.contact = {};
+
+    this.box =
+      {
+        cardId: 0,
+        photoId: 0
+      };
     this.loaded = false;
   }
 
@@ -26,13 +40,17 @@ export class Home
     {
       this.features = features;
       this.general = general;
-      this.news = data['news'];
+
+      this.announcements = data['announcements'];
+      this.videoArchive = data['video-archive'];
+      this.photoArchive = data['photo-archive'];
+      this.contact = data['contact'];
 
       this.loaded = true;
     }
     catch (e)
     {
-      console.warn('Ooops, something went wrong...', [e]);
+      // console.warn('Ooops, something went wrong...', [e]);
       this.init();
     }
   }

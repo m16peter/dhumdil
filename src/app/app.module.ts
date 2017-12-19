@@ -4,8 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CoreModule } from '@app/core/core.module';
 import { SharedModule } from '@app/shared/shared.module';
-
-import { HomeComponent } from '@app/features/home/home.component';
+import { HomeModule } from '@app/features/home/home.module';
 
 import { AppCommunicationService } from './app-communication.service';
 import { AppService } from './app.service';
@@ -18,11 +17,11 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     CoreModule,
     SharedModule,
+    HomeModule,
     AppRoutingModule
   ],
   declarations: [
-    AppComponent,
-    HomeComponent
+    AppComponent
   ],
   bootstrap: [
     AppComponent

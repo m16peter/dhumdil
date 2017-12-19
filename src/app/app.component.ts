@@ -48,6 +48,7 @@ export class AppComponent implements OnInit, AfterViewInit
     this.initLanguages();
     this.initFeatures();
     this.initGeneral();
+    this.initHome();
   }
 
   ngAfterViewInit()
@@ -62,19 +63,19 @@ export class AppComponent implements OnInit, AfterViewInit
     {
       try
       {
-        console.log('Json loaded!', [this.globals.pathTo.features, json]);
+        // console.log('Json loaded!', [this.globals.pathTo.features, json]);
         this.globals.json.features['data'] = json['data']['features'];
         this.globals.json.features.loaded = true;
         this.initialize();
       }
       catch (e)
       {
-        console.warn('Ooops, something went wrong...', [e, json]);
+        console.warn('Ooops, something went wrong...');
       }
     },
     (e) =>
     {
-      console.warn('Ooops, something went wrong...', [e]);
+      console.warn('Ooops, something went wrong...');
     });
   }
 
@@ -84,19 +85,19 @@ export class AppComponent implements OnInit, AfterViewInit
     {
       try
       {
-        console.log('Json loaded!', [this.globals.pathTo.languages, json]);
+        // console.log('Json loaded!', [this.globals.pathTo.languages, json]);
         this.globals.json.languages['data'] = json['data']['languages'];
         this.globals.json.languages.loaded = true;
         this.initialize();
       }
       catch (e)
       {
-        console.log('Ooops, something went wrong...', [e, json]);
+        console.warn('Ooops, something went wrong...');
       }
     },
     (e) =>
     {
-      console.log('Ooops, something went wrong...', [e]);
+      console.warn('Ooops, something went wrong...');
     });
   }
 
@@ -106,34 +107,64 @@ export class AppComponent implements OnInit, AfterViewInit
     {
       try
       {
-        console.log('Json loaded!', [this.globals.pathTo.general, json]);
+        // console.log('Json loaded!', [this.globals.pathTo.general, json]);
         this.globals.json.general['data'] = json['data']['general'];
         this.globals.json.general.loaded = true;
+        this.initialize();
       }
       catch (e)
       {
-        console.warn('Ooops, something went wrong...', [e, json]);
+        console.warn('Ooops, something went wrong...');
       }
     },
     (e) =>
     {
-      console.warn('Ooops, something went wrong...', [e]);
+      console.warn('Ooops, something went wrong...');
     });
+  }
+
+  private initHome(): void
+  {
+    this.http.get(this.globals.pathTo.home).retry(3).subscribe((json) =>
+      {
+        try
+        {
+          // console.log('Json loaded!', [this.globals.pathTo.home, json]);
+          this.globals.json.home['data'] = json['data'];
+          this.globals.json.home.loaded = true;
+          this.initialize();
+        }
+        catch (e)
+        {
+          console.warn('Ooops, something went wrong...');
+        }
+      },
+      (e) =>
+      {
+        console.warn('Ooops, something went wrong...');
+      });
   }
 
   private initialize(): void
   {
-    if (this.globals.json.languages.loaded && this.globals.json.features.loaded)
+    if (this.globals.json.languages.loaded)
     {
-      // initialize from stored json data
-      this.app.features = this.globals.json.features['data'];
-      this.app.languages = this.globals.json.languages['data'];
-
-      if (this.app.features.home !== undefined && this.app.languages.length > 0)
+      if (this.globals.json.features.loaded)
       {
-        this.selectLanguage(this.appService.initLanguage(this.app.languages));
-        this.selectFeature('home');
-        this.app.loaded = true;
+        if (this.globals.json.general.loaded)
+        {
+          if (this.globals.json.home.loaded)
+          {
+            // initialize from stored json data
+            this.app.features = this.globals.json.features['data'];
+            this.app.languages = this.globals.json.languages['data'];
+
+            this.selectLanguage(this.appService.initLanguage(this.app.languages));
+            this.selectFeature('home');
+            this.app.loaded = true;
+            return ;
+          }
+        }
       }
     }
   }
@@ -142,13 +173,23 @@ export class AppComponent implements OnInit, AfterViewInit
   {
     this.globals.app.width = window.innerWidth;
     this.globals.app.height = window.innerHeight;
+    this.globals.app.boxSize = ((this.globals.app.width < 1024) ? this.globals.app.width : (this.globals.app.width / 2));
+    this.globals.app.cardSize.w = cardW(this.globals.app.width);
+    this.globals.app.cardSize.h = cardH(this.globals.app.width, this.globals.app.height);
+
+    function cardW(w) {
+      return ((w < 1024) ? (w - 50) : ((w - 200) / 2));
+    }
+    function cardH(w, h) {
+      return ((w < 1024 && h < 500) ? (h - 100) : (w < 1024) ? (h - 200) : (h - 100));
+    }
   }
 
   public selectLanguage(languageId: string): void
   {
     if (this.app.languageId !== languageId)
     {
-      console.log('Language changed:', [this.app.languageId, '->', languageId]);
+      // console.log('Language changed:', [this.app.languageId, '->', languageId]);
       this.globals.app.languageId = this.app.languageId = languageId;
       this.appService.updateLanguage(languageId);
       this.communication.languageChanged();
@@ -160,7 +201,7 @@ export class AppComponent implements OnInit, AfterViewInit
   {
     if (this.app.featureKey !== featureKey)
     {
-      console.log('Feature changed:', [this.app.featureKey, '->', featureKey]);
+      // console.log('Feature changed:', [this.app.featureKey, '->', featureKey]);
       this.globals.app.featureKey = this.app.featureKey = featureKey;
       this.cdr.detectChanges();
     }
@@ -171,23 +212,19 @@ export class AppComponent implements OnInit, AfterViewInit
     this.app.navigationState = !this.app.navigationState;
   }
 
-  public featureStatus(module: string): string
-  {
-    return ((module === this.app.featureKey) ? 'feature_active' : '');
-  }
-
   public languageStatus(id: string): string
   {
     return ((id === this.app.languageId) ? 'language_active' : '');
   }
 
-  public getState(outlet)
+  public getState(outlet): any
   {
-    return outlet.activatedRouteData.state;
+    return (outlet.activatedRouteData.state);
   }
 
-  public route(key: string): string
+  public scrollTo(section: number): void
   {
-    return (this.globals.routes[key] + this.i18n.translate(this.app.features[key], 'route'));
+    this.toggleMenu();
+    setTimeout(() => this.communication.scrollTo(section), 100);
   }
 }

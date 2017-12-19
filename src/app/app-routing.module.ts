@@ -14,9 +14,16 @@ const routes: Routes =
   },
   {
     path: '01',
-    loadChildren: 'app/features/news/news.module#NewsModule',
+    loadChildren: 'app/features/video-archive/video-archive.module#VideoArchiveModule',
     data: {
-      state: 'news'
+      state: 'video-archive'
+    }
+  },
+  {
+    path: '02',
+    loadChildren: 'app/features/photo-archive/photo-archive.module#PhotoArchiveModule',
+    data: {
+      state: 'photo-archive'
     }
   },
   {

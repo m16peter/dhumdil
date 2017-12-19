@@ -14,35 +14,56 @@
 
       <div class="flex"></div>
 
-      <div class="language" *ngFor="let language of app.languages">
+      <div class="language {{ languageStatus(language.id) }}" *ngFor="let language of app.languages">
 
         <img src="{{ language.icon }}" (click)="selectLanguage(language.id)" alt="{{ language.id }}">
-
-        <div class="tooltip {{ languageStatus(language.id) }}">
-          <span>{{ i18n.translate(language, 'title') }}</span>
-        </div>
 
       </div>
 
     </div>
 
-    <div class="features">
+    <div class="features layout-column">
 
-      <div class="feature {{ featureStatus('home') }}">
+      <div class="flex hr"></div>
 
-        <a routerLink="{{ globals.routes.home }}" (click)="toggleMenu()">
+      <!-- Home -->
+      <div class="feature" (click)="scrollTo(0)">
+        <img src="{{ app.features['home'].icon }}" alt="" height="50" width="50"/>
+
+        <div class="link">
           <span>{{ i18n.translate(app.features['home'], 'title') }}</span>
-        </a>
-
+        </div>
       </div>
 
-      <div class="feature {{ featureStatus('news') }}">
+      <!-- Video Archive -->
+      <div class="feature" (click)="scrollTo(1)">
+        <img src="{{ app.features['videoArchive'].icon }}" alt="" height="50" width="50"/>
 
-        <a routerLink="{{ route('news') }}" (click)="toggleMenu()">
-          <span>{{ i18n.translate(app.features['news'], 'title') }}</span>
-        </a>
-
+        <div class="link">
+          <span>{{ i18n.translate(app.features['videoArchive'], 'title') }}</span>
+        </div>
       </div>
+
+      <!-- Photo Archive -->
+      <div class="feature" (click)="scrollTo(2)">
+        <img src="{{ app.features['photoArchive'].icon }}" alt="" height="50" width="50"/>
+
+        <div class="link">
+          <span>{{ i18n.translate(app.features['photoArchive'], 'title') }}</span>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="feature" (click)="scrollTo(3)">
+        <img src="{{ app.features['contact'].icon }}" alt="" height="50" width="50"/>
+
+        <div class="link">
+          <span>{{ i18n.translate(app.features['contact'], 'title') }}</span>
+        </div>
+      </div>
+
+      <div class="flex"></div>
+      <div class="flex"></div>
 
     </div>
 

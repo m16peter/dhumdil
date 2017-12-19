@@ -5,19 +5,48 @@
     {
       "home":
       {
-        "title": "Lorem Ipsum Dolor sit Amet"
+        "icon": "assets/app/img/angular.svg",
+        "title-i18n":
+        {
+          "sk": "Stretnutie rumunských veriacich na Slovensku",
+          "ro": "Întâlnirea creștinilor români în Slovacia"
+        }
       },
-      "news":
+      "videoArchive":
       {
+        "icon": "assets/video-archive/img/youtube.svg",
         "route-i18n":
         {
-          "sk": "novinky",
-          "ro": "noutati"
+          "sk": "video-archiv",
+          "ro": "arhiva-video"
         },
         "title-i18n":
         {
-          "sk": "Novinky",
-          "ro": "Noutăți"
+          "sk": "Video Archív",
+          "ro": "Arhivă Video"
+        }
+      },
+      "photoArchive":
+      {
+        "icon": "assets/photo-archive/img/google-photos.svg",
+        "route-i18n":
+        {
+          "sk": "foto-archiv",
+          "ro": "arhiva-foto"
+        },
+        "title-i18n":
+        {
+          "sk": "Foto Archív",
+          "ro": "Arhivă Foto"
+        }
+      },
+      "contact":
+      {
+        "icon": "assets/app/img/contact-card.svg",
+        "title-i18n":
+        {
+          "sk": "Kontakt",
+          "ro": "Contact"
         }
       }
     }

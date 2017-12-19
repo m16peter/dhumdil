@@ -9,14 +9,17 @@ export class GlobalsService
     width: 0,
     height: 0,
     featureKey: '',
-    languageId: ''
+    languageId: '',
+    boxSize: 0,
+    cardSize: { w: 0, h: 0 }
   };
 
   // base routes (read only)
   public routes =
   {
     home: '/',
-    news: '01/'
+    videoArchive: '01/',
+    photoArchive: '02/'
   };
 
   // path to jsons (read only)
@@ -26,39 +29,26 @@ export class GlobalsService
     features: 'assets/app/features.json',
     languages: 'assets/app/languages.json',
     home: 'assets/home/home.json',
-    news: 'assets/news/news.json'
+    videoArchive: 'assets/video-archive/video-archive.json',
+    photoArchive: 'assets/photo-archive/photo-archive.json'
   };
 
   // browser setup (read only)
   public browserSetup =
   {
     localStorageId: 'app-language',
-    pageTitle: 'bajas.sk',
-    metaDescription: 'Stretnutie Rumunskych veriacich zijucich na Slovensku'
+    pageTitle: 'Angular 5',
+    metaDescription: 'Angular - one framework to rule them all!'
   };
 
   // json data (read only)
   public json =
   {
-    general:
-    {
-      loaded: false
-    },
-    languages:
-    {
-      loaded: false
-    },
-    features:
-    {
-      loaded: false
-    },
-    home:
-    {
-      loaded: false
-    },
-    news:
-    {
-      loaded: false
-    }
+    general: { loaded: false },
+    languages: { loaded: false },
+    features: { loaded: false },
+    home: { loaded: false },
+    videoArchive: { loaded: false },
+    photoArchive: { loaded: false }
   };
 }

@@ -2,6 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
   z-index: 1;
 }
 
@@ -10,9 +11,11 @@
   top: 0;
   left: 0;
   width: 200px;
-	height: 200px;
+  height: 200px;
   transform: translate3d(-50%, -50%, 0) rotate(45deg);
+  will-change: transform;
 	background-color: #369;
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
   z-index: 4;
   cursor: pointer;
 }
@@ -59,7 +62,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  width: 50%;
+  width: 100%;
   height: 70px;
   background: #013;
   overflow: hidden;
@@ -68,6 +71,7 @@
   transition: all 150ms ease-out;
   transition-delay: 50ms;
   z-index: 3;
+  box-shadow: 5px 0px 5px 0px rgba(0,0,0, 0.2);
 
   .language {
     position: relative;
@@ -83,26 +87,24 @@
       width: auto;
       cursor: pointer;
     }
-    > div {
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 1px;
-        width: 40px;
-        height: 2px;
-        background: #dee;
-        will-change: transform;
-        transform: scaleX(0);
-        transition: all 150ms ease-out;
-      }
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 1px;
+      width: 40px;
+      height: 2px;
+      background: #dee;
+      will-change: transform;
+      transform: scaleX(0);
+      transition: all 150ms ease-out;
     }
-    > div.language_active::before {
+    &_active::after {
       transform: scaleX(1);
     }
   }
-  @media (max-width: 1024px) {
-    width: 100%;
+  @media (min-width: 1024px) {
+    width: 50%;
   }
 }
 
@@ -110,10 +112,10 @@
   position: fixed;
   left: 0;
   top: 70px;
-  width: 50%;
-  height: calc(100% - 170px);
-  padding: 50px 0;
-  background-color: #dee;
+  width: 100%;
+  height: calc(100% - 120px);
+  padding-top: 50px;
+  background-color: #fff;
   -webkit-overflow-scrolling: touch;
   overflow-y: auto;
   overflow-x: hidden;
@@ -122,70 +124,64 @@
   transition: all 150ms ease-out;
   transition-delay: 0ms;
   z-index: 2;
+  box-shadow: 5px 0px 5px 0px rgba(0,0,0, 0.2);
 
   .feature {
     position: relative;
     display: flex;
     width: calc(100% - 20px);
-    margin: 10px;
+    padding: 10px;
+    transform: translateZ(0);
+    font-size: 28px;
     cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    min-height: 50px;
 
     &:hover {
-      a > span::after {
-        transform: scaleX(1);
-      }
+      background: rgba(0,0,0, 0.025);
     }
-    a {
-      position: relative;
+    img {
+      padding-left: 10px;
+      margin: auto;
+    }
+    .link, a {
       width: 100%;
       min-height: 50px;
       display: flex;
 
       > span {
-        padding: 20px;
-        position: relative;
-        border-bottom: 1px solid #000;
-        font-size: 28px;
-        padding: 20px;
+        font-size: 16px;
+        padding: 10px 5px;
         font-family: sans-serif;
-        color: #126;
-        text-align: center;
+        color: #369;
         margin: 0 auto;
         text-align: center;
-        font-weight: 600;
+        font-weight: 500;
         text-transform: uppercase;
+        line-height: 150%;
 
-        &::after {
-          content: '';
-          position: absolute;
-          left: 0;
-          bottom: -1px;
-          width: 100%;
-          height: 2px;
-          background: #000;
-          will-change: transform;
-          transform: scaleX(0);
-          transition: all 200ms ease-out;
+        @media (min-width: 500px) {
+          font-size: 24px;
+          padding: 20px;
         }
       }
     }
-    &_active a > span::after {
-      background: #369;
-      transform: scaleX(1);
-    }
   }
-  @media (max-width: 1024px) {
-    width: 100%;
+  .hr {
+    border-bottom: 1px solid #ddd;
+  }
+  @media (min-width: 1024px) {
+    width: 50%;
   }
 }
 
 .click-catcher {
-  background-color: rgba(0,0,0, 0.5);
   will-change: transform;
-  transition: opacity 200ms ease-out;
   transform: translateX(100%);
-  opacity: 0;
   cursor: pointer;
+  background: #000;
+  opacity: 0;
+  transition: opacity 200ms ease;
 }
 
 .active {
@@ -214,8 +210,7 @@
     transition-delay: 50ms;
   }
   .click-catcher {
-    transform: translateZ(0);
-    opacity: 1;
-    transition: opacity 400ms ease-out;
+    opacity: 0.25;
+    transform: translateX(0);
   }
 }
